@@ -85,9 +85,34 @@
     return(cols_greater_than_3_sum)
   }
 
-
-  aspect_ratio <- function(current_file){
-  
+  # this gets the aspect ratio width/height
+  aspect_ratio <- function(current_file_image_matrix){
+    # get the pixel distance between the top most black pixel and bottom
+    row_sum_matrix <- rowSums(current_file_image_matrix)
+    top_element <- 0
+    bottom_element <- 0
+    
+    current_index <- 1
+    while(top_element == 0){
+      if(row_sum_matrix[current_index] > 0){
+        top_element <- current_index
+        break
+      }
+      current_index <- current_index + 1
+    }
+    
+    # get the pixel index of the bottom most black pixel
+    current_index <- length(row_sum_matrix)
+    
+    while(bottom_element == 0){
+      if(row_sum_matrix[current_index] > 0){
+        bottom_element <- current_index
+        break
+      }
+      current_index <- current_index - 1
+    }
+    
+    height <- bottom_element - top_element
   }
   
   neigh_1 <- function(current_file){
@@ -136,11 +161,15 @@
     current_file_name <- data_folder[current_index]
     current_file_path <- paste(folder_path, current_file_name, sep = "")
     
-    current_file <- read.csv(file = current_file_path)
+    current_file <- read.csv(file = current_file_path, header = T)
     
-    current_file_image_matrix <- as.matrix(current_file, nrow = 18, ncol = 18)
+    print(current_file)
+    
+    current_file_image_matrix <- as.matrix(current_file, nrow = 18, ncol = 19)
     
     calculated_features = matrix(ncol = 18, nrow = 1)
+    
+    print(current_file_image_matrix)
     
     calculated_features[1,1] <- getFileLabel(current_file_name)
     calculated_features[1,2] <- current_index
@@ -149,7 +178,7 @@
     calculated_features[1,5] <- cols_with_1(current_file_image_matrix)
     calculated_features[1,6] <- rows_with_3p(current_file_image_matrix)
     calculated_features[1,7] <- rows_with_3p(current_file_image_matrix)
-    #calculated_features[1,8]
+    calculated_features[1,8] <- aspect_ratio(current_file_image_matrix)
     #calculated_features[1,9]
     #calculated_features[1,10]
     #calculated_features[1,11]
@@ -160,8 +189,6 @@
     #calculated_features[1,16]
     #calculated_features[1,17]
     #calculated_features[1,18]
-    
-    print(calculated_features)
   }
 }
   
