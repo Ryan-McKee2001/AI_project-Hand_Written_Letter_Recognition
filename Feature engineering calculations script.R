@@ -57,14 +57,32 @@
   }
 
   # returns number of rows with 3 or more pixels from image
-  rows_with_3p <- function(current_file){
-
+  rows_with_3p <- function(current_file_image_matrix){
+    rows_greater_than_3_sum <- 0
+    row_sums<- c(rowSums(current_file_image_matrix))
+    
+    for(current_index in 1:length(row_sums)){
+      if( row_sums[current_index] >= 3){
+        rows_greater_than_3_sum <- rows_greater_than_3_sum + 1
+      }
+    }
+    
+    return(rows_greater_than_3_sum)
   }
 
 
   # returns number of columns with 3 or more pixels
   cols_with_3p<- function(current_file){
-
+    cols_greater_than_3_sum <- 0
+    col_sums<- c(colSums(current_file_image_matrix))
+    
+    for(current_index in 1:length(col_sums)){
+      if( col_sums[current_index] >= 3  ){
+        cols_greater_than_3_sum <- cols_greater_than_3_sum + 1
+      }
+    }
+    
+    return(cols_greater_than_3_sum)
   }
 
 
@@ -129,8 +147,8 @@
     calculated_features[1,3] <- nr_pix(current_file_image_matrix)
     calculated_features[1,4] <- rows_with_1(current_file_image_matrix)
     calculated_features[1,5] <- cols_with_1(current_file_image_matrix)
-    #calculated_features[1,6]
-    #calculated_features[1,7]
+    calculated_features[1,6] <- rows_with_3p(current_file_image_matrix)
+    calculated_features[1,7] <- rows_with_3p(current_file_image_matrix)
     #calculated_features[1,8]
     #calculated_features[1,9]
     #calculated_features[1,10]
