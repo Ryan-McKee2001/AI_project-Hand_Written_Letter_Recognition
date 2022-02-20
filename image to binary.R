@@ -3,10 +3,10 @@
   
   
   
-  data_files <- list.files(path = "testing1")
+  data_files <- list.files(path = "ai_dataset")
   
   for(index in 1:length(data_files)){
-    working_folder <- "testing1/"
+    working_folder <- "ai_dataset/"
     current_file <- data_files[index]
     
     current_file_path <- paste(working_folder, current_file, sep = "")
@@ -32,7 +32,7 @@
     imageMatrix <- t(imageMatrix)
     
     # need to figure out how to get rid of quotation marks around the values
-    write.table(imageMatrix, file = paste("testing2/", data_files[index], sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
+    write.table(imageMatrix, file = paste("csv_ai_dataset/", data_files[index], sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
     
   }
 }

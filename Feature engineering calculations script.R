@@ -3,10 +3,8 @@
   library(utile.tables)
   
   # creating a list of all the files in the data_set
-  folder_path <- "testing_ai_dataset"
+  folder_path <- "dataset/csv_images_dataset"
   data_folder <- list.files(path = folder_path)
-  
-  print(data_folder)
   
   # updating the file path string so it can be used later
   folder_path <- paste(folder_path, "/", sep="")
@@ -14,6 +12,7 @@
   # program functions
   # These are the functions for calculating each of the features the dataset files
   
+  # function returns the label for the current_file passed in parameters
   getFileLabel <- function(current_file){
     file_name <- current_file
     file_name_split <- strsplit(file_name, "_")
@@ -24,90 +23,112 @@
     
     return(label)
   }
-
-  nr_pix <- function(current_file){
-    
+  
+  # return the number of black pixels in image
+  nr_pix <- function(current_file_image_matrix){
+    return(sum(current_file_image_matrix))
   }
    
-  # rows_with_1 <- function(current_file){
-  #   
-  # }
-  # 
-  # cols_with_1 <- function(current_file){
-  #   
-  # }
-  # 
-  # 
-  # rows_with_3p <- function(current_file){
-  #   
-  # }
-  # 
-  # 
-  # cols_with_3p<- function(current_file){
-  #   
-  # }
-  # 
-  # 
-  # aspect_ratio <- function(current_file){
-  #   
-  # }
-  # 
-  # neigh_1 <- function(current_file){
-  #   
-  # }
-  # 
-  # no_neigh_above <- function(current_file){
-  #   
-  # }
-  # 
-  # no_neigh_below <- function(current_file){
-  #   
-  # }
-  # 
-  # no_neigh_left <- function(current_file){
-  #   
-  # }
-  # 
-  # no_neigh_horiz <- function(current_file){
-  #   
-  # }
-  # 
-  # no_neigh_vert <- function(current_file){
-  #   
-  # }
-  # 
-  # connected_areas <- function(current_file){
-  #   
-  # }
-  # 
-  # eyes <- function(current_file){
-  #   
-  # }
-  # 
-  # custom <- function(current_file){
-  #   
-  # }
-  # 
+  # counts the number of rows with 1 
+  rows_with_1 <- function(current_file_image_matrix){
+    rows_greater_than_1_sum <- 0
+    row_sums<- c(rowSums(current_file_image_matrix))
+    
+    for(current_index in 1:length(row_sums)){
+      if( row_sums[current_index] > 0 ){
+        rows_greater_than_1_sum <- rows_greater_than_1_sum + 1
+      }
+    }
+    
+    return(rows_greater_than_1_sum)
+  }
+
+  cols_with_1 <- function(current_file){
+    cols_greater_than_1_sum <- 0
+    col_sums<- c(colSums(current_file_image_matrix))
+    
+    for(current_index in 1:length(col_sums)){
+      if( col_sums[current_index] > 0 ){
+        cols_greater_than_1_sum <- cols_greater_than_1_sum + 1
+      }
+    }
+    
+    return(cols_greater_than_1_sum)
+  }
+
+  # returns number of rows with 3 or more pixels from image
+  rows_with_3p <- function(current_file){
+
+  }
+
+
+  # returns number of columns with 3 or more pixels
+  cols_with_3p<- function(current_file){
+
+  }
+
+
+  aspect_ratio <- function(current_file){
+  
+  }
+  
+  neigh_1 <- function(current_file){
+  
+  }
+  
+  no_neigh_above <- function(current_file){
+  
+  }
+  
+  no_neigh_below <- function(current_file){
+  
+  }
+  
+  no_neigh_left <- function(current_file){
+  
+  }
+  
+  no_neigh_horiz <- function(current_file){
+  
+  }
+  
+  no_neigh_vert <- function(current_file){
+  
+  }
+  
+  connected_areas <- function(current_file){
+  
+  }
+  
+  eyes <- function(current_file){
+  
+  }
+  
+  # for custom I think I should check for enclosed area.
+  # this would allow me to distinguish between letters
+  # and exclude an image from being a smliey face or some of the
+  # letters
+  custom <- function(current_file){
+  
+  }
+
   
   for(current_index in 1:length(data_folder))
   {
-    
     current_file_name <- data_folder[current_index]
     current_file_path <- paste(folder_path, current_file_name, sep = "")
     
-    current_file <- read_lines(file = current_file_path)
+    current_file <- read.csv(file = current_file_path)
     
-    current_file_image_matrix <- matrix(current_file, nrow = 18, ncol = 18)
-    
-    print(current_file_image_matrix)
+    current_file_image_matrix <- as.matrix(current_file, nrow = 18, ncol = 18)
     
     calculated_features = matrix(ncol = 18, nrow = 1)
     
     calculated_features[1,1] <- getFileLabel(current_file_name)
-    calculated_features[1,2] <- currentIndex
-    #calculated_features[1,3] <- nr_pix(current_file)
-    #calculated_features[1,4]
-    #calculated_features[1,5]
+    calculated_features[1,2] <- current_index
+    calculated_features[1,3] <- nr_pix(current_file_image_matrix)
+    calculated_features[1,4] <- rows_with_1(current_file_image_matrix)
+    calculated_features[1,5] <- cols_with_1(current_file_image_matrix)
     #calculated_features[1,6]
     #calculated_features[1,7]
     #calculated_features[1,8]
@@ -121,6 +142,8 @@
     #calculated_features[1,16]
     #calculated_features[1,17]
     #calculated_features[1,18]
+    
+    print(calculated_features)
   }
 }
   
