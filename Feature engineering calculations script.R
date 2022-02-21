@@ -13,8 +13,8 @@
   # These are the functions for calculating each of the features the dataset files
   
   # function returns the label for the current_file passed in parameters
-  getFileLabel <- function(current_file){
-    file_name <- current_file
+  getFileLabel <- function(current_file_name){
+    file_name <- current_file_name
     file_name_split <- strsplit(file_name, "_")
     
     file_names_split_matrix <- matrix(unlist(file_name_split), nrow = 1, byrow = TRUE)
@@ -22,6 +22,19 @@
     label <- file_names_split_matrix[1,2]
     
     return(label)
+  }
+  
+  # gets the current files index from the file name
+  getIndex <- function(current_file_name){
+    file_name <- current_file_name
+    file_name_split <- strsplit(file_name, "_")
+    
+    file_name_split_matrix <- matrix(unlist(file_name_split), nrow = 1, byrow = TRUE)
+    
+    index_with_extension <- file_name_split_matrix[1,3]
+    
+    index <- substr(index_with_extension, 1, 2)
+    return(index)
   }
   
   # return the number of black pixels in image
@@ -147,16 +160,163 @@
     
   }
   
+  # This returns the number of black pixels with only 1 black pixel neighbour
   neigh_1 <- function(current_file){
+    no_pixel_with_only_1_black_neighbour <- 0
     
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          no_neighbours_current_file <- 0
+          
+          # checking the neighbours above the current element
+          if(row_index > 1){
+            
+            # check the upper neighbour
+            if(current_file[row_index - 1, col_index] == 1){
+              no_neighbours_current_file <- no_neighbours_current_file + 1
+            }
+            
+            # check upper left
+            if(col_index>1 && row_index>1){
+              if(current_file[row_index -1, col_index-1] == 1){
+                no_neighbours_current_file <- no_neighbours_current_file + 1
+              }
+            }
+            
+            # check upper right
+            if(row_index > 1 && col_index < ncol(current_file)){
+              if(current_file[row_index, col_index] ==  1){
+                no_neighbours_current_file <- no_neighbours_current_file + 1
+              }
+            }
+          }
+          
+          # check left neighbour
+          if(col_index > 1){
+            if(current_file[row_index, col_index-1] == 1){
+              no_neighbours_current_file <- no_neighbours_current_file + 1
+            }
+          }
+          
+          # check right neighbour
+          if(col_index < ncol(current_file)){
+            if(current_file[row_index, col_index+1] == 1){
+              no_neighbours_current_file <- no_neighbours_current_file +1
+            }
+          }
+        
+          # checking the neighbours below
+          if(row_index < nrow(current_file)){
+            # checking the bottom left
+            if(col_index > 1){
+              if(current_file[row_index + 1, col_index - 1] == 1){
+                no_neighbours_current_file <- no_neighbours_current_file + 1
+              }
+            }
+            
+            # checking the below
+            if(current_file[row_index + 1, col_index] == 1){
+              no_neighbours_current_file <- no_neighbours_current_file + 1
+            }
+            
+            # checking the bottom right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index + 1, col_index + 1] == 1){
+                no_neighbours_current_file <- no_neighbours_current_file + 1
+              }
+            }
+            
+            if(no_neighbours_current_file == 1){
+              no_pixel_with_only_1_black_neighbour <- no_pixel_with_only_1_black_neighbour + 1
+            }
+          }
+        }
+      }
+    }
+    
+    return(no_pixel_with_only_1_black_neighbour)
   }
   
+  # number of black pixels wih no black pixel neighbours
+  # "upper left, upper, and "Upper right"
   no_neigh_above <- function(current_file){
-  
+    no_pixels_no_upper_neighbour <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          current_element_upper_neighbours <- 0
+          if(row_index > 1){
+            
+            # check the upper neighbour
+            if(current_file[row_index - 1, col_index] == 1){
+              current_element_upper_neighbours <- current_element_upper_neighbours + 1
+            }
+            
+            # check upper left
+            if(col_index>1){
+              if(current_file[row_index -1, col_index-1] == 1){
+                current_element_upper_neighbours <- current_element_upper_neighbours + 1
+              }
+            }
+            
+            # check upper right
+            if(row_index > 1 && col_index < ncol(current_file)){
+              if(current_file[row_index-1, col_index + 1] ==  1){
+                current_element_upper_neighbours <- current_element_upper_neighbours + 1
+              }
+            }
+            
+            if(current_element_upper_neighbours == 0){
+              no_pixels_no_upper_neighbour <- no_pixels_no_upper_neighbour + 1
+            }
+          }
+        }
+      }
+    }
+    
+    return(no_pixels_no_upper_neighbour)
   }
   
+  # returns the number of elements that have no pixels "below", "below right", or "below left"
   no_neigh_below <- function(current_file){
-  
+    no_pixels_no_lower_neighbour <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          current_element_lower_neighbours <- 0
+          if(row_index < nrow(current_file)){
+            
+            # check the lower neighbour
+            if(current_file[row_index + 1, col_index] == 1){
+              current_element_lower_neighbours <- current_element_lower_neighbours + 1
+            }
+            
+            # check lower left
+            if(col_index>1){
+              if(current_file[row_index +1, col_index-1] == 1){
+                current_element_lower_neighbours <- current_element_lower_neighbours + 1
+              }
+            }
+            
+            # check lower right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index+1, col_index + 1] ==  1){
+                current_element_lower_neighbours <- current_element_lower_neighbours + 1
+              }
+            }
+            
+            if(current_element_lower_neighbours == 0){
+              no_pixels_no_lower_neighbour <- no_pixels_no_lower_neighbour + 1
+            }
+          }
+        }
+      }
+    }
+    
+    return(no_pixels_no_lower_neighbour)
   }
   
   no_neigh_left <- function(current_file){
@@ -201,17 +361,17 @@
                                        "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                        "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
     
-    calculated_features[1,1] <- getFileLabel(current_file_name)
-    calculated_features[1,2] <- current_index
-    calculated_features[1,3] <- nr_pix(current_file_image_matrix)
-    calculated_features[1,4] <- rows_with_1(current_file)
-    calculated_features[1,5] <- cols_with_1(current_file)
-    calculated_features[1,6] <- rows_with_3p(current_file)
-    calculated_features[1,7] <- cols_with_3p(current_file)
-    calculated_features[1,8] <- aspect_ratio(current_file)
-    #calculated_features[1,9]
-    #calculated_features[1,10]
-    #calculated_features[1,11]
+    calculated_features[1,1] <- getFileLabel(current_file_name) # works
+    calculated_features[1,2] <- getIndex(current_file_name)
+    calculated_features[1,3] <- nr_pix(current_file_image_matrix) # works
+    calculated_features[1,4] <- rows_with_1(current_file) # works
+    calculated_features[1,5] <- cols_with_1(current_file) # works
+    calculated_features[1,6] <- rows_with_3p(current_file) # works
+    calculated_features[1,7] <- cols_with_3p(current_file) # works
+    calculated_features[1,8] <- aspect_ratio(current_file) # needs testing
+    calculated_features[1,9] <- neigh_1(current_file) # not working, needs testing
+    calculated_features[1,10] <- no_neigh_above(current_file) # works
+    calculated_features[1,11] <- no_neigh_below(current_file)
     #calculated_features[1,12]
     #calculated_features[1,13]
     #calculated_features[1,14]
