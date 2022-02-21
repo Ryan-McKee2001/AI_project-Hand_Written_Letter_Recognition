@@ -372,13 +372,13 @@
     calculated_features[1,9] <- neigh_1(current_file) # not working, needs testing
     calculated_features[1,10] <- no_neigh_above(current_file) # works
     calculated_features[1,11] <- no_neigh_below(current_file)
-    #calculated_features[1,12]
-    #calculated_features[1,13]
-    #calculated_features[1,14]
-    #calculated_features[1,15]
-    #calculated_features[1,16]
-    #calculated_features[1,17]
-    #calculated_features[1,18]
+    #calculated_features[1,12] <- no_neigh_left(current_file)
+    #calculated_features[1,13] <- no_neigh_right(current_file)
+    #calculated_features[1,14] <- no_neigh_horiz(current_file)
+    #calculated_features[1,15] <- no_neigh_vert(current_file)
+    #calculated_features[1,16] <- connected_areas(current_file)
+    #calculated_features[1,17] <- eyes(current_file)
+    #calculated_features[1,18] <- custome(current_file)
     
     print(calculated_features)
   }
