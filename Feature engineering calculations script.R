@@ -1,6 +1,7 @@
 {
   library(readr)
   library(utile.tables)
+  library(raster)
   
   # creating a list of all the files in the data_set
   folder_path <- "dataset/csv_images_dataset"
@@ -41,7 +42,7 @@
   nr_pix <- function(current_file_image_matrix){
     return(sum(current_file_image_matrix))
   }
-   
+  
   # counts the number of rows with 1 
   rows_with_1 <- function(current_file_image_matrix){
     rows_greater_than_1_sum <- 0
@@ -55,7 +56,7 @@
     
     return(rows_greater_than_1_sum)
   }
-
+  
   cols_with_1 <- function(current_file){
     cols_greater_than_1_sum <- 0
     col_sums<- c(colSums(current_file_image_matrix))
@@ -68,7 +69,7 @@
     
     return(cols_greater_than_1_sum)
   }
-
+  
   # returns number of rows with 3 or more pixels from image
   rows_with_3p <- function(current_file_image_matrix){
     rows_greater_than_3_sum <- 0
@@ -82,8 +83,8 @@
     
     return(rows_greater_than_3_sum)
   }
-
-
+  
+  
   # returns number of columns with 3 or more pixels
   cols_with_3p<- function(current_file){
     cols_greater_than_3_sum <- 0
@@ -97,7 +98,7 @@
     
     return(cols_greater_than_3_sum)
   }
-
+  
   # this gets the aspect ratio width/height
   # need to validate aspect ratios are correct a1 calculation and function does not seem to be right
   aspect_ratio <- function(current_file_image_matrix){
@@ -162,38 +163,300 @@
   
   # This returns the number of black pixels with only 1 black pixel neighbour
   neigh_1 <- function(current_file){
+    num_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0,0,0,0,0,0,0)
+          names(neighbours) <- c("upper left", "upper", "upper right", "left", "right", "bottom left", "bottom", "bottom right")
+          
+          # checking upper region
+          if(row_index > 1){
+            # upper
+            if(current_file[row_index - 1, col_index] == 1)
+              neighbours[2] <- 1
+            
+            # upper left
+            if(col_index > 1){
+              if(current_file[row_index - 1, col_index -1] == 1)
+                neighbours[1] <- 1
+            }
+            
+            # upper right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index - 1, col_index + 1] == 1)
+                neighbours[3] <- 1
+            }
+          }
+          
+          # left
+          if(col_index > 1){
+            if(current_file[row_index, col_index - 1])
+              neighbours[4] <- 1
+          }
+          
+          # right
+          if(col_index < ncol(current_file)){
+            if(current_file[row_index, col_index +1])
+              neighbours[5] <- 1
+          }
+          
+          
+          # checking the bottom region
+          if(row_index < nrow(current_file)){
+            # checking bottom
+            if(current_file[row_index + 1, col_index] == 1)
+              neighbours[7] <- 1
+            
+            # bottom left
+            if(col_index > 1){
+              if(current_file[row_index + 1, col_index -1] == 1)
+                neighbours[6] <- 1
+            }
+            
+            # bottom right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index + 1, col_index + 1] == 1)
+                neighbours[8] <- 1
+            }
+          }
+          
+          if(sum(neighbours) == 1)
+            num_neighbours <- num_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_neighbours)
   }
   
-  # number of black pixels wih no black pixel neighbours
+  # number of black pixels wiTh no black pixel neighbours
   # "upper left, upper, and "Upper right"
   no_neigh_above <- function(current_file){
+    num_no_upper_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0,0)
+          names(neighbours) <- c("upper left", "upper", "upper right")
+          
+          # checking upper region
+          if(row_index > 1){
+            # upper
+            if(current_file[row_index - 1, col_index] == 1)
+              neighbours[2] <- 1
+            
+            # upper left
+            if(col_index > 1){
+              if(current_file[row_index - 1, col_index -1] == 1)
+                neighbours[1] <- 1
+            }
+            
+            # upper right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index - 1, col_index + 1] == 1)
+                neighbours[3] <- 1
+            }
+          }
+          
+          if(sum(neighbours) == 0)
+            num_no_upper_neighbours <- num_no_upper_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_upper_neighbours)
   }
   
-  # returns the number of elements that have no pixels "below", "below right", or "below left"
+  # returns the number of black pixels that have no black
+  # pixel neighbours "below", "below right", or "below left"
   no_neigh_below <- function(current_file){
+    num_no_lower_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0,0)
+          names(neighbours) <- c("bottom left", "bottom", "bottom right")
+          
+          # checking the bottom region
+          if(row_index < nrow(current_file)){
+            # checking bottom
+            if(current_file[row_index + 1, col_index] == 1)
+              neighbours[2] <- 1
+            
+            # bottom left
+            if(col_index > 1){
+              if(current_file[row_index + 1, col_index -1] == 1)
+                neighbours[1] <- 1
+            }
+            
+            # bottom right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index + 1, col_index + 1] == 1)
+                neighbours[3] <- 1
+            }
+          }
+          
+          if(sum(neighbours) == 0)
+            num_no_lower_neighbours <- num_no_lower_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_lower_neighbours)
   }
   
+  # returns number of pixels that have no black pixel neighbours
+  # on the left
   no_neigh_left <- function(current_file){
-<<<<<<< HEAD
-=======
-  
->>>>>>> parent of 7485609 (update)
+    num_no_left_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0,0)
+          names(neighbours) <- c("upper left", "left", "bottom left")
+          
+          # checking the left
+          if(col_index > 1){
+            # checking left
+            if(current_file[row_index, col_index - 1] == 1)
+              neighbours[2] <- 1
+            
+            # bottom left
+            if(row_index < nrow(current_file)){
+              if(current_file[row_index + 1, col_index -1] == 1)
+                neighbours[3] <- 1
+            }
+            
+            # top left
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index - 1, col_index - 1] == 1)
+                neighbours[1] <- 1
+            }
+          }
+          
+          if(sum(neighbours) == 0)
+            num_no_left_neighbours <- num_no_left_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_left_neighbours)
   }
   
+  # returns number of pixels that have no black pixel neighbours
+  # on the right
+  no_neigh_right <- function(current_file){
+    num_no_right_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0,0)
+          names(neighbours) <- c("upper right", "right", "bottom right")
+          
+          # checking the right
+          if(col_index < ncol(current_file)){
+            # checking left
+            if(current_file[row_index, col_index + 1] == 1)
+              neighbours[2] <- 1
+            
+            # bottom right
+            if(row_index < nrow(current_file)){
+              if(current_file[row_index + 1, col_index + 1] == 1)
+                neighbours[3] <- 1
+            }
+            
+            # top right
+            if(col_index < ncol(current_file)){
+              if(current_file[row_index - 1, col_index + 1] == 1)
+                neighbours[1] <- 1
+            }
+          }
+          
+          if(sum(neighbours) == 0)
+            num_no_right_neighbours <- num_no_right_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_right_neighbours)
+  }
+  
+  # returns number of black pixels that have no 
+  # black pixel neighbours right or left
   no_neigh_horiz <- function(current_file){
-  
+    num_no_horiz_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0)
+          names(neighbours) <- c("left", "right")
+          
+          # check left black pixel
+          # neighbour
+          if(col_index > 1){
+            if(current_file[row_index, col_index - 1])
+              neighbours[1] <- 1
+          }
+          if(col_index < ncol(current_file)){
+            if(current_file[row_index, col_index +1])
+              neighbours[2] <- 1
+          }
+          
+          
+          if(sum(neighbours) == 0)
+            num_no_horiz_neighbours <- num_no_horiz_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_horiz_neighbours)
   }
   
+  # returns number of black pixels that have no 
+  # black pixels neighbours upper or lower
   no_neigh_vert <- function(current_file){
-  
+    num_no_vert_neighbours <- 0
+    
+    for(row_index in 1:nrow(current_file)){
+      for(col_index in 1:ncol(current_file)){
+        if(current_file[row_index, col_index] == 1){
+          neighbours <- c(0,0)
+          names(neighbours) <- c("above", "below")
+          
+          # check pixels above
+          if(row_index < nrow(current_file)){
+            if(current_file[row_index + 1, col_index] == 1)
+              neighbours[1] <- 1
+          }
+          
+          # check pixels below
+          if(row_index < nrow(current_file))
+            if(current_file[row_index - 1, col_index] == 1)
+              neighbours[2] <- 1
+          
+          
+          if(sum(neighbours) == 0)
+            num_no_vert_neighbours <- num_no_vert_neighbours + 1
+        }
+      }
+    }
+    
+    return(num_no_vert_neighbours)
   }
   
   connected_areas <- function(current_file){
-  
+    
   }
   
   eyes <- function(current_file){
-  
+    
   }
   
   # for custom I think I should check for enclosed area.
@@ -201,9 +464,8 @@
   # and exclude an image from being a smliey face or some of the
   # letters
   custom <- function(current_file){
-  
+    
   }
-
   
   for(current_index in 1:length(data_folder))
   {
@@ -218,120 +480,25 @@
                                        "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                        "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
     
-<<<<<<< HEAD
-    #This just creates a rater of the current_file so it can be visualised
-    # rast1 <- raster(current_file)
-    # plot(rast1)
-    
-=======
->>>>>>> parent of 7485609 (update)
     calculated_features[1,1] <- getFileLabel(current_file_name) # works
-    calculated_features[1,2] <- getIndex(current_file_name)
+    calculated_features[1,2] <- getIndex(current_file_name) # works
     calculated_features[1,3] <- nr_pix(current_file_image_matrix) # works
     calculated_features[1,4] <- rows_with_1(current_file) # works
     calculated_features[1,5] <- cols_with_1(current_file) # works
     calculated_features[1,6] <- rows_with_3p(current_file) # works
     calculated_features[1,7] <- cols_with_3p(current_file) # works
-<<<<<<< HEAD
     calculated_features[1,8] <- aspect_ratio(current_file) # works
-    
-    # creating a matrix containing vertices with each of the neighbours for 
-    # pixels in the current_file
-    pixel_neighbours_df <- data.frame()
-    
-    for(current_pixel_row in 1:nrow(current_file)){
-      for(current_pixel_col in 1:ncol(current_file)){
-        upper <- 0
-        upper_left <- 0
-        upper_right <- 0
-        
-        left <- 0
-        right <- 0
-        
-        bottom <- 0
-        bottom_left <- 0
-        bottom_right <- 0
-        
-        # assigning upper values
-        if(current_pixel_row > 1){
-          # upper
-          if(current_file[current_pixel_row -1, current_pixel_col] == 1)
-            upper <- 1
-          # upper left
-          if(current_pixel_col > 1){
-            if(current_file[current_pixel_row -1, current_pixel_col - 1] == 1)
-              upper_left <- 1
-          }
-          # upper right
-          if(current_pixel_col < ncol(current_file)){
-            if(current_file[current_pixel_row -1, current_pixel_col + 1] == 1)
-              upper_right <- 1
-          }
-        }
-        
-        # get right and left neighbours
-        # left
-        if(current_pixel_col > 1){
-          if(current_file[current_pixel_row, current_pixel_col - 1] == 1){
-            left <- 1
-          }
-        }
-        
-        # right
-        if(current_pixel_col < ncol(current_file)){
-          if(current_file[current_pixel_row, current_pixel_col + 1] == 1){
-            right <- 1
-          }
-        }
-        
-        # # get the bottom, bottom left, and bottom right neighbours
-        # if(current_pixel_col < ncol(current_file)){
-        #   # get bottom
-        #   if(current_file[current_pixel_row + 1, current_pixel_col] == 1)
-        #     bottom <- 1
-        #   
-        #   # get bottom left
-        #   if(current_pixel_row > nrow(current_file)){
-        #     if(current_file[current_pixel_row + 1, current_pixel_col - 1] == 1)
-        #       bottom_left <- 1
-        #   }
-        #   
-        #   # get bottom right
-        #   if(current_pixel_col < ncol(current_file)){
-        #     if(current_file[current_pixel_row + 1, current_pixel_col + 1] == 1)
-        #       bottom_right <- 1
-        #   }
-        # }
-        
-        
-        v_current_pixel_neighbours <- c(upper_left, upper, upper_right, left, right, bottom_left, bottom, bottom_right)
-        
-        names(current_pixel_neighbours) <- c("upper left", "upper", "upper right", "left", "right", "bottom_left", "bottom", "bottom right")
-        pixel_neighbours_df <- rbind(current_pixel_neighbours)
-        #rowsnames(pixel_neighbours_df) <- names
-      }
-    }
-    
-    print(pixel_neighbours_df)
-    
-    
-    
-    
-=======
-    calculated_features[1,8] <- aspect_ratio(current_file) # needs testing
->>>>>>> parent of 7485609 (update)
     calculated_features[1,9] <- neigh_1(current_file) # not working, needs testing
     calculated_features[1,10] <- no_neigh_above(current_file) # works
-    calculated_features[1,11] <- no_neigh_below(current_file)
-    #calculated_features[1,12] <- no_neigh_left(current_file)
-    #calculated_features[1,13] <- no_neigh_right(current_file)
-    #calculated_features[1,14] <- no_neigh_horiz(current_file)
-    #calculated_features[1,15] <- no_neigh_vert(current_file)
-    #calculated_features[1,16] <- connected_areas(current_file)
+    calculated_features[1,11] <- no_neigh_below(current_file) # works
+    calculated_features[1,12] <- no_neigh_left(current_file) # works
+    calculated_features[1,13] <- no_neigh_right(current_file) # works
+    calculated_features[1,14] <- no_neigh_horiz(current_file) # works
+    calculated_features[1,15] <- no_neigh_vert(current_file) # works
+    #calculated_features[1,16] <- connected_areas(current_file) 
     #calculated_features[1,17] <- eyes(current_file)
     #calculated_features[1,18] <- custome(current_file)
     
-    print(calculated_features)
+    print(calculated_features[1,9])
   }
 }
-  
