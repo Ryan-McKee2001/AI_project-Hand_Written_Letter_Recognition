@@ -502,7 +502,7 @@
     calculated_features[1,15] <- no_neigh_vert(current_file) # works
     calculated_features[1,16] <- connected_areas(current_file)  # works
     #calculated_features[1,17] <- eyes(current_file)
-    #calculated_features[1,18] <- custome(current_file)
+    #calculated_features[1,18] <- custom(current_file)
     
     print(calculated_features[1,16])
   }
