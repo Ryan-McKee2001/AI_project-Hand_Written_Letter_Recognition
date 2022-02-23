@@ -1,7 +1,6 @@
 {
   library(readr)
   library(utile.tables)
-  library(raster)
   
   # creating a list of all the files in the data_set
   folder_path <- "dataset/csv_images_dataset"
@@ -127,9 +126,7 @@
       current_index <- current_index - 1
     }
     
-    
     height <- bottom_element - top_element
-    
     
     # getting the width
     left_most_element <- 0
@@ -176,32 +173,25 @@
   no_neigh_below <- function(current_file){
   }
   
-  # returns number of black pixels with no black pixel neighbours in the 
-  # "upper left", "left", or "lower left" positions.
-  # When comparing checking the upper left  
   no_neigh_left <- function(current_file){
+<<<<<<< HEAD
+=======
+  
+>>>>>>> parent of 7485609 (update)
   }
   
-  # Returns number of black pixels with no black pixel neighbours in the 
-  # 'left" and 'right' positions
   no_neigh_horiz <- function(current_file){
   
   }
   
-  # Returns the number of black pixels with no black pixel neighbours in the 
-  # "upper" or "lower" positions
   no_neigh_vert <- function(current_file){
   
   }
   
-  # 
   connected_areas <- function(current_file){
-    rast1 <- raster(current_file)
-    plot(rast1)
+  
   }
   
-  # checking how many enclosed spaces are in an the image
-  # e.g. A has 1, B has 2
   eyes <- function(current_file){
   
   }
@@ -228,10 +218,13 @@
                                        "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                        "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
     
+<<<<<<< HEAD
     #This just creates a rater of the current_file so it can be visualised
     # rast1 <- raster(current_file)
     # plot(rast1)
     
+=======
+>>>>>>> parent of 7485609 (update)
     calculated_features[1,1] <- getFileLabel(current_file_name) # works
     calculated_features[1,2] <- getIndex(current_file_name)
     calculated_features[1,3] <- nr_pix(current_file_image_matrix) # works
@@ -239,6 +232,7 @@
     calculated_features[1,5] <- cols_with_1(current_file) # works
     calculated_features[1,6] <- rows_with_3p(current_file) # works
     calculated_features[1,7] <- cols_with_3p(current_file) # works
+<<<<<<< HEAD
     calculated_features[1,8] <- aspect_ratio(current_file) # works
     
     # creating a matrix containing vertices with each of the neighbours for 
@@ -323,16 +317,19 @@
     
     
     
+=======
+    calculated_features[1,8] <- aspect_ratio(current_file) # needs testing
+>>>>>>> parent of 7485609 (update)
     calculated_features[1,9] <- neigh_1(current_file) # not working, needs testing
-    calculated_features[1,10] <- no_neigh_above(current_file) # works // for neigh need to ask if pixels that are on top row count as have no pixel neighbours
-    calculated_features[1,11] <- no_neigh_below(current_file) # works
+    calculated_features[1,10] <- no_neigh_above(current_file) # works
+    calculated_features[1,11] <- no_neigh_below(current_file)
     #calculated_features[1,12] <- no_neigh_left(current_file)
     #calculated_features[1,13] <- no_neigh_right(current_file)
     #calculated_features[1,14] <- no_neigh_horiz(current_file)
     #calculated_features[1,15] <- no_neigh_vert(current_file)
-   # calculated_features[1,16] <- connected_areas(current_file) <- connected_areas(current_file)
+    #calculated_features[1,16] <- connected_areas(current_file)
     #calculated_features[1,17] <- eyes(current_file)
-    #calculated_features[1,18] <- custom(current_file)
+    #calculated_features[1,18] <- custome(current_file)
     
     print(calculated_features)
   }
