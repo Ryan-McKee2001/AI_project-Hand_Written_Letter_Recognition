@@ -16,22 +16,27 @@
 
   current_file <- as.matrix(read.table(file = current_file_path, header = T, sep = ","))
   
-  print(current_file)
+  # print(current_file)
+  # 
+  # current_file.pad <- rbind(NA, cbind(NA, current_file, NA), NA)
+  # 
+  # 
+  # ind = 2:(18 + 1) # row/column indices of the "middle"
+  # neigh = rbind(upper  = as.vector(current_file.pad[ind - 1, ind    ]),
+  #               upper_right = as.vector(current_file.pad[ind - 1, ind + 1]),
+  #               right  = as.vector(current_file.pad[ind    , ind + 1]),
+  #               bottom_right = as.vector(current_file.pad[ind + 1, ind + 1]),
+  #               bottom  = as.vector(current_file.pad[ind + 1, ind    ]),
+  #               bottom_left = as.vector(current_file.pad[ind + 1, ind - 1]),
+  #               left  = as.vector(current_file.pad[ind    , ind - 1]),
+  #               upper_left = as.vector(current_file.pad[ind - 1, ind - 1]))
+  # 
+  # print(neigh[1,1])
   
-  current_file.pad <- rbind(NA, cbind(NA, current_file, NA), NA)
-
+  df_neigh <- data.frame()
   
-  ind = 2:(18 + 1) # row/column indices of the "middle"
-  neigh = rbind(upper  = as.vector(current_file.pad[ind - 1, ind    ]),
-                upper_right = as.vector(current_file.pad[ind - 1, ind + 1]),
-                right  = as.vector(current_file.pad[ind    , ind + 1]),
-                bottom_right = as.vector(current_file.pad[ind + 1, ind + 1]),
-                bottom  = as.vector(current_file.pad[ind + 1, ind    ]),
-                bottom_left = as.vector(current_file.pad[ind + 1, ind - 1]),
-                left  = as.vector(current_file.pad[ind    , ind - 1]),
-                upper_left = as.vector(current_file.pad[ind - 1, ind - 1]))
+  frame <- data
   
-  print(neigh[1,1])
 }
 
 

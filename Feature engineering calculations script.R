@@ -243,7 +243,7 @@
     
     # creating a matrix containing vertices with each of the neighbours for 
     # pixels in the current_file
-    pixel_neighbours_matrix <- matrix(nrow = 18, ncol = 18)
+    pixel_neighbours_df <- data.frame()
     
     for(current_pixel_row in 1:nrow(current_file)){
       for(current_pixel_col in 1:ncol(current_file)){
@@ -290,32 +290,35 @@
           }
         }
         
-        # get the bottom, bottom left, and bottom right neighbours
-        if(current_pixel_col < ncol(current_file)){
-          # get bottom
-          if(current_file[current_pixel_row + 1, current_pixel_col] == 1)
-            bottom <- 1
-          
-          # get bottom left
-          if(current_pixel_col > 1){
-            if(current_file[current_pixel_row + 1, current_pixel_col - 1] == 1)
-              bottom_left <- 1
-          }
-          
-          # get bottom right
-          if(current_pixel_col < ncol(current_file)){
-            if(current_file[current_pixel_row + 1, current_pixel_col + 1] == 1)
-              bottom_right <- 1
-          }
-        }
+        # # get the bottom, bottom left, and bottom right neighbours
+        # if(current_pixel_col < ncol(current_file)){
+        #   # get bottom
+        #   if(current_file[current_pixel_row + 1, current_pixel_col] == 1)
+        #     bottom <- 1
+        #   
+        #   # get bottom left
+        #   if(current_pixel_row > nrow(current_file)){
+        #     if(current_file[current_pixel_row + 1, current_pixel_col - 1] == 1)
+        #       bottom_left <- 1
+        #   }
+        #   
+        #   # get bottom right
+        #   if(current_pixel_col < ncol(current_file)){
+        #     if(current_file[current_pixel_row + 1, current_pixel_col + 1] == 1)
+        #       bottom_right <- 1
+        #   }
+        # }
         
         
-        current_pixel_neighbours <- c(upper_left, upper, upper_right, left, right, bottom_left, bottom, bottom_right)
+        v_current_pixel_neighbours <- c(upper_left, upper, upper_right, left, right, bottom_left, bottom, bottom_right)
+        
         names(current_pixel_neighbours) <- c("upper left", "upper", "upper right", "left", "right", "bottom_left", "bottom", "bottom right")
-        
-        pixel_neighbours_matrix[current_pixel_row, current_pixel_col] <- current_pixel_neighbours
+        pixel_neighbours_df <- rbind(current_pixel_neighbours)
+        #rowsnames(pixel_neighbours_df) <- names
       }
     }
+    
+    print(pixel_neighbours_df)
     
     
     
