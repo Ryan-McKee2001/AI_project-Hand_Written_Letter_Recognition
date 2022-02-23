@@ -2,6 +2,7 @@
   library(readr)
   library(utile.tables)
   library(raster)
+  library(igraph)
   
   # creating a list of all the files in the data_set
   folder_path <- "dataset/csv_images_dataset"
@@ -39,14 +40,14 @@
   }
   
   # return the number of black pixels in image
-  nr_pix <- function(current_file_image_matrix){
-    return(sum(current_file_image_matrix))
+  nr_pix <- function(current_file){
+    return(sum(current_file))
   }
   
   # counts the number of rows with 1 
-  rows_with_1 <- function(current_file_image_matrix){
+  rows_with_1 <- function(current_file){
     rows_greater_than_1_sum <- 0
-    row_sums<- c(rowSums(current_file_image_matrix))
+    row_sums<- c(rowSums(current_file))
     
     for(current_index in 1:length(row_sums)){
       if( row_sums[current_index] > 0 ){
@@ -59,7 +60,7 @@
   
   cols_with_1 <- function(current_file){
     cols_greater_than_1_sum <- 0
-    col_sums<- c(colSums(current_file_image_matrix))
+    col_sums<- c(colSums(current_file))
     
     for(current_index in 1:length(col_sums)){
       if( col_sums[current_index] > 0 ){
@@ -71,9 +72,9 @@
   }
   
   # returns number of rows with 3 or more pixels from image
-  rows_with_3p <- function(current_file_image_matrix){
+  rows_with_3p <- function(current_file){
     rows_greater_than_3_sum <- 0
-    row_sums<- c(rowSums(current_file_image_matrix))
+    row_sums<- c(rowSums(current_file))
     
     for(current_index in 1:length(row_sums)){
       if( row_sums[current_index] >= 3){
@@ -88,7 +89,7 @@
   # returns number of columns with 3 or more pixels
   cols_with_3p<- function(current_file){
     cols_greater_than_3_sum <- 0
-    col_sums<- c(colSums(current_file_image_matrix))
+    col_sums<- c(colSums(current_file))
     
     for(current_index in 1:length(col_sums)){
       if( col_sums[current_index] >= 3  ){
@@ -101,9 +102,9 @@
   
   # this gets the aspect ratio width/height
   # need to validate aspect ratios are correct a1 calculation and function does not seem to be right
-  aspect_ratio <- function(current_file_image_matrix){
+  aspect_ratio <- function(current_file){
     # get the pixel distance between the top most black pixel and bottom
-    row_sum_matrix <- rowSums(current_file_image_matrix)
+    row_sum_matrix <- rowSums(current_file)
     top_element <- 0
     bottom_element <- 0
     
@@ -133,7 +134,7 @@
     left_most_element <- 0
     right_most_element <- 0
     
-    col_sum_matrix <- colSums(current_file_image_matrix)
+    col_sum_matrix <- colSums(current_file)
     
     current_index <- 1
     while(left_most_element == 0){
@@ -452,7 +453,9 @@
   }
   
   connected_areas <- function(current_file){
-    
+    rast <- raster(current_file)
+    clump <- clump(rast, directions=8)
+    return(maxValue(clump))
   }
   
   eyes <- function(current_file){
@@ -480,9 +483,11 @@
                                        "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                        "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
     
+    
+    
     calculated_features[1,1] <- getFileLabel(current_file_name) # works
     calculated_features[1,2] <- getIndex(current_file_name) # works
-    calculated_features[1,3] <- nr_pix(current_file_image_matrix) # works
+    calculated_features[1,3] <- nr_pix(current_file) # works
     calculated_features[1,4] <- rows_with_1(current_file) # works
     calculated_features[1,5] <- cols_with_1(current_file) # works
     calculated_features[1,6] <- rows_with_3p(current_file) # works
@@ -495,10 +500,10 @@
     calculated_features[1,13] <- no_neigh_right(current_file) # works
     calculated_features[1,14] <- no_neigh_horiz(current_file) # works
     calculated_features[1,15] <- no_neigh_vert(current_file) # works
-    #calculated_features[1,16] <- connected_areas(current_file) 
+    calculated_features[1,16] <- connected_areas(current_file)  # works
     #calculated_features[1,17] <- eyes(current_file)
     #calculated_features[1,18] <- custome(current_file)
     
-    print(calculated_features[1,9])
+    print(calculated_features[1,16])
   }
 }
