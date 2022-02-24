@@ -493,7 +493,7 @@
     calculated_features[1,6] <- rows_with_3p(current_file) # works
     calculated_features[1,7] <- cols_with_3p(current_file) # works
     calculated_features[1,8] <- aspect_ratio(current_file) # works
-    calculated_features[1,9] <- neigh_1(current_file) # not working, needs testing
+    calculated_features[1,9] <- neigh_1(current_file) # works
     calculated_features[1,10] <- no_neigh_above(current_file) # works
     calculated_features[1,11] <- no_neigh_below(current_file) # works
     calculated_features[1,12] <- no_neigh_left(current_file) # works
