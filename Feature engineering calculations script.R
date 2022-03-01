@@ -455,6 +455,7 @@
   connected_areas <- function(current_file){
     rast <- raster(current_file)
     clump <- clump(rast, directions=8)
+    plot(clump)
     return(maxValue(clump))
   }
   
@@ -476,8 +477,6 @@
     current_file_path <- paste(folder_path, current_file_name, sep = "")
     
     current_file <- as.matrix(read.table(file = current_file_path, header = F, sep = ","))
-    
-    print(current_file)
     
     calculated_features = matrix(ncol = 18, nrow = 1)
     colnames(calculated_features) <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
