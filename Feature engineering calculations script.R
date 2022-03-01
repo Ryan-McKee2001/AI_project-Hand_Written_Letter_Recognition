@@ -455,21 +455,24 @@
   connected_areas <- function(current_file){
     rast <- raster(current_file)
     clump <- clump(rast, directions=8)
-    plot(clump)
     return(maxValue(clump))
   }
   
+  # returns the number of inclosed areas 
   eyes <- function(current_file){
-    
+    inversed_matrix <- +(!current_file) # ! inverses matrix, + turns values from true and false back to 1 and 0
+    rast <- raster(inversed_matrix)
+    clump <- clump(rast, direction=8)
+    return(maxValue(clump) - 1)
   }
   
-  # for custom I think I should check for enclosed area.
-  # this would allow me to distinguish between letters
-  # and exclude an image from being a smliey face or some of the
-  # letters
+  # can't think of anything right now
+  # come back to this
   custom <- function(current_file){
     
   }
+  
+
   
   for(current_index in 1:length(data_folder))
   {
@@ -483,7 +486,6 @@
                                        "rows_with_3p", "cols_with_3p", "aspect ratio", "neigh_1",
                                        "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                        "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
-    
     
     
     calculated_features[1,1] <- getFileLabel(current_file_name) # works
@@ -502,9 +504,11 @@
     calculated_features[1,14] <- no_neigh_horiz(current_file) # works
     calculated_features[1,15] <- no_neigh_vert(current_file) # works
     calculated_features[1,16] <- connected_areas(current_file)  # works
-    #calculated_features[1,17] <- eyes(current_file)
-    #calculated_features[1,18] <- custom(current_file)
+    calculated_features[1,17] <- eyes(current_file)
+    #calculated_features[1,18] <- custom(current_file) # come back to this 
+    calculated_features[1,18] <- 0
     
-    print(calculated_features[1,16])
+    
+    write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
 }
