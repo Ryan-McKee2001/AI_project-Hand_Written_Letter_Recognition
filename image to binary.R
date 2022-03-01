@@ -5,6 +5,7 @@
   
   data_files <- list.files(path = "ai_dataset")
   
+  
   for(index in 1:length(data_files)){
     working_folder <- "ai_dataset/"
     current_file <- data_files[index]

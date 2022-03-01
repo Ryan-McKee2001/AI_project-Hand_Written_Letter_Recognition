@@ -477,6 +477,8 @@
     
     current_file <- as.matrix(read.table(file = current_file_path, header = F, sep = ","))
     
+    print(current_file)
+    
     calculated_features = matrix(ncol = 18, nrow = 1)
     colnames(calculated_features) <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
                                        "rows_with_3p", "cols_with_3p", "aspect ratio", "neigh_1",
