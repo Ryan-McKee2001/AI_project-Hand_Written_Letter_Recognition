@@ -510,8 +510,8 @@
     calculated_features[1,14] <- no_neigh_horiz(current_file) # works
     calculated_features[1,15] <- no_neigh_vert(current_file) # works
     calculated_features[1,16] <- connected_areas(current_file)  # works
-    calculated_features[1,17] <- eyes(current_file)
-    calculated_features[1,18] <- custom(current_file) # come back to this 
+    calculated_features[1,17] <- eyes(current_file) # works
+    calculated_features[1,18] <- custom(current_file) # works
     
     write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
