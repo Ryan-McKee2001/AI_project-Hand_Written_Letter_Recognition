@@ -44,31 +44,56 @@
     return(sum(current_file))
   }
   
-  # counts the number of rows with 1 
+  # # need to check this for rows that are only equal to 1
+  # rows_with_1 <- function(current_file){
+  #   rows_greater_than_1_sum <- 0
+  #   row_sums<- c(rowSums(current_file))
+  #   
+  #   for(current_index in 1:length(row_sums)){
+  #     if( row_sums[current_index] > 0 ){
+  #       rows_greater_than_1_sum <- rows_greater_than_1_sum + 1
+  #     }
+  #   }
+  #   
+  #   return(rows_greater_than_1_sum)
+  # }
+  # 
+  # # this is wrong, need to check this for rows that are only equal to 1
+  # cols_with_1 <- function(current_file){
+  #   cols_greater_than_1_sum <- 0
+  #   col_sums<- c(colSums(current_file))
+  #   
+  #   for(current_index in 1:length(col_sums)){
+  #     if( col_sums[current_index] > 0 ){
+  #       cols_greater_than_1_sum <- cols_greater_than_1_sum + 1
+  #     }
+  #   }
+  #   
+  #   return(cols_greater_than_1_sum)
+  # }
+  
   rows_with_1 <- function(current_file){
-    rows_greater_than_1_sum <- 0
-    row_sums<- c(rowSums(current_file))
+    rows_with_1_sum <- 0
+    row_sums <- c(rowSums(current_file))
     
-    for(current_index in 1:length(row_sums)){
-      if( row_sums[current_index] > 0 ){
-        rows_greater_than_1_sum <- rows_greater_than_1_sum + 1
-      }
+    for(i in 1:length(row_sums)){
+      if(sum(num_rows[i]) == 1)
+        rows_with_1_sum <- rows_with_1_sum + 1
     }
     
-    return(rows_greater_than_1_sum)
+    return(rows_with_1_sum)
   }
   
   cols_with_1 <- function(current_file){
-    cols_greater_than_1_sum <- 0
-    col_sums<- c(colSums(current_file))
+    cols_with_1_sum <- 0
+    col_sums <- c(colSums(current_file))
     
-    for(current_index in 1:length(col_sums)){
-      if( col_sums[current_index] > 0 ){
-        cols_greater_than_1_sum <- cols_greater_than_1_sum + 1
-      }
+    for(i in 1:length(col_sums)){
+      if(col_sums[i] == 1)
+        cols_with_1_sum <- cols_with_1_sum + 1
     }
     
-    return(cols_greater_than_1_sum)
+    return(cols_with_1_sum)
   }
   
   # returns number of rows with 3 or more pixels from image
@@ -509,6 +534,6 @@
     calculated_features[1,18] <- 0
     
     
-    write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
+    #write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
 }
