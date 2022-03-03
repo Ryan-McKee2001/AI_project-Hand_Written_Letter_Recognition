@@ -44,46 +44,20 @@
     return(sum(current_file))
   }
   
-  # # need to check this for rows that are only equal to 1
-  # rows_with_1 <- function(current_file){
-  #   rows_greater_than_1_sum <- 0
-  #   row_sums<- c(rowSums(current_file))
-  #   
-  #   for(current_index in 1:length(row_sums)){
-  #     if( row_sums[current_index] > 0 ){
-  #       rows_greater_than_1_sum <- rows_greater_than_1_sum + 1
-  #     }
-  #   }
-  #   
-  #   return(rows_greater_than_1_sum)
-  # }
-  # 
-  # # this is wrong, need to check this for rows that are only equal to 1
-  # cols_with_1 <- function(current_file){
-  #   cols_greater_than_1_sum <- 0
-  #   col_sums<- c(colSums(current_file))
-  #   
-  #   for(current_index in 1:length(col_sums)){
-  #     if( col_sums[current_index] > 0 ){
-  #       cols_greater_than_1_sum <- cols_greater_than_1_sum + 1
-  #     }
-  #   }
-  #   
-  #   return(cols_greater_than_1_sum)
-  # }
-  
+  # returns how many rows contain only 1 black pixel
   rows_with_1 <- function(current_file){
     rows_with_1_sum <- 0
     row_sums <- c(rowSums(current_file))
     
     for(i in 1:length(row_sums)){
-      if(sum(num_rows[i]) == 1)
+      if(sum(row_sums[i]) == 1)
         rows_with_1_sum <- rows_with_1_sum + 1
     }
     
     return(rows_with_1_sum)
   }
   
+  # checks how many columns only contain 1 black pixel
   cols_with_1 <- function(current_file){
     cols_with_1_sum <- 0
     col_sums <- c(colSums(current_file))
@@ -491,10 +465,17 @@
     return(maxValue(clump) - 1)
   }
   
-  # can't think of anything right now
-  # come back to this
+  # This custom function is going to check 6x6
+  # subset of pixels from the graph and calculate the
+  # percentage of pixels from the image that exist in the 
+  # subset
   custom <- function(current_file){
+    center_subset <- current_file[7:12, 7:12]
+    pixel_count <- nr_pix(current_file)
     
+    center_subset_pixel_count <- sum(rowSums(center_subset))
+    
+    return(center_subset_pixel_count/pixel_count*100)
   }
   
 
@@ -530,10 +511,8 @@
     calculated_features[1,15] <- no_neigh_vert(current_file) # works
     calculated_features[1,16] <- connected_areas(current_file)  # works
     calculated_features[1,17] <- eyes(current_file)
-    #calculated_features[1,18] <- custom(current_file) # come back to this 
-    calculated_features[1,18] <- 0
+    calculated_features[1,18] <- custom(current_file) # come back to this 
     
-    
-    #write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
+    write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
 }
