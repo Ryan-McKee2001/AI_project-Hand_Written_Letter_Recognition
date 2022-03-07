@@ -39,10 +39,6 @@ In general, you can just present your code in the R chunks in this notebook. In 
 In the example R imported below file below, there is a number of functions, including *squarenumbers*,
 which gives the squares of the numbers 1 to a, for any positive integer a.
 
-```{r}
-source("./section1_code.r")
-```
-
 
 Let's calculate the result of the function for the numbers 5 to 10:
 
@@ -78,14 +74,19 @@ as using histograms and finally for this assignment implement and evaluate some 
 I created my dataset images for letters in set {a,...,j}, smiley faces, sad faces and exclamation marks using GIMP and exporting these images as PGM files type ASCII this file type showed images 
 
 ```{r}
-source('./section1_code.R')
+source('C:\Users\ryanm\OneDrive\Music\Documents\ai-project\section1_code.R')
 ```
+
 
 
 
 # Section 2
 
-Your work for this section here.
+Your work for this section 
+```{r}
+source('./section2_code.R')
+```
+
 
 # Section 3
 
