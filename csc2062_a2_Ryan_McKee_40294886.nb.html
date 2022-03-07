@@ -9,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Student Name (Student Number)" />
+<meta name="author" content="Ryan McKee (40294886)" />
 
 
 <title>Assignment 2: Feature Engineering, Statistical Analysis and Machine Learning</title>
@@ -211,7 +211,7 @@ pre code {
 
 
 <h1 class="title toc-ignore">Assignment 2: Feature Engineering, Statistical Analysis and Machine Learning</h1>
-<h4 class="author">Student Name (Student Number)</h4>
+<h4 class="author">Ryan McKee (40294886)</h4>
 
 </div>
 
@@ -223,118 +223,73 @@ pre code {
 <p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl + Shift + Enter</em>.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGxvdChjYXJzKVxuYGBgXG5gYGAifQ== -->
-<pre class="r"><code>```r
-plot(cars)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl + Alt + I*.
-
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl + Shift + K* to preview the HTML file).
- 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
-
-## Personalising the notebook
-
-In the notebook header and in the preamble.tex file, change &quot;Student Name&quot; to your name. This should be **exactly** as it appears on Canvas. Replace &quot;Student Number&quot; with your student number. Make sure the file is named with *your* student name and *your* student number as follows: `csc2062_a2_barry_devereux_4012345.Rmd`.
-
-When you submit your work, ensure that the latest `.html` and `.pdf` renderings of the notebook are present.
-
-## Importing code
-
-In general, you can just present your code in the R chunks in this notebook. In a some cases where you have more complex pieces of code (e.g. function definitions) you may wish to have that code implemented in a seperate R file. The code can then be imported into the notebook using the *source* command. You do not need more than at most one ancillary code file per section. 
-
-In the example R imported below file below, there is a number of functions, including *squarenumbers*,
-which gives the squares of the numbers 1 to a, for any positive integer a.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuc291cmNlKFxcLi9zZWN0aW9uMV9jb2RlLnJcXClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-source(\./section1_code.r\)</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-Let&#39;s calculate the result of the function for the numbers 5 to 10:
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxubnVtYmVycyA9IGMoNToxMClcbmZvciAobnVtYmVyIGluIG51bWJlcnMpIHtcbiAgcHJpbnQoc3F1YXJlbnVtYmVycyhudW1iZXIpKVxufVxuYGBgXG5gYGAifQ== --&gt;
-
-```r
-```r
-numbers = c(5:10)
-for (number in numbers) {
-  print(squarenumbers(number))
-}</code></pre>
-<pre><code>
-&lt;!-- rnb-source-end --&gt;
-
-&lt;!-- rnb-chunk-end --&gt;
-
-
-&lt;!-- rnb-text-begin --&gt;
-
-
-
-In general, as you develop your code, you may find it convenient to write and test it in a standard `.r` file, before adding the working code to this notebook.
-
-## Word count
-
-If you want to check the wordcount of your notebook (excluding code), you can install the [wordcount](https://github.com/barry/wordcountaddin) Rstudio addin by Ben Marwick.
-
-Follow the installation and use instructions at the link above.
-
-
-&lt;!-- rnb-text-end --&gt;
-
-
-&lt;!-- rnb-chunk-begin --&gt;
-
-
-&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxud29yZGNvdW50YWRkaW46Ojp0ZXh0X3N0YXRzKClcbmBgYFxuYGBgIn0= --&gt;
-
-```r
-```r
-wordcountaddin:::text_stats()</code></pre>
-<p>```</p>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
+<pre class="r"><code>plot(cars)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
+<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl + Alt + I</em>.</p>
+<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl + Shift + K</em> to preview the HTML file).</p>
+<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
+<div id="personalising-the-notebook" class="section level2">
+<h2>Personalising the notebook</h2>
+<p>In the notebook header and in the preamble.tex file, change “Student Name” to your name. This should be <strong>exactly</strong> as it appears on Canvas. Replace “Student Number” with your student number. Make sure the file is named with <em>your</em> student name and <em>your</em> student number as follows: <code>csc2062_a2_barry_devereux_4012345.Rmd</code>.</p>
+<p>When you submit your work, ensure that the latest <code>.html</code> and <code>.pdf</code> renderings of the notebook are present.</p>
+</div>
+<div id="importing-code" class="section level2">
+<h2>Importing code</h2>
+<p>In general, you can just present your code in the R chunks in this notebook. In a some cases where you have more complex pieces of code (e.g. function definitions) you may wish to have that code implemented in a seperate R file. The code can then be imported into the notebook using the <em>source</em> command. You do not need more than at most one ancillary code file per section.</p>
+<p>In the example R imported below file below, there is a number of functions, including <em>squarenumbers</em>, which gives the squares of the numbers 1 to a, for any positive integer a.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKFwiLi9zZWN0aW9uMV9jb2RlLnJcIilcbmBgYCJ9 -->
+<pre class="r"><code>source(&quot;./section1_code.r&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Let’s calculate the result of the function for the numbers 5 to 10:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtYmVycyA9IGMoNToxMClcbmZvciAobnVtYmVyIGluIG51bWJlcnMpIHtcbiAgcHJpbnQoc3F1YXJlbnVtYmVycyhudW1iZXIpKVxufVxuYGBgIn0= -->
+<pre class="r"><code>numbers = c(5:10)
+for (number in numbers) {
+  print(squarenumbers(number))
+}</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>In general, as you develop your code, you may find it convenient to write and test it in a standard <code>.r</code> file, before adding the working code to this notebook.</p>
+</div>
+<div id="word-count" class="section level2">
+<h2>Word count</h2>
+<p>If you want to check the wordcount of your notebook (excluding code), you can install the <a href="https://github.com/barry/wordcountaddin">wordcount</a> Rstudio addin by Ben Marwick.</p>
+<p>Follow the installation and use instructions at the link above.</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud29yZGNvdW50YWRkaW46Ojp0ZXh0X3N0YXRzKClcbmBgYCJ9 -->
+<pre class="r"><code>wordcountaddin:::text_stats()</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+</div>
 <div id="introduction-1" class="section level2">
 <h2>Introduction</h2>
-<p>The objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation marks.</p>
+<p>The overall objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation marks. In this part of the assignment(assignment 2) My goals are to create a dataset of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the datasets using methods of statistical inference such as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the dataset.</p>
 </div>
 </div>
 <div id="section-1" class="section level1">
 <h1>Section 1</h1>
-<p>Your work for this section here.</p>
+<p>I created my dataset images for letters in set {a,…,j}, smiley faces, sad faces and exclamation marks using GIMP and exporting these images as PGM files type ASCII this file type showed images</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCdzZWN0aW9uMV9jb2RlLlInKVxuYGBgIn0= -->
+<pre class="r"><code>source(&#39;section1_code.R&#39;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6ICdhaV9kYXRhc2V0L05BJyBkb2VzIG5vdCBleGlzdCBpbiBjdXJyZW50IHdvcmtpbmcgZGlyZWN0b3J5ICgnQzovVXNlcnMvcnlhbm0vT25lRHJpdmUvTXVzaWMvRG9jdW1lbnRzL2FpLXByb2plY3QnKS5cbiJ9 -->
+<pre><code>Error: &#39;ai_dataset/NA&#39; does not exist in current working directory (&#39;C:/Users/ryanm/OneDrive/Music/Documents/ai-project&#39;).</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 </div>
 <div id="section-2" class="section level1">
 <h1>Section 2</h1>
@@ -380,7 +335,7 @@ wordcountaddin:::text_stats()</code></pre>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFzc2lnbm1lbnQgMjogRmVhdHVyZSBFbmdpbmVlcmluZywgU3RhdGlzdGljYWwgQW5hbHlzaXMgYW5kIE1hY2hpbmUgTGVhcm5pbmciDQphdXRob3I6ICJTdHVkZW50IE5hbWUgKFN0dWRlbnQgTnVtYmVyKSINCm91dHB1dDoNCiAgcGRmX2RvY3VtZW50Og0KICAgICBpbmNsdWRlczogDQogICAgICAgICBpbl9oZWFkZXI6ICJwcmVhbWJsZS50ZXgiDQogIGh0bWxfbm90ZWJvb2s6IGRlZmF1bHQNCiAgaHRtbF9kb2N1bWVudDoNCiAgICBkZl9wcmludDogcGFnZWQNCi0tLQ0KDQojIEludHJvZHVjdGlvbg0KDQpUaGlzIGlzIGFuIFtSIE1hcmtkb3duXShodHRwOi8vcm1hcmtkb3duLnJzdHVkaW8uY29tKSBOb3RlYm9vay4gV2hlbiB5b3UgZXhlY3V0ZSBjb2RlIHdpdGhpbiB0aGUgbm90ZWJvb2ssIHRoZSByZXN1bHRzIGFwcGVhciBiZW5lYXRoIHRoZSBjb2RlLiANCg0KVHJ5IGV4ZWN1dGluZyB0aGlzIGNodW5rIGJ5IGNsaWNraW5nIHRoZSAqUnVuKiBidXR0b24gd2l0aGluIHRoZSBjaHVuayBvciBieSBwbGFjaW5nIHlvdXIgY3Vyc29yIGluc2lkZSBpdCBhbmQgcHJlc3NpbmcgKkN0cmwgKyBTaGlmdCArIEVudGVyKi4gDQoNCmBgYHtyfQ0KcGxvdChjYXJzKQ0KYGBgDQoNCkFkZCBhIG5ldyBjaHVuayBieSBjbGlja2luZyB0aGUgKkluc2VydCBDaHVuayogYnV0dG9uIG9uIHRoZSB0b29sYmFyIG9yIGJ5IHByZXNzaW5nICpDdHJsICsgQWx0ICsgSSouDQoNCldoZW4geW91IHNhdmUgdGhlIG5vdGVib29rLCBhbiBIVE1MIGZpbGUgY29udGFpbmluZyB0aGUgY29kZSBhbmQgb3V0cHV0IHdpbGwgYmUgc2F2ZWQgYWxvbmdzaWRlIGl0IChjbGljayB0aGUgKlByZXZpZXcqIGJ1dHRvbiBvciBwcmVzcyAqQ3RybCArIFNoaWZ0ICsgSyogdG8gcHJldmlldyB0aGUgSFRNTCBmaWxlKS4NCiANClRoZSBwcmV2aWV3IHNob3dzIHlvdSBhIHJlbmRlcmVkIEhUTUwgY29weSBvZiB0aGUgY29udGVudHMgb2YgdGhlIGVkaXRvci4gQ29uc2VxdWVudGx5LCB1bmxpa2UgKktuaXQqLCAqUHJldmlldyogZG9lcyBub3QgcnVuIGFueSBSIGNvZGUgY2h1bmtzLiBJbnN0ZWFkLCB0aGUgb3V0cHV0IG9mIHRoZSBjaHVuayB3aGVuIGl0IHdhcyBsYXN0IHJ1biBpbiB0aGUgZWRpdG9yIGlzIGRpc3BsYXllZC4NCg0KIyMgUGVyc29uYWxpc2luZyB0aGUgbm90ZWJvb2sNCg0KSW4gdGhlIG5vdGVib29rIGhlYWRlciBhbmQgaW4gdGhlIHByZWFtYmxlLnRleCBmaWxlLCBjaGFuZ2UgIlN0dWRlbnQgTmFtZSIgdG8geW91ciBuYW1lLiBUaGlzIHNob3VsZCBiZSAqKmV4YWN0bHkqKiBhcyBpdCBhcHBlYXJzIG9uIENhbnZhcy4gUmVwbGFjZSAiU3R1ZGVudCBOdW1iZXIiIHdpdGggeW91ciBzdHVkZW50IG51bWJlci4gTWFrZSBzdXJlIHRoZSBmaWxlIGlzIG5hbWVkIHdpdGggKnlvdXIqIHN0dWRlbnQgbmFtZSBhbmQgKnlvdXIqIHN0dWRlbnQgbnVtYmVyIGFzIGZvbGxvd3M6IGBjc2MyMDYyX2EyX2JhcnJ5X2RldmVyZXV4XzQwMTIzNDUuUm1kYC4NCg0KV2hlbiB5b3Ugc3VibWl0IHlvdXIgd29yaywgZW5zdXJlIHRoYXQgdGhlIGxhdGVzdCBgLmh0bWxgIGFuZCBgLnBkZmAgcmVuZGVyaW5ncyBvZiB0aGUgbm90ZWJvb2sgYXJlIHByZXNlbnQuDQoNCiMjIEltcG9ydGluZyBjb2RlDQoNCkluIGdlbmVyYWwsIHlvdSBjYW4ganVzdCBwcmVzZW50IHlvdXIgY29kZSBpbiB0aGUgUiBjaHVua3MgaW4gdGhpcyBub3RlYm9vay4gSW4gYSBzb21lIGNhc2VzIHdoZXJlIHlvdSBoYXZlIG1vcmUgY29tcGxleCBwaWVjZXMgb2YgY29kZSAoZS5nLiBmdW5jdGlvbiBkZWZpbml0aW9ucykgeW91IG1heSB3aXNoIHRvIGhhdmUgdGhhdCBjb2RlIGltcGxlbWVudGVkIGluIGEgc2VwZXJhdGUgUiBmaWxlLiBUaGUgY29kZSBjYW4gdGhlbiBiZSBpbXBvcnRlZCBpbnRvIHRoZSBub3RlYm9vayB1c2luZyB0aGUgKnNvdXJjZSogY29tbWFuZC4gWW91IGRvIG5vdCBuZWVkIG1vcmUgdGhhbiBhdCBtb3N0IG9uZSBhbmNpbGxhcnkgY29kZSBmaWxlIHBlciBzZWN0aW9uLiANCg0KSW4gdGhlIGV4YW1wbGUgUiBpbXBvcnRlZCBiZWxvdyBmaWxlIGJlbG93LCB0aGVyZSBpcyBhIG51bWJlciBvZiBmdW5jdGlvbnMsIGluY2x1ZGluZyAqc3F1YXJlbnVtYmVycyosDQp3aGljaCBnaXZlcyB0aGUgc3F1YXJlcyBvZiB0aGUgbnVtYmVycyAxIHRvIGEsIGZvciBhbnkgcG9zaXRpdmUgaW50ZWdlciBhLg0KDQpgYGB7cn0NCnNvdXJjZSgiLi9zZWN0aW9uMV9jb2RlLnIiKQ0KYGBgDQoNCg0KTGV0J3MgY2FsY3VsYXRlIHRoZSByZXN1bHQgb2YgdGhlIGZ1bmN0aW9uIGZvciB0aGUgbnVtYmVycyA1IHRvIDEwOg0KDQpgYGB7cn0NCm51bWJlcnMgPSBjKDU6MTApDQpmb3IgKG51bWJlciBpbiBudW1iZXJzKSB7DQogIHByaW50KHNxdWFyZW51bWJlcnMobnVtYmVyKSkNCn0NCmBgYA0KDQoNCkluIGdlbmVyYWwsIGFzIHlvdSBkZXZlbG9wIHlvdXIgY29kZSwgeW91IG1heSBmaW5kIGl0IGNvbnZlbmllbnQgdG8gd3JpdGUgYW5kIHRlc3QgaXQgaW4gYSBzdGFuZGFyZCBgLnJgIGZpbGUsIGJlZm9yZSBhZGRpbmcgdGhlIHdvcmtpbmcgY29kZSB0byB0aGlzIG5vdGVib29rLg0KDQojIyBXb3JkIGNvdW50DQoNCklmIHlvdSB3YW50IHRvIGNoZWNrIHRoZSB3b3JkY291bnQgb2YgeW91ciBub3RlYm9vayAoZXhjbHVkaW5nIGNvZGUpLCB5b3UgY2FuIGluc3RhbGwgdGhlIFt3b3JkY291bnRdKGh0dHBzOi8vZ2l0aHViLmNvbS9iYXJyeS93b3JkY291bnRhZGRpbikgUnN0dWRpbyBhZGRpbiBieSBCZW4gTWFyd2ljay4NCg0KRm9sbG93IHRoZSBpbnN0YWxsYXRpb24gYW5kIHVzZSBpbnN0cnVjdGlvbnMgYXQgdGhlIGxpbmsgYWJvdmUuDQoNCmBgYHtyfQ0Kd29yZGNvdW50YWRkaW46Ojp0ZXh0X3N0YXRzKCkNCmBgYA0KDQojIyBJbnRyb2R1Y3Rpb24NCg0KVGhlIG9iamVjdGl2ZSBvZiB0aGlzIHByb2plY3QgaXMgdG8gY3JlYXRlIEEuSS4gdGhhdCB3aWxsIGJlIGFibGUgdG8gcmVjb2duaXplIGxldHRlcnMgaW4gdGhlIHNldCB7YSxiLGMsZCxlLGYsZyxoLGksan0sIGFzIHdlbGwgYXMgcmVjb2duaXplIHNtaWxleSBmYWNlcywgc2FkIGZhY2VzIGFuZCBleGNsYW1hdGlvbg0KbWFya3MuDQoNCiMgU2VjdGlvbiAxDQoNCllvdXIgd29yayBmb3IgdGhpcyBzZWN0aW9uIGhlcmUuDQoNCiMgU2VjdGlvbiAyDQoNCllvdXIgd29yayBmb3IgdGhpcyBzZWN0aW9uIGhlcmUuDQoNCiMgU2VjdGlvbiAzDQoNCiMjIFNlY3Rpb24gMy4xDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy4yDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy4zDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy40DQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMgU2VjdGlvbiA0DQoNCiMjIFNlY3Rpb24gNC4xDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC4yDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC4zDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC40DQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUu</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFzc2lnbm1lbnQgMjogRmVhdHVyZSBFbmdpbmVlcmluZywgU3RhdGlzdGljYWwgQW5hbHlzaXMgYW5kIE1hY2hpbmUgTGVhcm5pbmciDQphdXRob3I6ICJSeWFuIE1jS2VlICg0MDI5NDg4NikiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDoNCiAgICAgaW5jbHVkZXM6IA0KICAgICAgICAgaW5faGVhZGVyOiAicHJlYW1ibGUudGV4Ig0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQotLS0NCg0KIyBJbnRyb2R1Y3Rpb24NCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gDQoNClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsICsgU2hpZnQgKyBFbnRlciouIA0KDQpgYGB7cn0NCnBsb3QoY2FycykNCmBgYA0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCArIEFsdCArIEkqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwgKyBTaGlmdCArIEsqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQogDQpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuDQoNCiMjIFBlcnNvbmFsaXNpbmcgdGhlIG5vdGVib29rDQoNCkluIHRoZSBub3RlYm9vayBoZWFkZXIgYW5kIGluIHRoZSBwcmVhbWJsZS50ZXggZmlsZSwgY2hhbmdlICJTdHVkZW50IE5hbWUiIHRvIHlvdXIgbmFtZS4gVGhpcyBzaG91bGQgYmUgKipleGFjdGx5KiogYXMgaXQgYXBwZWFycyBvbiBDYW52YXMuIFJlcGxhY2UgIlN0dWRlbnQgTnVtYmVyIiB3aXRoIHlvdXIgc3R1ZGVudCBudW1iZXIuIE1ha2Ugc3VyZSB0aGUgZmlsZSBpcyBuYW1lZCB3aXRoICp5b3VyKiBzdHVkZW50IG5hbWUgYW5kICp5b3VyKiBzdHVkZW50IG51bWJlciBhcyBmb2xsb3dzOiBgY3NjMjA2Ml9hMl9iYXJyeV9kZXZlcmV1eF80MDEyMzQ1LlJtZGAuDQoNCldoZW4geW91IHN1Ym1pdCB5b3VyIHdvcmssIGVuc3VyZSB0aGF0IHRoZSBsYXRlc3QgYC5odG1sYCBhbmQgYC5wZGZgIHJlbmRlcmluZ3Mgb2YgdGhlIG5vdGVib29rIGFyZSBwcmVzZW50Lg0KDQojIyBJbXBvcnRpbmcgY29kZQ0KDQpJbiBnZW5lcmFsLCB5b3UgY2FuIGp1c3QgcHJlc2VudCB5b3VyIGNvZGUgaW4gdGhlIFIgY2h1bmtzIGluIHRoaXMgbm90ZWJvb2suIEluIGEgc29tZSBjYXNlcyB3aGVyZSB5b3UgaGF2ZSBtb3JlIGNvbXBsZXggcGllY2VzIG9mIGNvZGUgKGUuZy4gZnVuY3Rpb24gZGVmaW5pdGlvbnMpIHlvdSBtYXkgd2lzaCB0byBoYXZlIHRoYXQgY29kZSBpbXBsZW1lbnRlZCBpbiBhIHNlcGVyYXRlIFIgZmlsZS4gVGhlIGNvZGUgY2FuIHRoZW4gYmUgaW1wb3J0ZWQgaW50byB0aGUgbm90ZWJvb2sgdXNpbmcgdGhlICpzb3VyY2UqIGNvbW1hbmQuIFlvdSBkbyBub3QgbmVlZCBtb3JlIHRoYW4gYXQgbW9zdCBvbmUgYW5jaWxsYXJ5IGNvZGUgZmlsZSBwZXIgc2VjdGlvbi4gDQoNCkluIHRoZSBleGFtcGxlIFIgaW1wb3J0ZWQgYmVsb3cgZmlsZSBiZWxvdywgdGhlcmUgaXMgYSBudW1iZXIgb2YgZnVuY3Rpb25zLCBpbmNsdWRpbmcgKnNxdWFyZW51bWJlcnMqLA0Kd2hpY2ggZ2l2ZXMgdGhlIHNxdWFyZXMgb2YgdGhlIG51bWJlcnMgMSB0byBhLCBmb3IgYW55IHBvc2l0aXZlIGludGVnZXIgYS4NCg0KYGBge3J9DQpzb3VyY2UoIi4vc2VjdGlvbjFfY29kZS5yIikNCmBgYA0KDQoNCkxldCdzIGNhbGN1bGF0ZSB0aGUgcmVzdWx0IG9mIHRoZSBmdW5jdGlvbiBmb3IgdGhlIG51bWJlcnMgNSB0byAxMDoNCg0KYGBge3J9DQpudW1iZXJzID0gYyg1OjEwKQ0KZm9yIChudW1iZXIgaW4gbnVtYmVycykgew0KICBwcmludChzcXVhcmVudW1iZXJzKG51bWJlcikpDQp9DQpgYGANCg0KDQpJbiBnZW5lcmFsLCBhcyB5b3UgZGV2ZWxvcCB5b3VyIGNvZGUsIHlvdSBtYXkgZmluZCBpdCBjb252ZW5pZW50IHRvIHdyaXRlIGFuZCB0ZXN0IGl0IGluIGEgc3RhbmRhcmQgYC5yYCBmaWxlLCBiZWZvcmUgYWRkaW5nIHRoZSB3b3JraW5nIGNvZGUgdG8gdGhpcyBub3RlYm9vay4NCg0KIyMgV29yZCBjb3VudA0KDQpJZiB5b3Ugd2FudCB0byBjaGVjayB0aGUgd29yZGNvdW50IG9mIHlvdXIgbm90ZWJvb2sgKGV4Y2x1ZGluZyBjb2RlKSwgeW91IGNhbiBpbnN0YWxsIHRoZSBbd29yZGNvdW50XShodHRwczovL2dpdGh1Yi5jb20vYmFycnkvd29yZGNvdW50YWRkaW4pIFJzdHVkaW8gYWRkaW4gYnkgQmVuIE1hcndpY2suDQoNCkZvbGxvdyB0aGUgaW5zdGFsbGF0aW9uIGFuZCB1c2UgaW5zdHJ1Y3Rpb25zIGF0IHRoZSBsaW5rIGFib3ZlLg0KDQpgYGB7cn0NCndvcmRjb3VudGFkZGluOjo6dGV4dF9zdGF0cygpDQpgYGANCg0KIyMgSW50cm9kdWN0aW9uDQoNClRoZSBvdmVyYWxsIG9iamVjdGl2ZSBvZiB0aGlzIHByb2plY3QgaXMgdG8gY3JlYXRlIEEuSS4gdGhhdCB3aWxsIGJlIGFibGUgdG8gcmVjb2duaXplIGxldHRlcnMgaW4gdGhlIHNldCB7YSxiLGMsZCxlLGYsZyxoLGksan0sIGFzIHdlbGwgYXMgcmVjb2duaXplIHNtaWxleSBmYWNlcywgc2FkIGZhY2VzIGFuZCBleGNsYW1hdGlvbg0KbWFya3MuIEluIHRoaXMgcGFydCBvZiB0aGUgYXNzaWdubWVudChhc3NpZ25tZW50IDIpIE15IGdvYWxzIGFyZSB0byBjcmVhdGUgYSBkYXRhc2V0IG9mIGhhbmQgZHJhd24gbGV0dGVycywgc21pbGV5IGZhY2VzLCBzYWQgZmFjZXMgYW5kIGV4Y2xhbWF0aW9uIG1hcmtzLiBUaGVuIHBlcmZvcm0gZmVhdHVyZSBlbmdpbmVlcmluZyBvbg0KdGhlc2UgaW1hZ2VzIHRvIGNhbGN1bGF0ZSBmZWF0dXJlcyBzdWNoIGFzIGhvdyBtYW55IGJsYWNrIHBpeGVscyBleGlzdCBpbiB0aGUgaW1hZ2UgYW5kIGFzcGVjdCByYXRpby4gVGhlbiBwZXJmb3JtIHN0YXRpc3RpY2FsIGFuYWx5c2lzIG9mIHRoZSBkYXRhc2V0cyB1c2luZyBtZXRob2RzIG9mIHN0YXRpc3RpY2FsIGluZmVyZW5jZSBzdWNoDQphcyB1c2luZyBoaXN0b2dyYW1zIGFuZCBmaW5hbGx5IGZvciB0aGlzIGFzc2lnbm1lbnQgaW1wbGVtZW50IGFuZCBldmFsdWF0ZSBzb21lIG1hY2hpbmUgbGVhcm5pbmcgbW9kZWxzIHRoYXQgcGVyZm9ybSBjbGFzc2lmaWNhdGlvbiBvbiB0aGUgZGF0YXNldC4NCg0KIyBTZWN0aW9uIDENCg0KSSBjcmVhdGVkIG15IGRhdGFzZXQgaW1hZ2VzIGZvciBsZXR0ZXJzIGluIHNldCB7YSwuLi4san0sIHNtaWxleSBmYWNlcywgc2FkIGZhY2VzIGFuZCBleGNsYW1hdGlvbiBtYXJrcyB1c2luZyBHSU1QIGFuZCBleHBvcnRpbmcgdGhlc2UgaW1hZ2VzIGFzIFBHTSBmaWxlcyB0eXBlIEFTQ0lJIHRoaXMgZmlsZSB0eXBlIHNob3dlZCBpbWFnZXMgDQoNCmBgYHtyfQ0Kc291cmNlKCcuL3NlY3Rpb24xX2NvZGUuUicpDQpgYGANCg0KDQoNCiMgU2VjdGlvbiAyDQoNCllvdXIgd29yayBmb3IgdGhpcyBzZWN0aW9uIGhlcmUuDQoNCiMgU2VjdGlvbiAzDQoNCiMjIFNlY3Rpb24gMy4xDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy4yDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy4zDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gMy40DQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMgU2VjdGlvbiA0DQoNCiMjIFNlY3Rpb24gNC4xDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC4yDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC4zDQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUuDQoNCiMjIFNlY3Rpb24gNC40DQoNCllvdXIgd29yayBmb3IgdGhpcyBzdWJzZWN0aW9uIGhlcmUu</div>
 
 
 
@@ -427,7 +382,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("csc2062_a2_barry_devereux_4012345.Rmd");
+  window.initializeSourceEmbed("csc2062_a2_Ryan_McKee_40294886.Rmd");
   window.initializeCodeFolding("show" === "show");
 });
 </script>

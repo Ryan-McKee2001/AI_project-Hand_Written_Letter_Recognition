@@ -1,6 +1,6 @@
 ---
 title: "Assignment 2: Feature Engineering, Statistical Analysis and Machine Learning"
-author: "Student Name (Student Number)"
+author: "Ryan McKee (40294886)"
 output:
   pdf_document:
      includes: 
@@ -68,12 +68,20 @@ wordcountaddin:::text_stats()
 
 ## Introduction
 
-The objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation
-marks.
+The overall objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation
+marks. In this part of the assignment(assignment 2) My goals are to create a dataset of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on
+these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the datasets using methods of statistical inference such
+as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the dataset.
 
 # Section 1
 
-Your work for this section here.
+I created my dataset images for letters in set {a,...,j}, smiley faces, sad faces and exclamation marks using GIMP and exporting these images as PGM files type ASCII this file type showed images 
+
+```{r}
+source('./section1_code.R')
+```
+
+
 
 # Section 2
 
