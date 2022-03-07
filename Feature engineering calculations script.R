@@ -461,7 +461,7 @@
   eyes <- function(current_file){
     inversed_matrix <- +(!current_file) # ! inverses matrix, + turns values from true and false back to 1 and 0
     rast <- raster(inversed_matrix)
-    clump <- clump(rast, direction=8)
+    clump <- clump(rast, direction=4) # orthogonally connected meaning direction = 4
     return(maxValue(clump) - 1)
   }
   
@@ -477,8 +477,6 @@
     
     return(center_subset_pixel_count/pixel_count*100)
   }
-  
-
   
   for(current_index in 1:length(data_folder))
   {
