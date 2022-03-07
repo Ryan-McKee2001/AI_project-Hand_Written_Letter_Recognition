@@ -451,6 +451,7 @@
     return(num_no_vert_neighbours)
   }
   
+  # returns the number of connected areas in the image
   connected_areas <- function(current_file){
     rast <- raster(current_file)
     clump <- clump(rast, directions=8)
