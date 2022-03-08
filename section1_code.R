@@ -1,13 +1,16 @@
 {library(readr)
- library(utile.tables)
+  library(utile.tables)
   
   
-  
+  # * To change the folder that contains the .pgm files
+  # Just change the path in list.files() belowe to be equal
+  # to the file path of the folder, and change the working_folder
+  # to be equal to the file path + / *
   data_files <- list.files(path = "ai_dataset")
-  
+  working_folder <- "ai_dataset/"
   
   for(index in 1:length(data_files)){
-    working_folder <- "ai_dataset/"
+    
     current_file <- data_files[index]
     
     current_file_path <- paste(working_folder, current_file, sep = "")
@@ -32,9 +35,10 @@
     
     imageMatrix <- t(imageMatrix)
     
-    # need to figure out how to get rid of quotation marks around the values
-    write.table(imageMatrix, file = paste("csv_ai_dataset/", current_file, sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
+    # * To change the folder that the updated dataset gets created in just change the first argument in the paste function to the file path for updated folder + / *
+    write.table(imageMatrix, file = paste("csv_ai_dataset/", gsub('.pgm', '.csv', data_files[index]), sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
     
   }
+  
+  print("csv dataset has been successfully created.")
 }
-

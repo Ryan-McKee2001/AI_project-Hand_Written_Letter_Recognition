@@ -217,103 +217,67 @@ pre code {
 
 
 <!-- rnb-text-begin -->
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>This is an <a href="http://rmarkdown.rstudio.com">R Markdown</a> Notebook. When you execute code within the notebook, the results appear beneath the code.</p>
-<p>Try executing this chunk by clicking the <em>Run</em> button within the chunk or by placing your cursor inside it and pressing <em>Ctrl + Shift + Enter</em>.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdChjYXJzKVxuYGBgIn0= -->
-<pre class="r"><code>plot(cars)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the toolbar or by pressing <em>Ctrl + Alt + I</em>.</p>
-<p>When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the <em>Preview</em> button or press <em>Ctrl + Shift + K</em> to preview the HTML file).</p>
-<p>The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike <em>Knit</em>, <em>Preview</em> does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.</p>
-<div id="personalising-the-notebook" class="section level2">
-<h2>Personalising the notebook</h2>
-<p>In the notebook header and in the preamble.tex file, change “Student Name” to your name. This should be <strong>exactly</strong> as it appears on Canvas. Replace “Student Number” with your student number. Make sure the file is named with <em>your</em> student name and <em>your</em> student number as follows: <code>csc2062_a2_barry_devereux_4012345.Rmd</code>.</p>
-<p>When you submit your work, ensure that the latest <code>.html</code> and <code>.pdf</code> renderings of the notebook are present.</p>
-</div>
-<div id="importing-code" class="section level2">
-<h2>Importing code</h2>
-<p>In general, you can just present your code in the R chunks in this notebook. In a some cases where you have more complex pieces of code (e.g. function definitions) you may wish to have that code implemented in a seperate R file. The code can then be imported into the notebook using the <em>source</em> command. You do not need more than at most one ancillary code file per section.</p>
-<p>In the example R imported below file below, there is a number of functions, including <em>squarenumbers</em>, which gives the squares of the numbers 1 to a, for any positive integer a.</p>
-<p>Let’s calculate the result of the function for the numbers 5 to 10:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubnVtYmVycyA9IGMoNToxMClcbmZvciAobnVtYmVyIGluIG51bWJlcnMpIHtcbiAgcHJpbnQoc3F1YXJlbnVtYmVycyhudW1iZXIpKVxufVxuYGBgIn0= -->
-<pre class="r"><code>numbers = c(5:10)
-for (number in numbers) {
-  print(squarenumbers(number))
-}</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3IgaW4gaChzaW1wbGVFcnJvcihtc2csIGNhbGwpKSA6IFxuICBlcnJvciBpbiBldmFsdWF0aW5nIHRoZSBhcmd1bWVudCAneCcgaW4gc2VsZWN0aW5nIGEgbWV0aG9kIGZvciBmdW5jdGlvbiAncHJpbnQnOiBjb3VsZCBub3QgZmluZCBmdW5jdGlvbiBcInNxdWFyZW51bWJlcnNcIlxuIn0= -->
-<pre><code>Error in h(simpleError(msg, call)) : 
-  error in evaluating the argument &#39;x&#39; in selecting a method for function &#39;print&#39;: could not find function &quot;squarenumbers&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>In general, as you develop your code, you may find it convenient to write and test it in a standard <code>.r</code> file, before adding the working code to this notebook.</p>
-</div>
-<div id="word-count" class="section level2">
-<h2>Word count</h2>
-<p>If you want to check the wordcount of your notebook (excluding code), you can install the <a href="https://github.com/barry/wordcountaddin">wordcount</a> Rstudio addin by Ben Marwick.</p>
-<p>Follow the installation and use instructions at the link above.</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxud29yZGNvdW50YWRkaW46Ojp0ZXh0X3N0YXRzKClcbmBgYCJ9 -->
-<pre class="r"><code>wordcountaddin:::text_stats()</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-</div>
-<div id="introduction-1" class="section level2">
+<div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>The overall objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation marks. In this part of the assignment(assignment 2) My goals are to create a dataset of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the datasets using methods of statistical inference such as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the dataset.</p>
-</div>
+<p>The overall objective of this project is to create A.I that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation marks. In this part of the assignment(assignment 2) My goals are to create a data set of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the data sets using methods of statistical inference such as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the data set.</p>
 </div>
 <div id="section-1" class="section level1">
 <h1>Section 1</h1>
-<p>I created my dataset images for letters in set {a,…,j}, smiley faces, sad faces and exclamation marks using GIMP and exporting these images as PGM files type ASCII this file type showed images</p>
+<p>I created my data set images for letters in set {a,…,j}, smiley faces, sad faces and exclamation marks using GIMP with images of 18x18 pixels and exporting these images as PGM files type ASCII. This file type stored the values of pixels on 324 separate lines each line having a value of 255 representing a white pixel or 0 representing a black pixel. In order to convert these PGM files to a matrix representation of the image in a csv file so that these images could be more easily analysed later in the project I created an R script as shown below. This R script stores each of the files in the PGM image folder as a list. I then looped through this list reading the pixel values of each of the element and changing the elements value in the matrix to 0 if the element value is greater or equal to 128 or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix’s to new csv file’s in a folder that contains the updated data set, and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKFwiQzpcXFVzZXJzXFxyeWFubVxcT25lRHJpdmVcXE11c2ljXFxEb2N1bWVudHNcXGFpLXByb2plY3RcXHNlY3Rpb24xX2NvZGUuUlwiKVxuYGBgIn0= -->
-<pre class="r"><code>source(&quot;C:\Users\ryanm\OneDrive\Music\Documents\ai-project\section1_code.R&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjpbIntsaWJyYXJ5KHJlYWRyKSIsIiBsaWJyYXJ5KHV0aWxlLnRhYmxlcykiLCIgICIsIiIsIiAgIyAqIFRvIGNoYW5nZSB0aGUgZm9sZGVyIHRoYXQgY29udGFpbnMgdGhlIC5wZ20gZmlsZXMiLCIgICMgSnVzdCBjaGFuZ2UgdGhlIHBhdGggaW4gbGlzdC5maWxlcygpIGJlbG93ZSB0byBiZSBlcXVhbCIsIiAgIyB0byB0aGUgZmlsZSBwYXRoIG9mIHRoZSBmb2xkZXIsIGFuZCBjaGFuZ2UgdGhlIHdvcmtpbmdfZm9sZGVyIiwiICAjIHRvIGJlIGVxdWFsIHRvIHRoZSBmaWxlIHBhdGggKyAvICoiLCIgIGRhdGFfZmlsZXMgPC0gbGlzdC5maWxlcyhwYXRoID0gXCJhaV9kYXRhc2V0XCIpIiwiICB3b3JraW5nX2ZvbGRlciA8LSBcImFpX2RhdGFzZXQvXCIiLCIgICIsIiAgZm9yKGluZGV4IGluIDE6bGVuZ3RoKGRhdGFfZmlsZXMpKXsiLCIgICAgIiwiICAgIGN1cnJlbnRfZmlsZSA8LSBkYXRhX2ZpbGVzW2luZGV4XSIsIiAgICAiLCIgICAgY3VycmVudF9maWxlX3BhdGggPC0gcGFzdGUod29ya2luZ19mb2xkZXIsIGN1cnJlbnRfZmlsZSwgc2VwID0gXCJcIikiLCIgICAgIiwiICAgIHBnbUZpbGUgPC0gcmVhZF9saW5lcyhmaWxlID0gY3VycmVudF9maWxlX3BhdGgsIHNraXAgPSA0KSIsIiAgICBpbWFnZU1hdHJpeCA8LSBtYXRyaXgocGdtRmlsZSwgbnJvdyA9IDE4LCBuY29sID0gMTgpIiwiICAgICIsIiAgICBmb3Iocm93IGluIDE6bnJvdyhpbWFnZU1hdHJpeCkpICIsIiAgICB7IiwiICAgICAgZm9yKGNvbCBpbiAxOm5jb2woaW1hZ2VNYXRyaXgpKSAiLCIgICAgICB7IiwiICAgICAgICBpZihpbWFnZU1hdHJpeFtyb3csY29sXSA8IDEyOCkiLCIgICAgICAgIHsiLCIgICAgICAgICAgaW1hZ2VNYXRyaXhbcm93LGNvbF0gPSAxIiwiICAgICAgICB9IiwiICAgICAgICBlbHNlIiwiICAgICAgICB7IiwiICAgICAgICAgIGltYWdlTWF0cml4W3Jvdyxjb2xdID0gMCIsIiAgICAgICAgfSIsIiAgICAgIH0iLCIgICAgfSIsIiAgICAiLCIgICAgaW1hZ2VNYXRyaXggPC0gdChpbWFnZU1hdHJpeCkiLCIgICAgIiwiICAgICMgKiBUbyBjaGFuZ2UgdGhlIGZvbGRlciB0aGF0IHRoZSB1cGRhdGVkIGRhdGFzZXQgZ2V0cyBjcmVhdGVkIGluIGp1c3QgY2hhbmdlIHRoZSBmaXJzdCBhcmd1bWVudCBpbiB0aGUgcGFzdGUgZnVuY3Rpb24gdG8gdGhlIGZpbGUgcGF0aCBmb3IgdXBkYXRlZCBmb2xkZXIgKyAvICoiLCIgICAgd3JpdGUudGFibGUoaW1hZ2VNYXRyaXgsIGZpbGUgPSBwYXN0ZShcImNzdl9haV9kYXRhc2V0L1wiLCBnc3ViKCcucGdtJywgJy5jc3YnLCBkYXRhX2ZpbGVzW2luZGV4XSksIHNlcCA9IFwiXCIpLCBjb2wubmFtZXMgPSBGLCByb3cubmFtZXMgPSBGLCBzZXAgPSBcIixcIiwgcXVvdGUgPSBGQUxTRSkiLCIgICAgIiwiICB9IiwiICAiLCIgIHByaW50KFwiY3N2IGRhdGFzZXQgaGFzIGJlZW4gc3VjY2Vzc2Z1bGx5IGNyZWF0ZWQuXCIpIiwifSJdfQ== -->
+<pre class="r"><code>{library(readr)
+ library(utile.tables)
+  
+
+  # * To change the folder that contains the .pgm files
+  # Just change the path in list.files() belowe to be equal
+  # to the file path of the folder, and change the working_folder
+  # to be equal to the file path + / *
+  data_files &lt;- list.files(path = &quot;ai_dataset&quot;)
+  working_folder &lt;- &quot;ai_dataset/&quot;
+  
+  for(index in 1:length(data_files)){
+    
+    current_file &lt;- data_files[index]
+    
+    current_file_path &lt;- paste(working_folder, current_file, sep = &quot;&quot;)
+    
+    pgmFile &lt;- read_lines(file = current_file_path, skip = 4)
+    imageMatrix &lt;- matrix(pgmFile, nrow = 18, ncol = 18)
+    
+    for(row in 1:nrow(imageMatrix)) 
+    {
+      for(col in 1:ncol(imageMatrix)) 
+      {
+        if(imageMatrix[row,col] &lt; 128)
+        {
+          imageMatrix[row,col] = 1
+        }
+        else
+        {
+          imageMatrix[row,col] = 0
+        }
+      }
+    }
+    
+    imageMatrix &lt;- t(imageMatrix)
+    
+    # * To change the folder that the updated dataset gets created in just change the first argument in the paste function to the file path for updated folder + / *
+    write.table(imageMatrix, file = paste(&quot;csv_ai_dataset/&quot;, gsub(&#39;.pgm&#39;, &#39;.csv&#39;, data_files[index]), sep = &quot;&quot;), col.names = F, row.names = F, sep = &quot;,&quot;, quote = FALSE)
+    
+  }
+  
+  print(&quot;csv dataset has been successfully created.&quot;)
+}</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6ICdcXFUnIHVzZWQgd2l0aG91dCBoZXggZGlnaXRzIGluIGNoYXJhY3RlciBzdHJpbmcgc3RhcnRpbmcgXCJcIkM6XFxVXCJcbiJ9 -->
-<pre><code>Error: &#39;\U&#39; used without hex digits in character string starting &quot;&quot;C:\U&quot;</code></pre>
-<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 </div>
 <div id="section-2" class="section level1">
 <h1>Section 2</h1>
 <p>Your work for this section</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc291cmNlKCcuL3NlY3Rpb24yX2NvZGUuUicpXG5gYGAifQ== -->
-<pre class="r"><code>source(&#39;./section2_code.R&#39;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYaWdyYXBo4oCZXG5cblRoZSBmb2xsb3dpbmcgb2JqZWN0IGlzIG1hc2tlZCBmcm9tIOKAmHBhY2thZ2U6cmFzdGVy4oCZOlxuXG4gICAgdW5pb25cblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZGVjb21wb3NlLCBzcGVjdHJ1bVxuXG5UaGUgZm9sbG93aW5nIG9iamVjdCBpcyBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICB1bmlvblxuIn0= -->
-<pre><code>
-Attaching package: ‘igraph’
-
-The following object is masked from ‘package:raster’:
-
-    union
-
-The following objects are masked from ‘package:stats’:
-
-    decompose, spectrum
-
-The following object is masked from ‘package:base’:
-
-    union</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
 </div>
 <div id="section-3" class="section level1">
 <h1>Section 3</h1>
@@ -355,7 +319,7 @@ The following object is masked from ‘package:base’:
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFzc2lnbm1lbnQgMjogRmVhdHVyZSBFbmdpbmVlcmluZywgU3RhdGlzdGljYWwgQW5hbHlzaXMgYW5kIE1hY2hpbmUgTGVhcm5pbmciDQphdXRob3I6ICJSeWFuIE1jS2VlICg0MDI5NDg4NikiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDoNCiAgICAgaW5jbHVkZXM6IA0KICAgICAgICAgaW5faGVhZGVyOiAicHJlYW1ibGUudGV4Ig0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQotLS0NCg0KIyBJbnRyb2R1Y3Rpb24NCg0KVGhpcyBpcyBhbiBbUiBNYXJrZG93bl0oaHR0cDovL3JtYXJrZG93bi5yc3R1ZGlvLmNvbSkgTm90ZWJvb2suIFdoZW4geW91IGV4ZWN1dGUgY29kZSB3aXRoaW4gdGhlIG5vdGVib29rLCB0aGUgcmVzdWx0cyBhcHBlYXIgYmVuZWF0aCB0aGUgY29kZS4gDQoNClRyeSBleGVjdXRpbmcgdGhpcyBjaHVuayBieSBjbGlja2luZyB0aGUgKlJ1biogYnV0dG9uIHdpdGhpbiB0aGUgY2h1bmsgb3IgYnkgcGxhY2luZyB5b3VyIGN1cnNvciBpbnNpZGUgaXQgYW5kIHByZXNzaW5nICpDdHJsICsgU2hpZnQgKyBFbnRlciouIA0KDQpgYGB7cn0NCnBsb3QoY2FycykNCmBgYA0KDQpBZGQgYSBuZXcgY2h1bmsgYnkgY2xpY2tpbmcgdGhlICpJbnNlcnQgQ2h1bmsqIGJ1dHRvbiBvbiB0aGUgdG9vbGJhciBvciBieSBwcmVzc2luZyAqQ3RybCArIEFsdCArIEkqLg0KDQpXaGVuIHlvdSBzYXZlIHRoZSBub3RlYm9vaywgYW4gSFRNTCBmaWxlIGNvbnRhaW5pbmcgdGhlIGNvZGUgYW5kIG91dHB1dCB3aWxsIGJlIHNhdmVkIGFsb25nc2lkZSBpdCAoY2xpY2sgdGhlICpQcmV2aWV3KiBidXR0b24gb3IgcHJlc3MgKkN0cmwgKyBTaGlmdCArIEsqIHRvIHByZXZpZXcgdGhlIEhUTUwgZmlsZSkuDQogDQpUaGUgcHJldmlldyBzaG93cyB5b3UgYSByZW5kZXJlZCBIVE1MIGNvcHkgb2YgdGhlIGNvbnRlbnRzIG9mIHRoZSBlZGl0b3IuIENvbnNlcXVlbnRseSwgdW5saWtlICpLbml0KiwgKlByZXZpZXcqIGRvZXMgbm90IHJ1biBhbnkgUiBjb2RlIGNodW5rcy4gSW5zdGVhZCwgdGhlIG91dHB1dCBvZiB0aGUgY2h1bmsgd2hlbiBpdCB3YXMgbGFzdCBydW4gaW4gdGhlIGVkaXRvciBpcyBkaXNwbGF5ZWQuDQoNCiMjIFBlcnNvbmFsaXNpbmcgdGhlIG5vdGVib29rDQoNCkluIHRoZSBub3RlYm9vayBoZWFkZXIgYW5kIGluIHRoZSBwcmVhbWJsZS50ZXggZmlsZSwgY2hhbmdlICJTdHVkZW50IE5hbWUiIHRvIHlvdXIgbmFtZS4gVGhpcyBzaG91bGQgYmUgKipleGFjdGx5KiogYXMgaXQgYXBwZWFycyBvbiBDYW52YXMuIFJlcGxhY2UgIlN0dWRlbnQgTnVtYmVyIiB3aXRoIHlvdXIgc3R1ZGVudCBudW1iZXIuIE1ha2Ugc3VyZSB0aGUgZmlsZSBpcyBuYW1lZCB3aXRoICp5b3VyKiBzdHVkZW50IG5hbWUgYW5kICp5b3VyKiBzdHVkZW50IG51bWJlciBhcyBmb2xsb3dzOiBgY3NjMjA2Ml9hMl9iYXJyeV9kZXZlcmV1eF80MDEyMzQ1LlJtZGAuDQoNCldoZW4geW91IHN1Ym1pdCB5b3VyIHdvcmssIGVuc3VyZSB0aGF0IHRoZSBsYXRlc3QgYC5odG1sYCBhbmQgYC5wZGZgIHJlbmRlcmluZ3Mgb2YgdGhlIG5vdGVib29rIGFyZSBwcmVzZW50Lg0KDQojIyBJbXBvcnRpbmcgY29kZQ0KDQpJbiBnZW5lcmFsLCB5b3UgY2FuIGp1c3QgcHJlc2VudCB5b3VyIGNvZGUgaW4gdGhlIFIgY2h1bmtzIGluIHRoaXMgbm90ZWJvb2suIEluIGEgc29tZSBjYXNlcyB3aGVyZSB5b3UgaGF2ZSBtb3JlIGNvbXBsZXggcGllY2VzIG9mIGNvZGUgKGUuZy4gZnVuY3Rpb24gZGVmaW5pdGlvbnMpIHlvdSBtYXkgd2lzaCB0byBoYXZlIHRoYXQgY29kZSBpbXBsZW1lbnRlZCBpbiBhIHNlcGVyYXRlIFIgZmlsZS4gVGhlIGNvZGUgY2FuIHRoZW4gYmUgaW1wb3J0ZWQgaW50byB0aGUgbm90ZWJvb2sgdXNpbmcgdGhlICpzb3VyY2UqIGNvbW1hbmQuIFlvdSBkbyBub3QgbmVlZCBtb3JlIHRoYW4gYXQgbW9zdCBvbmUgYW5jaWxsYXJ5IGNvZGUgZmlsZSBwZXIgc2VjdGlvbi4gDQoNCkluIHRoZSBleGFtcGxlIFIgaW1wb3J0ZWQgYmVsb3cgZmlsZSBiZWxvdywgdGhlcmUgaXMgYSBudW1iZXIgb2YgZnVuY3Rpb25zLCBpbmNsdWRpbmcgKnNxdWFyZW51bWJlcnMqLA0Kd2hpY2ggZ2l2ZXMgdGhlIHNxdWFyZXMgb2YgdGhlIG51bWJlcnMgMSB0byBhLCBmb3IgYW55IHBvc2l0aXZlIGludGVnZXIgYS4NCg0KDQpMZXQncyBjYWxjdWxhdGUgdGhlIHJlc3VsdCBvZiB0aGUgZnVuY3Rpb24gZm9yIHRoZSBudW1iZXJzIDUgdG8gMTA6DQoNCmBgYHtyfQ0KbnVtYmVycyA9IGMoNToxMCkNCmZvciAobnVtYmVyIGluIG51bWJlcnMpIHsNCiAgcHJpbnQoc3F1YXJlbnVtYmVycyhudW1iZXIpKQ0KfQ0KYGBgDQoNCg0KSW4gZ2VuZXJhbCwgYXMgeW91IGRldmVsb3AgeW91ciBjb2RlLCB5b3UgbWF5IGZpbmQgaXQgY29udmVuaWVudCB0byB3cml0ZSBhbmQgdGVzdCBpdCBpbiBhIHN0YW5kYXJkIGAucmAgZmlsZSwgYmVmb3JlIGFkZGluZyB0aGUgd29ya2luZyBjb2RlIHRvIHRoaXMgbm90ZWJvb2suDQoNCiMjIFdvcmQgY291bnQNCg0KSWYgeW91IHdhbnQgdG8gY2hlY2sgdGhlIHdvcmRjb3VudCBvZiB5b3VyIG5vdGVib29rIChleGNsdWRpbmcgY29kZSksIHlvdSBjYW4gaW5zdGFsbCB0aGUgW3dvcmRjb3VudF0oaHR0cHM6Ly9naXRodWIuY29tL2JhcnJ5L3dvcmRjb3VudGFkZGluKSBSc3R1ZGlvIGFkZGluIGJ5IEJlbiBNYXJ3aWNrLg0KDQpGb2xsb3cgdGhlIGluc3RhbGxhdGlvbiBhbmQgdXNlIGluc3RydWN0aW9ucyBhdCB0aGUgbGluayBhYm92ZS4NCg0KYGBge3J9DQp3b3JkY291bnRhZGRpbjo6OnRleHRfc3RhdHMoKQ0KYGBgDQoNCiMjIEludHJvZHVjdGlvbg0KDQpUaGUgb3ZlcmFsbCBvYmplY3RpdmUgb2YgdGhpcyBwcm9qZWN0IGlzIHRvIGNyZWF0ZSBBLkkuIHRoYXQgd2lsbCBiZSBhYmxlIHRvIHJlY29nbml6ZSBsZXR0ZXJzIGluIHRoZSBzZXQge2EsYixjLGQsZSxmLGcsaCxpLGp9LCBhcyB3ZWxsIGFzIHJlY29nbml6ZSBzbWlsZXkgZmFjZXMsIHNhZCBmYWNlcyBhbmQgZXhjbGFtYXRpb24NCm1hcmtzLiBJbiB0aGlzIHBhcnQgb2YgdGhlIGFzc2lnbm1lbnQoYXNzaWdubWVudCAyKSBNeSBnb2FscyBhcmUgdG8gY3JlYXRlIGEgZGF0YXNldCBvZiBoYW5kIGRyYXduIGxldHRlcnMsIHNtaWxleSBmYWNlcywgc2FkIGZhY2VzIGFuZCBleGNsYW1hdGlvbiBtYXJrcy4gVGhlbiBwZXJmb3JtIGZlYXR1cmUgZW5naW5lZXJpbmcgb24NCnRoZXNlIGltYWdlcyB0byBjYWxjdWxhdGUgZmVhdHVyZXMgc3VjaCBhcyBob3cgbWFueSBibGFjayBwaXhlbHMgZXhpc3QgaW4gdGhlIGltYWdlIGFuZCBhc3BlY3QgcmF0aW8uIFRoZW4gcGVyZm9ybSBzdGF0aXN0aWNhbCBhbmFseXNpcyBvZiB0aGUgZGF0YXNldHMgdXNpbmcgbWV0aG9kcyBvZiBzdGF0aXN0aWNhbCBpbmZlcmVuY2Ugc3VjaA0KYXMgdXNpbmcgaGlzdG9ncmFtcyBhbmQgZmluYWxseSBmb3IgdGhpcyBhc3NpZ25tZW50IGltcGxlbWVudCBhbmQgZXZhbHVhdGUgc29tZSBtYWNoaW5lIGxlYXJuaW5nIG1vZGVscyB0aGF0IHBlcmZvcm0gY2xhc3NpZmljYXRpb24gb24gdGhlIGRhdGFzZXQuDQoNCiMgU2VjdGlvbiAxDQoNCkkgY3JlYXRlZCBteSBkYXRhc2V0IGltYWdlcyBmb3IgbGV0dGVycyBpbiBzZXQge2EsLi4uLGp9LCBzbWlsZXkgZmFjZXMsIHNhZCBmYWNlcyBhbmQgZXhjbGFtYXRpb24gbWFya3MgdXNpbmcgR0lNUCBhbmQgZXhwb3J0aW5nIHRoZXNlIGltYWdlcyBhcyBQR00gZmlsZXMgdHlwZSBBU0NJSSB0aGlzIGZpbGUgdHlwZSBzaG93ZWQgaW1hZ2VzIA0KDQpgYGB7cn0NCnNvdXJjZSgnQzpcVXNlcnNccnlhbm1cT25lRHJpdmVcTXVzaWNcRG9jdW1lbnRzXGFpLXByb2plY3Rcc2VjdGlvbjFfY29kZS5SJykNCmBgYA0KDQoNCg0KDQojIFNlY3Rpb24gMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc2VjdGlvbiANCmBgYHtyfQ0Kc291cmNlKCcuL3NlY3Rpb24yX2NvZGUuUicpDQpgYGANCg0KDQojIFNlY3Rpb24gMw0KDQojIyBTZWN0aW9uIDMuMQ0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuMw0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuNA0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIFNlY3Rpb24gNA0KDQojIyBTZWN0aW9uIDQuMQ0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuMw0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuNA0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIkFzc2lnbm1lbnQgMjogRmVhdHVyZSBFbmdpbmVlcmluZywgU3RhdGlzdGljYWwgQW5hbHlzaXMgYW5kIE1hY2hpbmUgTGVhcm5pbmciDQphdXRob3I6ICJSeWFuIE1jS2VlICg0MDI5NDg4NikiDQpvdXRwdXQ6DQogIHBkZl9kb2N1bWVudDoNCiAgICAgaW5jbHVkZXM6IA0KICAgICAgICAgaW5faGVhZGVyOiAicHJlYW1ibGUudGV4Ig0KICBodG1sX25vdGVib29rOiBkZWZhdWx0DQogIGh0bWxfZG9jdW1lbnQ6DQogICAgZGZfcHJpbnQ6IHBhZ2VkDQotLS0NCg0KIyMgSW50cm9kdWN0aW9uDQoNClRoZSBvdmVyYWxsIG9iamVjdGl2ZSBvZiB0aGlzIHByb2plY3QgaXMgdG8gY3JlYXRlIEEuSSB0aGF0IHdpbGwgYmUgYWJsZSB0byByZWNvZ25pemUgbGV0dGVycyBpbiB0aGUgc2V0IHthLGIsYyxkLGUsZixnLGgsaSxqfSwgYXMgd2VsbCBhcyByZWNvZ25pemUgc21pbGV5IGZhY2VzLCBzYWQgZmFjZXMgYW5kIGV4Y2xhbWF0aW9uDQptYXJrcy4gSW4gdGhpcyBwYXJ0IG9mIHRoZSBhc3NpZ25tZW50KGFzc2lnbm1lbnQgMikgTXkgZ29hbHMgYXJlIHRvIGNyZWF0ZSBhIGRhdGEgc2V0IG9mIGhhbmQgZHJhd24gbGV0dGVycywgc21pbGV5IGZhY2VzLCBzYWQgZmFjZXMgYW5kIGV4Y2xhbWF0aW9uIG1hcmtzLiBUaGVuIHBlcmZvcm0gZmVhdHVyZSBlbmdpbmVlcmluZyBvbg0KdGhlc2UgaW1hZ2VzIHRvIGNhbGN1bGF0ZSBmZWF0dXJlcyBzdWNoIGFzIGhvdyBtYW55IGJsYWNrIHBpeGVscyBleGlzdCBpbiB0aGUgaW1hZ2UgYW5kIGFzcGVjdCByYXRpby4gVGhlbiBwZXJmb3JtIHN0YXRpc3RpY2FsIGFuYWx5c2lzIG9mIHRoZSBkYXRhIHNldHMgdXNpbmcgbWV0aG9kcyBvZiBzdGF0aXN0aWNhbCBpbmZlcmVuY2Ugc3VjaA0KYXMgdXNpbmcgaGlzdG9ncmFtcyBhbmQgZmluYWxseSBmb3IgdGhpcyBhc3NpZ25tZW50IGltcGxlbWVudCBhbmQgZXZhbHVhdGUgc29tZSBtYWNoaW5lIGxlYXJuaW5nIG1vZGVscyB0aGF0IHBlcmZvcm0gY2xhc3NpZmljYXRpb24gb24gdGhlIGRhdGEgc2V0Lg0KDQojIFNlY3Rpb24gMQ0KDQpJIGNyZWF0ZWQgbXkgZGF0YSBzZXQgaW1hZ2VzIGZvciBsZXR0ZXJzIGluIHNldCB7YSwuLi4san0sIHNtaWxleSBmYWNlcywgc2FkIGZhY2VzIGFuZCBleGNsYW1hdGlvbiBtYXJrcyB1c2luZyBHSU1QIHdpdGggaW1hZ2VzIG9mIDE4eDE4IHBpeGVscyBhbmQgZXhwb3J0aW5nIHRoZXNlIGltYWdlcyBhcyBQR00gZmlsZXMgdHlwZSBBU0NJSS4gVGhpcyANCmZpbGUgdHlwZSBzdG9yZWQgdGhlIHZhbHVlcyBvZiBwaXhlbHMgb24gMzI0IHNlcGFyYXRlIGxpbmVzIGVhY2ggbGluZSBoYXZpbmcgYSB2YWx1ZSBvZiAyNTUgcmVwcmVzZW50aW5nIGEgd2hpdGUgcGl4ZWwgb3IgMCByZXByZXNlbnRpbmcgYSBibGFjayBwaXhlbC4gSW4gb3JkZXIgdG8gY29udmVydCB0aGVzZSBQR00gZmlsZXMgdG8gYSBtYXRyaXgNCnJlcHJlc2VudGF0aW9uIG9mIHRoZSBpbWFnZSBpbiBhIGNzdiBmaWxlIHNvIHRoYXQgdGhlc2UgaW1hZ2VzIGNvdWxkIGJlIG1vcmUgZWFzaWx5IGFuYWx5c2VkIGxhdGVyIGluIHRoZSBwcm9qZWN0IEkgY3JlYXRlZCBhbiBSIHNjcmlwdCBhcyBzaG93biBiZWxvdy4gVGhpcyBSIHNjcmlwdCBzdG9yZXMgZWFjaCBvZiB0aGUgZmlsZXMgaW4gdGhlIFBHTSANCmltYWdlIGZvbGRlciBhcyBhIGxpc3QuIEkgdGhlbiBsb29wZWQgdGhyb3VnaCB0aGlzIGxpc3QgcmVhZGluZyB0aGUgcGl4ZWwgdmFsdWVzIG9mIGVhY2ggb2YgdGhlIGVsZW1lbnQgYW5kIGNoYW5naW5nIHRoZSBlbGVtZW50cyB2YWx1ZSBpbiB0aGUgbWF0cml4IHRvIDAgaWYgdGhlIGVsZW1lbnQgdmFsdWUgaXMgZ3JlYXRlciBvciBlcXVhbCB0byAxMjgNCm9yIGlmIGxlc3MgdGhhbiBJIGNoYW5nZWQgdGhlIHZhbHVlIG9mIHRoYXQgZWxlbWVudCBpbiB0aGUgbWF0cml4IHRvIGJlIGVxdWFsIHRvIDEuIEkgdGhlbiB1c2VkIHdyaXRlLnRhYmxlIHRvIHdyaXRlIHRoZSB1cGRhdGVkIG1hdHJpeCdzIHRvIG5ldyBjc3YgZmlsZSdzIGluIGEgZm9sZGVyIHRoYXQgY29udGFpbnMgdGhlIHVwZGF0ZWQgZGF0YSBzZXQsDQphbmQgdXNpbmcgdGhlIGdzdWIgZnVuY3Rpb24gaW4gdGhlIHBhc3RlIGZ1bmN0aW9uIGZvciBnZXR0aW5nIHRoZSBmaWxlIHBhdGggSSBjaGFuZ2VkIHRoZSBmaWxlIGV4dGVuc2lvbnMgZm9yIHRoZSBmaWxlIG5hbWVzIHRvIGdvIGZyb20gLnBnbSB0byAuY3N2Lg0KDQpgYGB7ciwgZXZhbCA9IEZBTFNFfQ0Ke2xpYnJhcnkocmVhZHIpDQogbGlicmFyeSh1dGlsZS50YWJsZXMpDQogIA0KDQogICMgKiBUbyBjaGFuZ2UgdGhlIGZvbGRlciB0aGF0IGNvbnRhaW5zIHRoZSAucGdtIGZpbGVzDQogICMgSnVzdCBjaGFuZ2UgdGhlIHBhdGggaW4gbGlzdC5maWxlcygpIGJlbG93ZSB0byBiZSBlcXVhbA0KICAjIHRvIHRoZSBmaWxlIHBhdGggb2YgdGhlIGZvbGRlciwgYW5kIGNoYW5nZSB0aGUgd29ya2luZ19mb2xkZXINCiAgIyB0byBiZSBlcXVhbCB0byB0aGUgZmlsZSBwYXRoICsgLyAqDQogIGRhdGFfZmlsZXMgPC0gbGlzdC5maWxlcyhwYXRoID0gImFpX2RhdGFzZXQiKQ0KICB3b3JraW5nX2ZvbGRlciA8LSAiYWlfZGF0YXNldC8iDQogIA0KICBmb3IoaW5kZXggaW4gMTpsZW5ndGgoZGF0YV9maWxlcykpew0KICAgIA0KICAgIGN1cnJlbnRfZmlsZSA8LSBkYXRhX2ZpbGVzW2luZGV4XQ0KICAgIA0KICAgIGN1cnJlbnRfZmlsZV9wYXRoIDwtIHBhc3RlKHdvcmtpbmdfZm9sZGVyLCBjdXJyZW50X2ZpbGUsIHNlcCA9ICIiKQ0KICAgIA0KICAgIHBnbUZpbGUgPC0gcmVhZF9saW5lcyhmaWxlID0gY3VycmVudF9maWxlX3BhdGgsIHNraXAgPSA0KQ0KICAgIGltYWdlTWF0cml4IDwtIG1hdHJpeChwZ21GaWxlLCBucm93ID0gMTgsIG5jb2wgPSAxOCkNCiAgICANCiAgICBmb3Iocm93IGluIDE6bnJvdyhpbWFnZU1hdHJpeCkpIA0KICAgIHsNCiAgICAgIGZvcihjb2wgaW4gMTpuY29sKGltYWdlTWF0cml4KSkgDQogICAgICB7DQogICAgICAgIGlmKGltYWdlTWF0cml4W3Jvdyxjb2xdIDwgMTI4KQ0KICAgICAgICB7DQogICAgICAgICAgaW1hZ2VNYXRyaXhbcm93LGNvbF0gPSAxDQogICAgICAgIH0NCiAgICAgICAgZWxzZQ0KICAgICAgICB7DQogICAgICAgICAgaW1hZ2VNYXRyaXhbcm93LGNvbF0gPSAwDQogICAgICAgIH0NCiAgICAgIH0NCiAgICB9DQogICAgDQogICAgaW1hZ2VNYXRyaXggPC0gdChpbWFnZU1hdHJpeCkNCiAgICANCiAgICAjICogVG8gY2hhbmdlIHRoZSBmb2xkZXIgdGhhdCB0aGUgdXBkYXRlZCBkYXRhc2V0IGdldHMgY3JlYXRlZCBpbiBqdXN0IGNoYW5nZSB0aGUgZmlyc3QgYXJndW1lbnQgaW4gdGhlIHBhc3RlIGZ1bmN0aW9uIHRvIHRoZSBmaWxlIHBhdGggZm9yIHVwZGF0ZWQgZm9sZGVyICsgLyAqDQogICAgd3JpdGUudGFibGUoaW1hZ2VNYXRyaXgsIGZpbGUgPSBwYXN0ZSgiY3N2X2FpX2RhdGFzZXQvIiwgZ3N1YignLnBnbScsICcuY3N2JywgZGF0YV9maWxlc1tpbmRleF0pLCBzZXAgPSAiIiksIGNvbC5uYW1lcyA9IEYsIHJvdy5uYW1lcyA9IEYsIHNlcCA9ICIsIiwgcXVvdGUgPSBGQUxTRSkNCiAgICANCiAgfQ0KICANCiAgcHJpbnQoImNzdiBkYXRhc2V0IGhhcyBiZWVuIHN1Y2Nlc3NmdWxseSBjcmVhdGVkLiIpDQp9DQpgYGANCg0KDQojIFNlY3Rpb24gMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc2VjdGlvbiANCg0KDQojIFNlY3Rpb24gMw0KDQojIyBTZWN0aW9uIDMuMQ0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuMw0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDMuNA0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIFNlY3Rpb24gNA0KDQojIyBTZWN0aW9uIDQuMQ0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuMg0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuMw0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg0KDQojIyBTZWN0aW9uIDQuNA0KDQpZb3VyIHdvcmsgZm9yIHRoaXMgc3Vic2VjdGlvbiBoZXJlLg==</div>
 
 
 

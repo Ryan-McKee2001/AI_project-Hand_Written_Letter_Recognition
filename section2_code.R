@@ -5,7 +5,7 @@
   library(igraph)
   
   # creating a list of all the files in the data_set
-  folder_path <- "dataset/csv_images_dataset"
+  folder_path <- "images"
   data_folder <- list.files(path = folder_path)
   
   # updating the file path string so it can be used later
