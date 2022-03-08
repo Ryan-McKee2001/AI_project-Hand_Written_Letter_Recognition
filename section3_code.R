@@ -48,27 +48,30 @@
   
   
   
+  
+  
+  
+  
+  
+  
+  
   # 3.2
   # getting letter and other features
   letters_calculated_features <- calculated_features[1:80,]
   non_letters_calculated_features<- calculated_features[81:140,]
   
-  print(letters_calculated_features$nr_pix)
+  letter_stats_for_calculated_features <- matrix(nrow = 0, ncol = 3)
+  colnames(letter_stats_for_calculated_features) <- c("mean", "median", "standard deviation")
+  
+  print(letter_stats_for_calculated_features)
   
   print_letter_features_mean <- function(letters_calculated_features){
     
-    letter_features_mean_vector <- c()
-    
-    for(n in colnames(letters_calculated_features)){
-      if(n != "Label" && n != "Index"){
-        print(n)
-        print(letters_calculated_features$n)
-        append(letter_features_mean_vector, mean(letters_calculated_features$n))
+    for(x in colnames(calculated_features)){
+      if(x != "Label" && x != "Index"){
+        letter_stats_for_calculated_features()
       }
     }
-    
-    print(letter_features_mean_vector)
-    #print(hist(letters_calculated_features))
   }
   
  # print(mean(letters_calculated_features[,3:18]))
