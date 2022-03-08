@@ -53,6 +53,26 @@
   letters_calculated_features <- calculated_features[1:80,]
   non_letters_calculated_features<- calculated_features[81:140,]
   
-  print(mean(letters_calculated_features[,3:18]))
+  print(letters_calculated_features$nr_pix)
+  
+  print_letter_features_mean <- function(letters_calculated_features){
+    
+    letter_features_mean_vector <- c()
+    
+    for(n in colnames(letters_calculated_features)){
+      if(n != "Label" && n != "Index"){
+        print(n)
+        print(letters_calculated_features$n)
+        append(letter_features_mean_vector, mean(letters_calculated_features$n))
+      }
+    }
+    
+    print(letter_features_mean_vector)
+    #print(hist(letters_calculated_features))
+  }
+  
+ # print(mean(letters_calculated_features[,3:18]))
+  
+  print_letter_features_mean(letters_calculated_features)
 
 }
