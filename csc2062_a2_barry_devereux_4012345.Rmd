@@ -1,6 +1,6 @@
 ---
 title: "Assignment 2: Feature Engineering, Statistical Analysis and Machine Learning"
-author: "Student Name (Student Number)"
+author: "Ryan McKee (40294886)"
 output:
   pdf_document:
      includes: 
@@ -44,16 +44,6 @@ source("./section1_code.r")
 ```
 
 
-Let's calculate the result of the function for the numbers 5 to 10:
-
-```{r}
-numbers = c(5:10)
-for (number in numbers) {
-  print(squarenumbers(number))
-}
-```
-
-
 In general, as you develop your code, you may find it convenient to write and test it in a standard `.r` file, before adding the working code to this notebook.
 
 ## Word count
@@ -62,22 +52,34 @@ If you want to check the wordcount of your notebook (excluding code), you can in
 
 Follow the installation and use instructions at the link above.
 
-```{r}
-wordcountaddin:::text_stats()
-```
-
 ## Introduction
 
-The objective of this project is to create A.I. that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation
-marks.
+The overall objective of this project is to create A.I that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation
+marks. In this part of the assignment(assignment 2) My goals are to create a data set of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on
+these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the data sets using methods of statistical inference such
+as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the data set.
 
 # Section 1
 
-Your work for this section here.
+I created my data set images for letters in set {a,...,j}, smiley faces, sad faces and exclamation marks using GIMP with images of 18x18 pixels and exporting these images as PGM files type ASCII. This 
+file type stored the values of pixels on 324 separate lines each line having a value of 255 representing a white pixel or 0 representing a black pixel. In order to convert these PGM files to a matrix
+representation of the image in a csv file so that these images could be more easily analysed later in the project I created an R script as shown below. This R script stores each of the files in the PGM 
+image folder as a list. I then looped through this list reading the pixel values of each of the element and changing the elements value in the matrix to 0 if the element value is greater or equal to 128
+or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix's to new csv file's in a folder that contains the updated data set,
+and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.
+
+```{r}
+source('./section1_code.R')
+```
+
+
 
 # Section 2
 
-Your work for this section here.
+```{r}
+source('./section2_code.R')
+```
+
 
 # Section 3
 
