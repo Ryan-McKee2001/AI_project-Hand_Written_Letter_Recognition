@@ -26,17 +26,17 @@ image folder as a list. I then looped through this list reading the pixel values
 or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix's to new csv file's in a folder that contains the updated data set,
 and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.
 
-```{r, eval = FALSE}
-{library(readr)
- library(utile.tables)
+```{r}
+  {library(readr)
+  library(utile.tables)
   
-
+  
   # * To change the folder that contains the .pgm files
   # Just change the path in list.files() belowe to be equal
   # to the file path of the folder, and change the working_folder
   # to be equal to the file path + / *
-  data_files <- list.files(path = "ai_dataset")
-  working_folder <- "ai_dataset/"
+  data_files <- list.files(path = "./dataset2/pmg_images_dataset")
+  working_folder <- "./dataset2/pmg_images_dataset/"
   
   for(index in 1:length(data_files)){
     
@@ -65,7 +65,7 @@ and using the gsub function in the paste function for getting the file path I ch
     imageMatrix <- t(imageMatrix)
     
     # * To change the folder that the updated dataset gets created in just change the first argument in the paste function to the file path for updated folder + / *
-    write.table(imageMatrix, file = paste("csv_ai_dataset/", gsub('.pgm', '.csv', data_files[index]), sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
+    write.table(imageMatrix, file = paste("./dataset2/csv_images_dataset", gsub('.pgm', '.csv', data_files[index]), sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
     
   }
   
@@ -76,7 +76,10 @@ and using the gsub function in the paste function for getting the file path I ch
 
 # Section 2
 
-Your work for this section 
+```{r}
+source('./section2_code.R')
+```
+
 
 
 # Section 3

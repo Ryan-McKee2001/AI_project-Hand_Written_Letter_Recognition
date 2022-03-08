@@ -6,8 +6,8 @@
   # Just change the path in list.files() belowe to be equal
   # to the file path of the folder, and change the working_folder
   # to be equal to the file path + / *
-  data_files <- list.files(path = "ai_dataset")
-  working_folder <- "ai_dataset/"
+  data_files <- list.files(path = "./dataset2/pmg_images_dataset")
+  working_folder <- "./dataset2/pmg_images_dataset/"
   
   for(index in 1:length(data_files)){
     
@@ -36,7 +36,7 @@
     imageMatrix <- t(imageMatrix)
     
     # * To change the folder that the updated dataset gets created in just change the first argument in the paste function to the file path for updated folder + / *
-    write.table(imageMatrix, file = paste("csv_ai_dataset/", gsub('.pgm', '.csv', data_files[index]), sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
+    write.table(imageMatrix, file = paste("./dataset2/csv_images_dataset", gsub('.pgm', '.csv', data_files[index]), sep = ""), col.names = F, row.names = F, sep = ",", quote = FALSE)
     
   }
   
