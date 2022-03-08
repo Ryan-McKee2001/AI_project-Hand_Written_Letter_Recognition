@@ -75,6 +75,13 @@ and using the gsub function in the paste function for getting the file path I ch
 
 
 # Section 2
+The objective of section 2 was to calculate an array of features describing each of the image matrix's created in part one. To do this I created 18 functions for each of the calculations
+each function took a parameter relating to the calculation that the function was carrying out, for example all 16 features that were being calculated took an image matrix as a parameter
+while the first two function that where getting the label and the index of the image matrix took the image matrix file's name so that I could take a sub string from from the file name.
+I used these 18 functions in a for loop that iterated through a list of all the csv image files. Every iteration through this for loop creates an 18x18 matrix which reads the current file data into the matrix.
+I then created an 18x1 matrix which stores the values returned from the calculation functions inside it. Finally I append the feature calculations matrix to a csv file so each row stores a the calculations for a new image file.
+
+The custom function was the 18th function created for the feature calculations for this function I has a few ideas for how to implement this but decided that this function should check the center 6x6 subsset of the image matrix calculate the percentage of black pixels from the image that exist in this area. I think this feature may be useful as it could provide clear distinction between items in the dataset that are likely to have very little pixels in the center 6x6 like an a would probably no pixels in the center 6x6 if it is drawn big enough while a letter like an i would probably have a high percentage of black pixels in this area.
 
 ```{r}
 source('./section2_code.R')
@@ -87,6 +94,10 @@ source('./section2_code.R')
 ## Section 3.1
 
 Your work for this subsection here.
+```{r, echo=TRUE}
+source('./section3_code.R')
+```
+
 
 ## Section 3.2
 
