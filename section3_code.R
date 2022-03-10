@@ -33,7 +33,7 @@
   
   #general_histograms()
   
-  
+  calculated_features
   
   
   
@@ -45,6 +45,7 @@
   # 3.2
   letters_calculated_features <- calculated_features[1:80,]
   non_letters_calculated_features<- calculated_features[81:140,]
+  print(letters_calculated_features[, 18])
   
   #print(letters_calculated_featuress)
   
