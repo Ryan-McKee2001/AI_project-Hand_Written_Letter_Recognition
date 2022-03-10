@@ -44,7 +44,7 @@
   letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
   non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
   
-  print(non_letters_calculated_features)
+  #print(non_letters_calculated_features)
   
   # # get the mean of each column
   letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
@@ -54,14 +54,23 @@
   letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
   non_letters_median <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:18])))
   
-  print(as.matrix(non_letters_calculated_features[ , 3:18]))
-  
-  print(letters_median)
-  print(non_letters_median)
+  # print(as.matrix(non_letters_calculated_features[ , 3:18]))
 
-  # # get the standard deviation of each column
-  # #letters_sd <- colSds(as.matrix(letters_calculated_features[1:80, ][sapply(letters_calculated_features[1:80], is.numeric)]))
-  # #non_letters_sd <- colSds(as.matrix(df1[sapply(df1, is.numeric)]))
-  # #print(letters_sd)
+  #get the standard deviation of each column
+  letters_sd <- colSds(as.matrix(letters_calculated_features[, 3:18][sapply(letters_calculated_features[ , 3:18 ], is.numeric)]))
+  non_letters_sd <- colSds(as.matrix(non_letters_calculated_features[ , 3:18][sapply(non_letters_calculated_features[ , 3:18], is.numeric)]))
+  
+  
+  summary(letters_mean)
+  summary(non_letters_mean)
+  
+  letters_mean_hist <- hist(letters_mean, main = "letters mean histogram", xlab="letters mean", border = "blue", col = "green")
+  non_letters_mean_hist <- hist(non_letters_mean, main = "non letters mean histogram", xlab="non letters mean", border = "blue", col = "green")
+  
+  print(letters_mean_hist)
+  print(non_letters_mean_hist)
+  
+  
+  
   
 }
