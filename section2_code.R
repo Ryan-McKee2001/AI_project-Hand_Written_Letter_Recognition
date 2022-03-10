@@ -512,8 +512,6 @@
     calculated_features[1,17] <- eyes(current_file) # works
     calculated_features[1,18] <- custom(current_file) # works
     
-    print(calculated_features)
-    
-    #write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
+    write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
 }
