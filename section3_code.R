@@ -11,6 +11,10 @@
                                      "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                      "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
   
+  mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
+  
+  #mydata$custom <- as.numeric(mydata$custom)
+  
   
   
   # 3.1
@@ -33,34 +37,28 @@
   
   #general_histograms()
   
-  calculated_features
-  
-  
-  
-  
-  
-  
-  
   
   # 3.2
   letters_calculated_features <- calculated_features[1:80,]
   non_letters_calculated_features<- calculated_features[81:140,]
-  print(letters_calculated_features[, 18])
+  letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
+  non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
   
-  #print(letters_calculated_featuress)
+  print(non_letters_calculated_features)
   
   # # get the mean of each column
-  #letters_mean <- c(colMeans(is.numeric(letters_calculated_features[ , 3:18])))
-  # non_letters_mean <- c(colMeans(non_letters_calculated_features[ , 3:18]))
+  letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
+  non_letters_mean <- c(colMeans(non_letters_calculated_features[ , 3:18]))
   
-  #print(letters_mean)
-  # # get the medians of each column
+  # get the medians of each column
   letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
-  #non_letters_medians <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:5])))
+  non_letters_median <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:18])))
+  
+  print(as.matrix(non_letters_calculated_features[ , 3:18]))
   
   print(letters_median)
-  #print(non_letters_median)
-  # 
+  print(non_letters_median)
+
   # # get the standard deviation of each column
   # #letters_sd <- colSds(as.matrix(letters_calculated_features[1:80, ][sapply(letters_calculated_features[1:80], is.numeric)]))
   # #non_letters_sd <- colSds(as.matrix(df1[sapply(df1, is.numeric)]))
