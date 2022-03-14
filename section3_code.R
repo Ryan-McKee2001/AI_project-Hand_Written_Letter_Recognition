@@ -3,6 +3,7 @@
   library(ggplot2)
   # matrix stats has functions for getting colMedian and standard deviation
   library(matrixStats)
+  library(knitr) # using this to make a table for my report.
   
   mydata <- read.csv("40294886_features.csv", row.names = NULL)
   calculated_features <- data.frame(mydata)
@@ -12,10 +13,6 @@
                                      "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
   
   mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
-  
-  #mydata$custom <- as.numeric(mydata$custom)
-  
-  
   
   # 3.1
   general_histograms <- function(){
@@ -37,14 +34,11 @@
   
   #general_histograms()
   
-  
   # 3.2
   letters_calculated_features <- calculated_features[1:80,]
   non_letters_calculated_features<- calculated_features[81:140,]
   letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
   non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
-  
-  #print(non_letters_calculated_features)
   
   # # get the mean of each column
   letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
@@ -53,22 +47,40 @@
   # get the medians of each column
   letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
   non_letters_median <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:18])))
-  
-  # print(as.matrix(non_letters_calculated_features[ , 3:18]))
 
   #get the standard deviation of each column
   letters_sd <- colSds(as.matrix(letters_calculated_features[, 3:18][sapply(letters_calculated_features[ , 3:18 ], is.numeric)]))
   non_letters_sd <- colSds(as.matrix(non_letters_calculated_features[ , 3:18][sapply(non_letters_calculated_features[ , 3:18], is.numeric)]))
   
+  # printing tables containing the results for standard_deviation, mean, median for both letters and
+  # non letters.
+  # source for making tables: https://www.youtube.com/watch?v=hNgeVLotABg
+  table = matrix(NA, nrow = 16, ncol = 0)
+  rownames(table) = c("nr_pix", "rows_with_1", "cols_with_1",
+                                     "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+                                     "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+                                     "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
   
-  summary(letters_mean)
-  summary(non_letters_mean)
+  table <- cbind(table, letters_mean)
+  table <- cbind(table, non_letters_mean)
+  table <- cbind(table, letters_median)
+  table <- cbind(table, non_letters_median)
+  table <- cbind(table, letters_sd)
+  table <- cbind(table, non_letters_sd)
   
-  letters_mean_hist <- hist(letters_mean, main = "letters mean histogram", xlab="letters mean", border = "blue", col = "green")
-  non_letters_mean_hist <- hist(non_letters_mean, main = "non letters mean histogram", xlab="non letters mean", border = "blue", col = "green")
+  features_table<-kable(table, caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
   
-  print(letters_mean_hist)
-  print(non_letters_mean_hist)
+  print(features_table)
+  
+  #print(means)
+  #summary(letters_mean)
+  #summary(non_letters_mean)
+  
+  #letters_mean_hist <- hist(letters_mean, main = "letters mean histogram", xlab="letters mean", border = "blue", col = "green")
+  #non_letters_mean_hist <- hist(non_letters_mean, main = "non letters mean histogram", xlab="non letters mean", border = "blue", col = "green")
+  
+  #print(letters_mean_hist)
+  #print(non_letters_mean_hist)
   
   
   
