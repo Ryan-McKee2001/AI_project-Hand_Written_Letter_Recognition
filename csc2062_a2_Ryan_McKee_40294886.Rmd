@@ -83,6 +83,8 @@ I then created an 18x1 matrix which stores the values returned from the calculat
 
 The custom function was the 18th function created for the feature calculations for this function I has a few ideas for how to implement this but decided that this function should check the center 6x6 subsset of the image matrix calculate the percentage of black pixels from the image that exist in this area. I think this feature may be useful as it could provide clear distinction between items in the dataset that are likely to have very little pixels in the center 6x6 like an a would probably no pixels in the center 6x6 if it is drawn big enough while a letter like an i would probably have a high percentage of black pixels in this area.
 
+When working on section 3 I noticed that my histograms where off for eyes as I was getting 3 non letters that had more than 1 eye as sad faces and smiley faces should not have any especially the ones that where in my data set as I checked I realised that raster and clump was recognising an enclosed area in the image as an eye because the mouth of the image was reaching the bottom border of the page, to fix this I added 2 to each row and column in my raster image after which I got new updated results which were correct.
+
 ```{r, eval = FALSE}
 source('./section2_code.R')
 ```
