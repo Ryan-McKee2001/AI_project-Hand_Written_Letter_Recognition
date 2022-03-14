@@ -61,6 +61,7 @@
                                      "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
                                      "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
   
+  
   table <- cbind(table, letters_mean)
   table <- cbind(table, non_letters_mean)
   table <- cbind(table, letters_median)
@@ -70,17 +71,16 @@
   
   features_table<-kable(table, caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
   
-  print(features_table)
   
-  #print(means)
-  #summary(letters_mean)
-  #summary(non_letters_mean)
+  print(table)
   
-  #letters_mean_hist <- hist(letters_mean, main = "letters mean histogram", xlab="letters mean", border = "blue", col = "green")
-  #non_letters_mean_hist <- hist(non_letters_mean, main = "non letters mean histogram", xlab="non letters mean", border = "blue", col = "green")
+  # cols with 1, no_neigh_vert and connected_areas seems to be the features with the greates differences and may be the easiest features for
+  # discriminating whether an image is a letter or a non letter image.
   
-  #print(letters_mean_hist)
-  #print(non_letters_mean_hist)
+  # density plots for mean, median and standard deviation of cols with 1 for letters and non letters
+  
+  # box plot for mean cols with 1
+  qplot(data = table, x = letters_mean, geom = "boxplot")
   
   
   

@@ -26,7 +26,7 @@ image folder as a list. I then looped through this list reading the pixel values
 or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix's to new csv file's in a folder that contains the updated data set,
 and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.
 
-```{r}
+```{r, eval=FALSE}
   {library(readr)
   library(utile.tables)
   
@@ -83,7 +83,7 @@ I then created an 18x1 matrix which stores the values returned from the calculat
 
 The custom function was the 18th function created for the feature calculations for this function I has a few ideas for how to implement this but decided that this function should check the center 6x6 subsset of the image matrix calculate the percentage of black pixels from the image that exist in this area. I think this feature may be useful as it could provide clear distinction between items in the dataset that are likely to have very little pixels in the center 6x6 like an a would probably no pixels in the center 6x6 if it is drawn big enough while a letter like an i would probably have a high percentage of black pixels in this area.
 
-```{r}
+```{r, eval = FALSE}
 source('./section2_code.R')
 ```
 
@@ -94,14 +94,18 @@ source('./section2_code.R')
 ## Section 3.1
 
 Your work for this subsection here.
+```{r, eval = FALSE}
+source('./section3_code.R')
+```
+
 
 
 
 ## Section 3.2
 
-Your work for this subsection here.
+In this section the aim is to gain useful summary statistics like the mean, median and standard deviation of both the letters and non letters. To do this I continued writing the script I had created in section 3.1 using the calculated_features data.frame I had read in from the calculated features csv file I created in section 2 I split the data up into letters calculated features and a non letters calculated feature data frame. and carried out calculations on each of the features in these data frames to do this I use function I found from r documentation to get the column median, mean, and standard deviation of each column and then created new vectors from these containing the results of each of the columns for the three calculations I carried out. To make this data easier to read I then outputted it to a table using a knitr library function I found on youtube. (https://www.youtube.com/watch?v=hNgeVLotABg)
 
-```{r, results = 'axis'}
+```{r, eval=TRUE, results='axis', stdout=TRUE}
 {
   library(readr)
   library(ggplot2)
