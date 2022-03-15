@@ -41,11 +41,6 @@
   letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
   non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
   
-  for(i in 1:nrow(non_letters_calculated_features)){
-    if(non_letters_calculated_features$eyes[i] >= 1)
-      print(non_letters_calculated_features[i, ])
-  }
-  
   # # get the mean of each column
   letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
   non_letters_mean <- c(colMeans(non_letters_calculated_features[ , 3:18]))
@@ -108,6 +103,8 @@
   hist(cols_with_1_letters, main = "columns with 1", xlab = "Columns with 1", xlim=c(0,10), col="red")
   hist(cols_with_1_non_letters, add=T, col=rgb(0, 1, 0, 0.5) )
   
+  
+  # 3.3
   # histogram comparisons for no neigh vert
   no_neigh_vert_letters <- letters_calculated_features$no_neigh_vert
   no_neigh_vert_non_letters <- non_letters_calculated_features$no_neigh_vert
@@ -115,7 +112,7 @@
   hist(no_neigh_vert_letters, main = "number of pixels with no neighbours vertical per dataset", xlab = "number no neighbours vertical", xlim=c(0,10), col="blue")
   hist(no_neigh_vert_non_letters, add=T, col=rgb(0, 1, 0, 0.5) )
   
-  # histogram comparison of eyes
+  # histogram comparison of eyes, This is an easy comparison there is a small percentage of letters that have eyes, and non letters have no eyes
   eyes_letters <- letters_calculated_features$eyes
   non_eyes_letters <- non_letters_calculated_features$eyes
   
@@ -128,6 +125,9 @@
   
   hist(connected_areas_letters, main = "connected_areas_non_letters", xlab = "connected areas", xlim=c(0,10), col="blue")
   hist(connected_areas_non_letters, add=T, col=rgb(0, 1, 0, 0.5) )
+  
+  # 3.4 statistical analysis of both letters and non letters
+  
   
   
 }

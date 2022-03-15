@@ -460,10 +460,13 @@
   
   # returns the number of inclosed areas 
   eyes <- function(current_file){
+    current_file <- rbind(current_file, 0) # had to extend the matrix to ensure I was not getting false eyes from images hitting borders.
+    current_file <- cbind(current_file, 0)
+    
     inversed_matrix <- +(!current_file) # ! inverses matrix, + turns values from true and false back to 1 and 0
     rast <- raster(inversed_matrix)
-    rast <- extend(rast, c(1,1)) # this extends the image reaching the border.
     clump <- clump(rast, direction=4) # orthogonally connected meaning direction = 4
+    
     return(maxValue(clump) - 1)
   }
   
