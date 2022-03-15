@@ -462,9 +462,8 @@
   eyes <- function(current_file){
     inversed_matrix <- +(!current_file) # ! inverses matrix, + turns values from true and false back to 1 and 0
     rast <- raster(inversed_matrix)
-    rast <- modify_raster_margins(x, extent_delta = c(1, 1, 1, 1), value = NA) # this function adds 1 row to the top, left, right, and bottom
+    rast <- extend(rast, c(1,1)) # this extends the image reaching the border.
     clump <- clump(rast, direction=4) # orthogonally connected meaning direction = 4
-    print(clump)
     return(maxValue(clump) - 1)
   }
   
@@ -514,6 +513,6 @@
     calculated_features[1,17] <- eyes(current_file) # works
     calculated_features[1,18] <- custom(current_file) # works
     
-    #write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
+    write.table(calculated_features, file = "40294886_features.csv", append = T, sep = ",", col.names = F, row.names = F,  quote = F)
   }
 }
