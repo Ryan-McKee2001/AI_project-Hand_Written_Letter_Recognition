@@ -126,7 +126,21 @@
   hist(connected_areas_letters, main = "connected_areas_non_letters", xlab = "connected areas", xlim=c(0,10), col="blue")
   hist(connected_areas_non_letters, add=T, col=rgb(0, 1, 0, 0.5) )
   
+  
+  # histogram for nr pix
+  letters_nr_pix <- letters_calculated_features$nr_pix
+  non_letters_nr_pix <- non_letters_calculated_features$nr_pix
+  
+  hist(letters_nr_pix, main = "letters and non letters number of pixels", xlab = "number of pixels", xlim=c(0,10), col="blue")
+  hist(non_letters_nr_pix, add=T, col=rgb(0, 1, 0, 0.5) )
+  # going to loop through each of teh calculated features in the vector
+  for(x in )
+
+
+  
   # 3.4 statistical analysis of both letters and non letters
+  
+  
   
   
   
