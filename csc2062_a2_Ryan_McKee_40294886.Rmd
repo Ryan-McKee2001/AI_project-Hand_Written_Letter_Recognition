@@ -186,8 +186,10 @@ Your work for this subsection here.
 
 }
 ```
-
-
+Number of pixels histogram
+Based on the histogram presented seems to have a slightly random distribution although it has 4 clear peaks. In the 0-20  pixels group the first peak this group has around 20 images in this group due to the pixel number being so low I think it is safe to assume that these are the i and ! letters. The next group is 20-50 there is 2 peaks I assume that between 25 to 50 these pixels represent letters assuming this it appears a vast majority of letters have around 30 pixels. after this group there is just random clusters of bars betwen 50-100 pixels I believe that these images as simley faces and sad faces with maybe some thicker letters in there too.
+Rows with 1 pixel histogram
+This histogram seems to have a right skewed shape with some drops in frequency of some rows with 1 pixel numbers. 
 
 
 ## Section 3.2
@@ -263,7 +265,7 @@ In this section the aim is to gain useful summary statistics like the mean, medi
 }
 
 ```
-In the above summary statistics presented in the table above there appears to already be clear differences in the mean standard deviation and medians between the majority of the letter and non letter features. Based on the values presented there seems to be a clear correlation between pixel number, rows with 1, rows with 3 pixels or greater and columns being having 3 pixels or greater having greater means.
+In the above summary statistics presented in the table above there appears to already be clear differences in the mean standard deviation and medians between the majority of the letter and non letter features. Based on the values presented however it is clear the most substantial differences in values which could be used to differentiate between letters and non letters occur in the cols_with_1 feature where the mean of letters is over 2 lower and the median is 4 lower then non letters and with a 1.6 standard deviation for letters and 2.9 standard deviation for non_letter although by itself it could not accurately be used to decide by itself whether an image is a letter or non letter. this feature will be a strong used along side other features. The second strong feature which could be used would be no_neigh_vert there is a substantial difference between the mean and median which for letter is almost 3 higher than non letters and the statistics would be fairly accurate as the standard deviation is not too high with only a 1.4 difference between letters and non letters. The last feature which appers useful is eyes for each of the non letters values for mean, median and standard deviation it is equal to 0 meaning that no non letters have eyes, while the ean for letters eyes is 0.5 with a standard deviation of 0.5 so any image that has eyes can be pretty much guarenteed to be a letter.
 
 ## Section 3.3
 
