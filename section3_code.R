@@ -93,6 +93,8 @@
     stats_df <- get_stats(calculated_features)
     # stats_table(stats_df) # need to fix this
     mean_stats_hist(stats_df)
+    median_stats_hist(stats_df)
+    standard_deviation_stats_hist(stats_df)
   }
   
   # this function calculated mean, median and standard deviation for each of the features
@@ -139,10 +141,6 @@
     mean_df <- data.frame(feature = row.names(mean_df), mean_df) 
     mean_df <- tidyr::pivot_longer(mean_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Mean")
     
-    print(mean_df)
-    
-    #print(stats_df$Mean)
-    
     mean_hist <- ggplot(mean_df, aes(x=feature, y=Mean, fill=Symbols))+ 
       theme_bw() +
       geom_bar(stat='identity', position='dodge') + 
@@ -152,6 +150,47 @@
     plot(mean_hist)
   }
   
+  median_stats_hist <- function(stats_df){
+    median_df <- data.frame(stats_df[, 3], stats_df[, 4])
+    colnames(median_df) <- c("letters", "non_letters")
+    rownames(median_df) <- c("nr_pix", "rows_with_1", "cols_with_1",
+                           "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+                           "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+                           "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+    median_df <- data.frame(feature = row.names(median_df), median_df) 
+    median_df <- tidyr::pivot_longer(median_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Median")
+    
+    print(median_df)
+    
+    median_hist <- ggplot(median_df, aes(x=feature, y=Median, fill=Symbols))+ 
+      theme_bw() +
+      geom_bar(stat='identity', position='dodge') + 
+      ggtitle("Difference between letter and non letter medians") +  xlab("Calculated features") + 
+      scale_x_discrete(limits=stats_df$names)
+    
+    plot(median_hist)
+  }
+  
+  standard_deviation_stats_hist <- function(stats_df){
+    sd_df <- data.frame(stats_df[, 3], stats_df[, 4])
+    colnames(sd_df) <- c("letters", "non_letters")
+    rownames(sd_df) <- c("nr_pix", "rows_with_1", "cols_with_1",
+                             "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+                             "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+                             "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+    sd_df <- data.frame(feature = row.names(sd_df), sd_df) 
+    sd_df <- tidyr::pivot_longer(sd_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Standard deviation")
+    
+    print(sd_df)
+    
+    sd_hist <- ggplot(sd_df, aes(x=feature, y=`Standard deviation`, fill=Symbols))+ 
+      theme_bw() +
+      geom_bar(stat='identity', position='dodge') + 
+      ggtitle("Difference between letter and non letter standard deviation") +  xlab("Calculated features") + 
+      scale_x_discrete(limits=stats_df$names)
+    
+    plot(sd_hist)
+  }
   
   
   # # printing tables containing the results for standard_deviation, mean, median for both letters and
