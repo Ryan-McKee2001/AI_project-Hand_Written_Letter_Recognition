@@ -77,7 +77,7 @@
     plot(aspect_ratio_hist)
   }
   
-  code_3_1(calculated_features) #uncomment when ready to run
+  #code_3_1(calculated_features) #uncomment when ready to run
 
   
   
@@ -91,8 +91,8 @@
    
     
     stats_df <- get_stats(calculated_features)
-
     # stats_table(stats_df) # need to fix this
+    mean_stats_hist(stats_df)
   }
   
   # this function calculated mean, median and standard deviation for each of the features
@@ -116,9 +116,8 @@
     letters_sd <- colSds(as.matrix(letters_calculated_features[, 3:18][sapply(letters_calculated_features[ , 3:18 ], is.numeric)]))
     non_letters_sd <- colSds(as.matrix(non_letters_calculated_features[ , 3:18][sapply(non_letters_calculated_features[ , 3:18], is.numeric)]))
     
-    print(letters_sd)
-    
     stats_df<-data.frame(letters_mean, non_letters_mean, letters_median, non_letters_median, letters_sd, non_letters_sd)
+    
     return(stats_df)
   }
   
@@ -132,7 +131,25 @@
   # this function prints out a grouped bar plot for each of the features stat values
   mean_stats_hist <- function(stats_df){
     mean_df <- data.frame(stats_df[, 1], stats_df[, 2])
+    colnames(mean_df) <- c("letters", "non_letters")
+    rownames(mean_df) <- c("nr_pix", "rows_with_1", "cols_with_1",
+                           "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+                           "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+                           "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+    mean_df <- data.frame(feature = row.names(mean_df), mean_df) 
+    mean_df <- tidyr::pivot_longer(mean_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Mean")
+    
     print(mean_df)
+    
+    #print(stats_df$Mean)
+    
+    mean_hist <- ggplot(mean_df, aes(x=feature, y=Mean, fill=Symbols))+ 
+      theme_bw() +
+      geom_bar(stat='identity', position='dodge') + 
+      ggtitle("Difference between letter and non letter means") +  xlab("Calculated features") + 
+      scale_x_discrete(limits=stats_df$names)
+    
+    plot(mean_hist)
   }
   
   
