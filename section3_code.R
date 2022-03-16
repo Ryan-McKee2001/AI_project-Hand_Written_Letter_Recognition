@@ -85,7 +85,7 @@
   # 3.2 code
   # creating over lappting bar charts for the 3 features That appear to stand out
   
-  code_3_2(calculated_features)
+  #code_3_2(calculated_features)
   
   code_3_2 <- function(calculated_features){
    
