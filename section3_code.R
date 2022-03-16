@@ -42,7 +42,7 @@
 
     cols_with_1_hist <- calculated_features %>%
       ggplot(aes(cols_with_1))+
-      geom_histogram(binwidth = 1, fill = "red")+
+      geom_histogram(binwidth = 2, fill = "red")+
       theme_bw() +
       labs(title = "Columns with 1 histogram",
            x = "Number of columns with 1",
@@ -91,19 +91,10 @@
            y = "Number of pixels")
     
     print(letters_hist)
-    
-    # letters_hist_2 does not work
-    # letters_hist_2 <- calculated_features %>%
-    #   ggplot(aes(Label, nr_pix)) +
-    #   geom_histogram(binwidth = 2, fill = "grey")
-    
-    #print(letters_hist_2)
   }
   
-  # histograms_3_1()
+  histograms_3_1()
   # testing a letters bar chart by features
-  
-  testing()
   
 
   

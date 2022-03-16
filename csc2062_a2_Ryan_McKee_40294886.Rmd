@@ -126,7 +126,7 @@ Your work for this subsection here.
   
   # 3.1
 
-  # plots histograms for the values for each of the features for each of the images
+ # plots histograms for the values for each of the features for each of the images
   histograms_3_1 <- function(){
     nr_pix_hist <- ggplot(data = calculated_features, aes(nr_pix))+
     geom_histogram(binwidth = 2, fill = "grey")+
@@ -187,10 +187,13 @@ Your work for this subsection here.
 }
 ```
 Number of pixels histogram
-Based on the histogram presented seems to have a slightly random distribution although it has 4 clear peaks. In the 0-20  pixels group the first peak this group has around 20 images in this group due to the pixel number being so low I think it is safe to assume that these are the i and ! letters. The next group is 20-50 there is 2 peaks I assume that between 25 to 50 these pixels represent letters assuming this it appears a vast majority of letters have around 30 pixels. after this group there is just random clusters of bars betwen 50-100 pixels I believe that these images as simley faces and sad faces with maybe some thicker letters in there too.
-Rows with 1 pixel histogram
-This histogram seems to have a right skewed shape with some drops in frequency of some rows with 1 pixel numbers. 
+nr_pix historam seems to have a slightly random distribution although it has 4 clear peaks. The 0-20  pixels group contains the first peak. This group has around 20 images due to the pixel number being so low I think it is safe to assume that these are the i and ! The next group is 20-50 there is 2 peaks I assume that this group represents the letters with a vast majority of letters being around 30 pixels. After this group there is just random clusters of bars between 50-100 pixels I believe that these images as smiley faces and sad faces with maybe some thicker letters are in this group too. 
 
+Rows with 1 pixel
+rows_with_1 histogram seems to have a right skewed shape with some drops in frequency of some rows with 1 pixel numbers. The highest peak appears where number of rows wih 1 pixel is equal to 0 I believe that the frequency is high because there is multiple letters and potentailly non letters which are in this group some letters I think would be in the 0 rows_with_1 group would be a and c. After this there is a group from 1-5 rows with 1 I believe this group i comprised of b, e, d, e, h the final group is contains 5-13 pixels these are likey f, i, j, smiley face, sad face and exclamation marks.
+
+Columns with 1 histogram
+over 60 images in this histograms contain 0 columns with only 1, I believe his group comprises of a, b, c, d, e, g, h, i, !, as for the group groups
 
 ## Section 3.2
 
