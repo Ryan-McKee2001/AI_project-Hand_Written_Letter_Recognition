@@ -93,11 +93,98 @@ source('./section2_code.R')
 
 # Section 3
 
+The objective of this section is to perform statistical analyses of the feature data created in from my data-set in section 2 to allow for important distinctions between handwritten symbols from my data-set.
+
 ## Section 3.1
 
+In this subsection I have created 6 histograms histograms for the first six features over the full set of the 140 items in the data-set. I done this by reading my feature calculations csv file and adding it to a data.frame after which I created a function which created the histograms using the first 6 feature columns using ggplots.
+
 Your work for this subsection here.
-```{r, eval = FALSE}
-source('./section3_code.R')
+```{r, eval = TRUE, stdout = TRUE}
+{
+  library(readr)
+  library(ggplot2)
+  library(tidyverse)
+  # matrix stats has functions for getting colMedian and standard deviation
+  library(matrixStats)
+  library(knitr) # using this to make a table for my report.
+  
+  # This section of code read in the feature calculations created in sections 2 code adds
+  # csv seperated values to columns, and new lines create a new row in a data frame
+  mydata <- read.csv("40294886_features.csv", row.names = NULL)
+  calculated_features <- data.frame(mydata)
+  calculated_features_col_names <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
+    "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+    "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+    "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+  colnames(calculated_features) <- calculated_features_col_names
+
+  # had to change custom function to numeric class as for some reason it was character
+  mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
+  
+  
+  
+  # 3.1
+
+  # plots histograms for the values for each of the features for each of the images
+  histograms_3_1 <- function(){
+    nr_pix_hist <- ggplot(data = calculated_features, aes(nr_pix))+
+    geom_histogram(binwidth = 2, fill = "grey")+
+    theme_bw() +
+    labs(title = "Number of pixels histogram",
+         x = "Number of pixels",
+         y = "Frequency")
+    
+    rows_with_1_hist <- ggplot(data = calculated_features, aes(rows_with_1)) +
+             geom_histogram(binwidth = 1, fill = "red") +
+             theme_bw() +
+             labs(title = "Rows with 1 pixel histogram",
+                  x = "Number of rows with 1 pixel",
+                  y = "Frequency")
+
+    cols_with_1_hist <- calculated_features %>%
+      ggplot(aes(cols_with_1))+
+      geom_histogram(binwidth = 1, fill = "red")+
+      theme_bw() +
+      labs(title = "Columns with 1 histogram",
+           x = "Number of columns with 1",
+           y = "Frequency")
+
+    rows_with_3p_hist <- calculated_features %>%
+      ggplot(aes(rows_with_3p))+
+      geom_histogram(binwidth = 1, fill = "blue")+
+      theme_bw() +
+      labs(title = "Rows with 3 pixels of more histogram",
+           x = "Number of rows with 3 pixels or more",
+           y = "Frequency")
+
+    cols_with_3p_hist <- calculated_features %>%
+      ggplot(aes(cols_with_3p))+
+      geom_histogram(binwidth = 1, fill = "blue")+
+      theme_bw() +
+      labs(title = "Columns with 3 pixels of more histogram",
+           x = "Number of columns with 3 pixels or more",
+           y = "Frequency")
+
+    aspect_ratio_hist <- calculated_features %>%
+      ggplot(aes(aspect_ratio))+
+      geom_histogram(binwidth = 0.1, fill = "orange")+
+      theme_bw() +
+      labs(title = "Aspect ratio histogram",
+           x = "Aspect ratios",
+           y = "Frequency")
+    
+    print(nr_pix_hist)
+    print(rows_with_1_hist)
+    print(cols_with_1_hist)
+    print(rows_with_3p_hist)
+    print(cols_with_3p_hist)
+    print(aspect_ratio_hist)
+  }
+  
+  histograms_3_1()
+
+}
 ```
 
 
@@ -161,10 +248,22 @@ In this section the aim is to gain useful summary statistics like the mean, medi
   features_table<-kable(table, caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
   
   print(features_table)
+  
+   # box plot for comparing all the summary data, to show in report
+  summary_boxplot <- boxplot(letters_mean, non_letters_mean, letters_median, non_letters_median, letters_sd, non_letters_sd,
+          main = "summary data comparisons",
+          at = c(1,2,3,4,5,6),
+          names = c("letter mean", "non letter mean", "letters median", "non letters median", "letters standard deviation", "non letters standard deviation"),
+          las = 2,
+          col = c("orange","red"),
+          border = "brown",
+          horizontal = TRUE,
+          notch = FALSE
+  )
 }
 
 ```
-
+In the above summary statistics presented in the table above there appears to already be clear differences in the mean standard deviation and medians between the majority of the letter and non letter features. Based on the values presented there seems to be a clear correlation between pixel number, rows with 1, rows with 3 pixels or greater and columns being having 3 pixels or greater having greater means.
 
 ## Section 3.3
 
