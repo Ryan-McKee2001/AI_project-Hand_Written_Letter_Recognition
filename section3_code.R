@@ -193,6 +193,18 @@
   }
   
   
+  # section 3.3 code 
+  code_3_3 <- function(calculated_features){
+    
+  }
+  
+  # this function returns a data frame containg letter and non letter columns
+  letter_non_letter_df <- function(calculated_features){
+    
+  }
+  
+  
+  
   # # printing tables containing the results for standard_deviation, mean, median for both letters and
   # # non letters.
   # # source for making tables: https://www.youtube.com/watch?v=hNgeVLotABg
