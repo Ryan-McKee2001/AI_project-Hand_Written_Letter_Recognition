@@ -335,12 +335,56 @@
   code_3_4(calculated_features)
   
   code_3_4 <- function(calculated_features){
-    correlation_test(calculated_features)
+    #correlation_test(calculated_features)
+    #print("test")
+    correlation_df(calculated_features)
   }
   
   #  this is a test which returns 
   correlation_test <- function(calculated_features){
-    cor.test(calculated_features$nr_pix, calculated_features$rows_with_1)
+    correlation_df <- data.frame(NA, nrow = 16, ncol = 16)
+    
+    nr_pix_v_rows_with_1 <- cor.test(calculated_features$nr_pix, calculated_features$rows_with_1)
+    print(nr_pix_v_rows_with_1)
+    
+    
+    
+    distribution_nr_pix_vs_rows_with_1 <- ggplot(calculated_features, aes(x=nr_pix, y=rows_with_1, colour=Label )) + 
+      geom_point() + 
+      ggtitle("Graph to show the association between nr_pix and rows_with_1")
+    
+    linear_nr_pix_vs_rows_with_1 <- ggplot(calculated_features, aes(x=nr_pix, y=rows_with_1 )) + 
+      geom_point() + 
+      ggtitle("Graph to show the linear association between nr_pix and rows_with_1") + 
+      stat_smooth(method = "lm",geom = "smooth", se = FALSE)
+    plot(distribution_nr_pix_vs_rows_with_1)
+    plot(linear_nr_pix_vs_rows_with_1)
   }
+  
+  correlation_df <- function(calculated_features){
+    cor_matrix <- matrix(NA, nrow = 16, ncol = 16)
+    p_value_matrix <- matrix(NA, nrow = 16, ncol = 16)
+    
+    # p value used for significance level, if greater than 0.05 a comparison is significant
+    
+    # correlation level used to show how high correlation actually is
+    
+    
+    
+    for(x in 1:16){
+      for(i in 1:16){
+        if(x != i){
+          cor_matrix[x - 2, i - 2] <- cor.test(calculated_features[ , x-2], calculated_features[ , i-2])
+          print(cor_matrix[x-2,i-2])
+        }
+      }
+    }
+    
+    
+    cor_df <- data.frame(cor_matrix)
+    print(cor_df)
+  }
+  
+  # get around 3 of the highest correlation graphs
 }
 
