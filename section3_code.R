@@ -337,6 +337,11 @@
     
   }
   
+  # 
+  correlation_test <- function(calculated_features){
+    
+  }
+  
   
   # # printing tables containing the results for standard_deviation, mean, median for both letters and
   # # non letters.
