@@ -194,15 +194,148 @@
   
   
   # section 3.3 code 
+  code_3_3(calculated_features)
+  
   code_3_3 <- function(calculated_features){
+    let_calc_feat <- letter_df(calculated_features)
+    non_let_calc_feat <- non_letters_df(calculated_features)
+    
+    letter_non_letter_hist(let_calc_feat, non_let_calc_feat)
+    
     
   }
   
   # this function returns a data frame containg letter and non letter columns
-  letter_non_letter_df <- function(calculated_features){
+  letter_df <- function(calculated_features){
+    letters_calculated_features <- calculated_features[1:80,]
+    letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
     
+    return(letters_calculated_features)
   }
   
+  non_letters_df <- function(calculated_features){
+    non_letters_calculated_features <- calculated_features[81:140,]
+    non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
+    
+    return(non_letters_calculated_features)
+  }
+  
+  # this function will get a comparison of all the image features in the function
+  letter_non_letter_hist <- function(let_calc_feat, non_let_calc_feat){
+    # compares letters and non letters nr pix
+    nr_pix_letter <- let_calc_feat$nr_pix
+    nr_pix_non_letter <- non_let_calc_feat$nr_pix
+    
+    hist(nr_pix_letter, main = "graph for number of pixels: letters vs non letters", xlab = "pixel number", xlim=c(0,100), col="grey")
+    hist(nr_pix_non_letter, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compares letters and non letters rows with 1
+    letters_rows_with_1 <- let_calc_feat$rows_with_1
+    non_letters_rows_with_1 <- non_let_calc_feat$rows_with_1
+
+    hist(letters_rows_with_1, main = "graph for number of rows with 1 pixel: Letter vs non letter", xlab = "Rows with 1", xlim=c(0,15), col="grey")
+    hist(non_letters_rows_with_1, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compares letters and non letters cols with 1
+    letters_cols_with_1 <- let_calc_feat$cols_with_1
+    non_letters_cols_with_1 <- non_let_calc_feat$cols_with_1
+    
+    hist(letters_cols_with_1, main = "graph for number of columns with 1 pixel: letter vs non letters", xlab = "Cols with 1", xlim=c(0,11), col="grey")
+    hist(non_letters_cols_with_1, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare rows with 3p
+    letters_rows_with_3p <- let_calc_feat$rows_with_3p
+    non_letters_rows_with_3p <- non_let_calc_feat$rows_with_3p
+    
+    hist(letters_rows_with_3p, main = "graph for number of rows with 3 pixels or more: letters vs non letters", xlab = "Rows with 3p", xlim=c(0,17), col="grey")
+    hist(non_letters_rows_with_3p, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare columns with 3p
+    letters_cols_with_3p <- let_calc_feat$cols_with_3p
+    non_letters_cols_with_3p <- non_let_calc_feat$cols_with_3p
+    
+    hist(letters_cols_with_3p, main = "graph for number of columns with 3 pixels or more: letters vs non letters", xlab = "Columns with 3p", xlim=c(0,15), col="grey")
+    hist(non_letters_cols_with_3p, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare aspect ratios
+    letters_aspect_ratio <- let_calc_feat$aspect_ratio
+    non_letters_aspect_ratio <- non_let_calc_feat$aspect_ratio
+    
+    hist(letters_aspect_ratio, main = "graph for aspect ratio: letters vs non letters", xlab = "Aspect ratios", xlim=c(0,2), col="grey")
+    hist(non_letters_aspect_ratio, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare neigh_1
+    letters_neigh_1 <- let_calc_feat$neigh_1
+    non_letters_neigh_1 <- non_let_calc_feat$neigh_1
+    
+    hist(letters_neigh_1, main = "graph for number of pixels with only 1 neighbour: letters vs non letters", xlab = "neigh 1", xlim=c(0,10), col="grey")
+    hist(non_letters_neigh_1, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_above
+    letters_no_neigh_above <- let_calc_feat$no_neigh_above
+    non_letters_no_neigh_above <- non_let_calc_feat$no_neigh_above
+    
+    hist(letters_no_neigh_above, main = "graph for number of neighbours above: letters vs non letters", xlab = "Columns with 3p", xlim=c(0,30), col="grey")
+    hist(non_letters_no_neigh_above, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_below
+    letters_no_neigh_below <- let_calc_feat$no_neigh_below
+    non_letters_no_neigh_below <- non_let_calc_feat$no_neigh_below
+    
+    hist(letters_no_neigh_below, main = "graph for number of neighbours below: letters vs non letters", xlab = "no neigh below", xlim=c(0,30), col="grey")
+    hist(non_letters_no_neigh_below, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_left
+    letters_no_neigh_left <- let_calc_feat$no_neigh_left
+    non_letters_no_neigh_left <- non_let_calc_feat$no_neigh_left
+    
+    hist(letters_no_neigh_left, main = "graph for number of neighbours left: letters vs non letters", xlab = "No neigh left", xlim=c(0,20), col="grey")
+    hist(non_letters_no_neigh_left, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_right
+    letters_no_neigh_right <- let_calc_feat$no_neigh_right
+    non_letters_no_neigh_right <- non_let_calc_feat$no_neigh_right
+    
+    hist(letters_no_neigh_right, main = "graph for number of no neighbours right: letters vs non letters", xlab = "No neigh right", xlim=c(0,25), col="grey")
+    hist(non_letters_no_neigh_right, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_horiz
+    letters_no_neigh_horiz <- let_calc_feat$no_neigh_horiz
+    non_letters_no_neigh_horiz <- non_let_calc_feat$no_neigh_horiz
+    
+    hist(letters_no_neigh_horiz, main = "graph for number of no neighbours horizontal: letters vs non letters", xlab = "no neigh horiz", xlim=c(0,20), col="grey")
+    hist(non_letters_no_neigh_horiz, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare no_neigh_vert
+    letters_no_neigh_vert <- let_calc_feat$no_neigh_vert
+    non_letters_no_neigh_vert <- non_let_calc_feat$no_neigh_vert
+    
+    hist(letters_no_neigh_vert, main = "graph for number of no neighbours vertical: letters vs non letters", xlab = "no neigh vert", xlim=c(0,35), col="grey")
+    hist(non_letters_no_neigh_vert, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare connected_areas
+    letters_connected_areas <- let_calc_feat$connected_areas
+    non_letters_connected_areas <- non_let_calc_feat$connected_areas
+    
+    hist(letters_connected_areas, main = "graph for aspect ratio: letters vs non letters", xlab = "aspect ratio", xlim=c(0,5), col="grey")
+    hist(non_letters_connected_areas, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare eyes
+    letters_eyes <- let_calc_feat$eyes
+    non_letters_eyes <- non_let_calc_feat$eyes
+    
+    hist(letters_eyes, main = "graph for eyes: letters vs non letters", xlab = "Number of eyes", xlim=c(0,2), col="grey")
+    hist(non_letters_eyes, add=T, col=rgb(0, 1, 0, 0.5) )
+    
+    # compare custom
+  }
+  
+  
+  # 3.4 code
+  
+  code_3_4 <- function(calculated_features){
+    
+  }
   
   
   # # printing tables containing the results for standard_deviation, mean, median for both letters and
@@ -312,3 +445,4 @@
 
 
 }
+
