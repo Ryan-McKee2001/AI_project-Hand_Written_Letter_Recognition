@@ -17,8 +17,6 @@
   colnames(calculated_features) <- calculated_features_col_names
   mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
   
-  
-  
   # 3.1 code
   
   # prints histograms for each of the features
