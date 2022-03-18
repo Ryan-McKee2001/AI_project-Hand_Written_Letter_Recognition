@@ -374,15 +374,43 @@
     for(x in 1:16){
       for(i in 1:16){
         if(x != i){
-          cor_matrix[x - 2, i - 2] <- cor.test(calculated_features[ , x-2], calculated_features[ , i-2])
-          print(cor_matrix[x-2,i-2])
+          cor_test <- cor.test(calculated_features[ , x+2], calculated_features[ , i+2])
+          
+          cor_matrix[x, i] <- cor_test$estimate
+          p_value_matrix[x,i] <- cor_test$p.value
         }
       }
     }
     
     
     cor_df <- data.frame(cor_matrix)
-    print(cor_df)
+    colnames(cor_df) <- colnames(calculated_features[,3:18])
+    rownames(cor_df) <- colnames(calculated_features[,3:18])
+    
+    p_value_df <- data.frame(p_value_matrix)
+    colnames(p_value_df) <- colnames(calculated_features[,3:18])
+    rownames(p_value_df) <- colnames(calculated_features[,3:18])
+    
+    # each value keeps being equal to na this may be due to 
+    columnMax <- colMaxs(as.matrix(cor_df[sapply(cor_df, is.numeric)]))
+    print(columnMax)
+    
+    # for(x in 1:3){
+    #   max_value <- colMax(cor_df)
+    #   print(max)
+    # }
+    
+    # cor_vector = as.vector(t(cor_df))
+    # cor_vector <- (sort(cor_vector, decreasing = TRUE))
+    # print(cor_vector)
+    # print(cor_vector[1])
+    # 
+    # #cor_position <- match(cor_df, cor_vector[1])
+    # #print(cor_position)
+    # print(lapply(data, class))
+    # 
+    # position <- which(cor_df==0.74719513,arr.ind=TRUE)
+    #print(position)
   }
   
   # get around 3 of the highest correlation graphs
