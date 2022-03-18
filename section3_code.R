@@ -369,7 +369,7 @@
     
     # loop four times to get 8 graphs for 3 of the highest correlation comparisons
     loop = 0
-    while(loop < 3){
+    while(loop < 4){
       row_column <- which(cor_matrix == max(cor_matrix), arr.ind = TRUE)
       row_column <- row_column[1, ]
       
@@ -402,6 +402,11 @@
       cor_matrix[comparison1, comparison2] <- 0
       cor_matrix[comparison2, comparison1] <- 0
     }
+    
+    print("correlation value matrix")
+    print(cor_matrix)
+    print("p value matrix")
+    print(p_value_matrix)
   }
 }
 
