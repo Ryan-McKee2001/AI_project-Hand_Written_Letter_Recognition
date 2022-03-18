@@ -335,40 +335,24 @@
   code_3_4(calculated_features)
   
   code_3_4 <- function(calculated_features){
-    #correlation_test(calculated_features)
-    #print("test")
-    correlation_df(calculated_features)
+    correlation_test_and_plot(calculated_features)
   }
   
-  #  this is a test which returns 
-  correlation_test <- function(calculated_features){
-    correlation_df <- data.frame(NA, nrow = 16, ncol = 16)
-    
-    nr_pix_v_rows_with_1 <- cor.test(calculated_features$nr_pix, calculated_features$rows_with_1)
-    print(nr_pix_v_rows_with_1)
-    
-    
-    
-    distribution_nr_pix_vs_rows_with_1 <- ggplot(calculated_features, aes(x=nr_pix, y=rows_with_1, colour=Label )) + 
-      geom_point() + 
-      ggtitle("Graph to show the association between nr_pix and rows_with_1")
-    
-    linear_nr_pix_vs_rows_with_1 <- ggplot(calculated_features, aes(x=nr_pix, y=rows_with_1 )) + 
-      geom_point() + 
-      ggtitle("Graph to show the linear association between nr_pix and rows_with_1") + 
-      stat_smooth(method = "lm",geom = "smooth", se = FALSE)
-    plot(distribution_nr_pix_vs_rows_with_1)
-    plot(linear_nr_pix_vs_rows_with_1)
-  }
-  
-  correlation_df <- function(calculated_features){
+  # this function does the pearson correlation test for each of the 
+  # potential comparisons of calculated features and then using
+  # the correlation value obtained from these tests plot plots graphs
+  # for the highest correlations if their p values are less than 0.05
+  # making them statistically significant
+  correlation_test_and_plot <- function(calculated_features){
     cor_matrix <- matrix(NA, nrow = 16, ncol = 16)
     p_value_matrix <- matrix(NA, nrow = 16, ncol = 16)
+    colnames(cor_matrix) <- colnames(calculated_features[,3:18])
+    rownames(cor_matrix) <- colnames(calculated_features[,3:18])
+
+    colnames(p_value_matrix) <- colnames(calculated_features[,3:18])
+    rownames(p_value_matrix) <- colnames(calculated_features[,3:18])
     
-    # p value used for significance level, if greater than 0.05 a comparison is significant
-    
-    # correlation level used to show how high correlation actually is
-    
+    col_names<- colnames(calculated_features[,3:18])
     
     
     for(x in 1:16){
@@ -382,37 +366,44 @@
       }
     }
     
+    cor_matrix[is.na(cor_matrix)] = 0
+    p_value_matrix[is.na(p_value_matrix)] = 0
     
-    cor_df <- data.frame(cor_matrix)
-    colnames(cor_df) <- colnames(calculated_features[,3:18])
-    rownames(cor_df) <- colnames(calculated_features[,3:18])
+    # loop four times to get 8 graphs for 3 of the highest correlation comparisons
+    loop = 0
+    while(loop < 3){
+      row_column <- which(cor_matrix == max(cor_matrix), arr.ind = TRUE)
+      row_column <- row_column[1, ]
+      
+      comparison1 <- col_names[row_column[1]]
+      comparison2 <- col_names[row_column[2]]
+      
+      print(p_value_matrix[comparison1, comparison2])
+      
+      # checks if the p value for this comparison is statistically significant
+      if(p_value_matrix[comparison1, comparison2] < 0.05){
+        distribution_graph <- ggplot(data = NULL, aes(x=calculated_features[ , comparison1], y=calculated_features[ , comparison2], colour=calculated_features$Label )) +
+          geom_point() +
+          ggtitle("Graph to show the association")+
+          labs( x = comparison1, 
+               y = comparison2)
     
-    p_value_df <- data.frame(p_value_matrix)
-    colnames(p_value_df) <- colnames(calculated_features[,3:18])
-    rownames(p_value_df) <- colnames(calculated_features[,3:18])
-    
-    # each value keeps being equal to na this may be due to 
-    columnMax <- colMaxs(as.matrix(cor_df[sapply(cor_df, is.numeric)]))
-    print(columnMax)
-    
-    # for(x in 1:3){
-    #   max_value <- colMax(cor_df)
-    #   print(max)
-    # }
-    
-    # cor_vector = as.vector(t(cor_df))
-    # cor_vector <- (sort(cor_vector, decreasing = TRUE))
-    # print(cor_vector)
-    # print(cor_vector[1])
-    # 
-    # #cor_position <- match(cor_df, cor_vector[1])
-    # #print(cor_position)
-    # print(lapply(data, class))
-    # 
-    # position <- which(cor_df==0.74719513,arr.ind=TRUE)
-    #print(position)
+        linear_association_graph <- ggplot(data = NULL, aes(x=calculated_features[ , comparison1], y=calculated_features[ , comparison2] )) +
+          geom_point() +
+          ggtitle("Graph to show the linear association") +
+          stat_smooth(method = "lm",geom = "smooth", se = FALSE) + 
+          labs( x = comparison1, 
+               y = comparison2)
+        plot(distribution_graph)
+        plot(linear_association_graph)
+        
+        loop <- loop+1
+      }
+      
+      # now get rid of the element in position just represented in the graphs
+      cor_matrix[comparison1, comparison2] <- 0
+      cor_matrix[comparison2, comparison1] <- 0
+    }
   }
-  
-  # get around 3 of the highest correlation graphs
 }
 
