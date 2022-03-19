@@ -15,7 +15,7 @@
   
   # code for section 4.1
   
-  code_4_1(calculated_features)
+  #code_4_1(calculated_features)
   
   code_4_1 <- function(calculated_features){
     aspect_ratio_prediction(calculated_features)
@@ -31,9 +31,20 @@
     
   }
   
+  #code_4_2(calculated_features)
   
-  code_4_2(calculated_features){
+  code_4_2<-function(calculated_features){
+    # need to add a column to the dataframe which 
+    # will signifty if a row is a letter or non letter 
+    # row
     
+    # 1's are equal to letters
+    # 0's are equal to non letters
+    calculated_features$letter_non_letter <- c(0)
+    calculated_features[1:80,19] <- 1
+    calculated_features[81:140,19] <- 0
+    
+    plot(summary(lm(calculated_features$letter_non_letter ~ calculated_features$no_neigh_below - calculated_features$no_neigh_below)))
   }
   
   # this function will return the logistic regression model 
@@ -41,5 +52,28 @@
   logistic_regession_model <- function(calculated_features){
     logistic <- glm()
   }
+  
+  code_4_3(calculated_features)
+  
+  
+  # just check if each of letters nr_pixels
+  # are greater than the group median value 
+  # and returning a 1 if its true
+  code_4_3 <- function(calculated_features){
+    letters_splits(calculated_features)
+  }
+  
+  letters_splits <- function(calculated_features){
+    # letters
+    print(calculated_features)
+    letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
+    colnames(letters_medians)
+    print(letters_median)
+    splits_median <- c(letters_median[1], letters_median[], letters_median$neigh_1)
+    
+    print(splits_matrix)
+    
+  }
+  
   
 }
