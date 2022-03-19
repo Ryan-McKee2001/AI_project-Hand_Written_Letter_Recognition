@@ -44,36 +44,90 @@
     calculated_features[1:80,19] <- 1
     calculated_features[81:140,19] <- 0
     
-    plot(summary(lm(calculated_features$letter_non_letter ~ calculated_features$no_neigh_below - calculated_features$no_neigh_below)))
+    calculated_features$letter_non_letter <- c(0)
+    calculated_features[1:80,19] <- 1
+    calculated_features[81:140,19] <- 0
+    print(calculated_features)
+    
+    print(calculated_features$letter_non_letter)
+    
+    
+    
+    #test<-summary(lm(letter_non_letter ~ no_neigh_above - no_neigh_below,data = calculated_features))
+    test.regression <- lm(letter_non_letter ~ no_neigh_above - no_neigh_below,data = calculated_features)
+    #abline(test.regression, col = "blue")
+    
+    plot(no_neigh_above)
+    #abline(x = 5)
   }
   
-  # this function will return the logistic regression model 
-  # 
-  logistic_regession_model <- function(calculated_features){
-    logistic <- glm()
-  }
   
+  # section 4.3
   code_4_3(calculated_features)
   
-  
-  # just check if each of letters nr_pixels
-  # are greater than the group median value 
-  # and returning a 1 if its true
+  # this function prints out 
   code_4_3 <- function(calculated_features){
-    letters_splits(calculated_features)
+    features_medians <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
+    splits_medians <- c(letters_median[1], letters_median[6], letters_median[7])
+    
+    splits_matrix <- matrix(NA, nrow = 3, ncol = 3)
+    
+    splits_matrix[1, ] <- letters_splits(calculated_features, splits_medians)
+    splits_matrix[2, ] <- faces_splits(calculated_features, splits_medians)
+    splits_matrix[3, ] <- xclaim_splits(calculated_features, splits_medians)
+    
+    splits_df <- data.frame(splits_matrix)
+    rownames(splits_df) <- c("split1", "split2", "split3")
+    colnames(splits_df) <- c("letters", "faces", "exclamation mark")
+    print(splits_df)
+    
   }
   
-  letters_splits <- function(calculated_features){
-    # letters
-    print(calculated_features)
-    letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
-    colnames(letters_medians)
-    print(letters_median)
-    splits_median <- c(letters_median[1], letters_median[], letters_median$neigh_1)
+  # this returns a vector for the three splits for letters
+  letters_splits <- function(calculated_features, splits_median){
+    letter_splits <- c(0,0,0)
     
-    print(splits_matrix)
+    letters_median <- c(colMedians(as.matrix(calculated_features[1:80 , 3:18])))
+    letter_splits_medians <- c(letters_median[1], letters_median[6], letters_median[7])
     
+    for(x in 1:3){
+      if(letter_splits_medians[x] > splits_median[x] ){
+        letter_splits[x] <- 1
+      }
+    }
+    
+    return(letter_splits)
   }
   
+  # returns a vector for the three splits for faces
+  faces_splits <- function(calculated_features, splits_median){
+    face_splits <- c(0,0,0)
+    
+    faces_median <- c(colMedians(as.matrix(calculated_features[81:120 , 3:18])))
+    faces_splits_medians <- c(faces_median[1], faces_median[6], faces_median[7])
+    
+    for(x in 1:3){
+      if(faces_splits_medians[x] > splits_median[x] ){
+        face_splits[x] <- 1
+      }
+    }
+    return(face_splits)
+  }
+  
+  # retuns a vector for the three splits for exclamation marks
+  xclaim_splits <- function(calculated_features, splits_median){
+    xclaim_splits <- c(0,0,0)
+    
+    xclaim_median <- c(colMedians(as.matrix(calculated_features[121:140 , 3:18])))
+    xclaim_splits_medians <- c(xclaim_median[1], xclaim_median[6], xclaim_median[7])
+    
+    for(x in 1:3){
+      if(xclaim_splits_medians[x] > splits_median[x] ){
+        xclaim_splits[x] <- 1
+      }
+    }
+    
+    return(xclaim_splits)
+  }
   
 }
