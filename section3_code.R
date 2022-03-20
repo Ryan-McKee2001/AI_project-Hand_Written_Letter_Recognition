@@ -195,7 +195,7 @@
   
   
   # section 3.3 code 
-  #code_3_3(calculated_features)
+  code_3_3(calculated_features)
   
   code_3_3 <- function(calculated_features){
     let_calc_feat <- letter_df(calculated_features)
@@ -318,7 +318,7 @@
     letters_connected_areas <- let_calc_feat$connected_areas
     non_letters_connected_areas <- non_let_calc_feat$connected_areas
     
-    hist(letters_connected_areas, main = "graph for aspect ratio: letters vs non letters", xlab = "aspect ratio", xlim=c(0,5), col="grey")
+    hist(letters_connected_areas, main = "graph for connected areas: letters vs non letters", xlab = "aspect ratio", xlim=c(0,5), col="grey")
     hist(non_letters_connected_areas, add=T, col=rgb(0, 1, 0, 0.5) )
     
     # compare eyes
