@@ -1,10 +1,12 @@
-# section 3 code
+# section 3 code - In this section we perform statistical analysis in order to explore which 
+#                  features are important for distinguishing between different kinds of 
+#                  handwritten symbols
 
 {
   library(readr)
   library(ggplot2)
   library(tidyverse)
-  library(matrixStats)
+  library(matrixStats) # matrix calculation library - colMedians
   library(knitr) 
   
   # This is the setup code for section 3 it just read the feature calculations into a data.frame
@@ -17,10 +19,23 @@
   colnames(calculated_features) <- calculated_features_col_names
   mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
   
-  # 3.1 code
+  # printing feature calculations
+  #feature_calculations_table(calculated_features)
+  
+  feature_calculations_table <- function(calculated_features){
+    features_table<-kable(as.matrix(calculated_features), caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
+    
+    print(features_table)
+  }
+  
+  
+  
+  # 3.1 code - Construct suitable histograms over full set of 140 items.
+  #code_3_1(calculated_features) #uncomment when ready to run
   
   # prints histograms for each of the features
   code_3_1 <- function(calculated_features){
+    # create's a histogram showing nr_pix distribution
     nr_pix_hist <- ggplot(data = calculated_features, aes(nr_pix))+
     geom_histogram(binwidth = 2, fill = "grey")+
     theme_bw() +
@@ -28,6 +43,7 @@
          x = "Number of pixels",
          y = "Frequency")
 
+    # creates a histogram showing rows with 1 distribution
     rows_with_1_hist <- ggplot(data = calculated_features, aes(rows_with_1)) +
              geom_histogram(binwidth = 1, fill = "red") +
              theme_bw() +
@@ -35,6 +51,7 @@
                   x = "Number of rows with 1 pixel",
                   y = "Frequency")
 
+    # creates a histogram showing col_with_1 distribution
     cols_with_1_hist <- calculated_features %>%
       ggplot(aes(cols_with_1))+
       geom_histogram(binwidth = 2, fill = "red")+
@@ -43,6 +60,7 @@
            x = "Number of columns with 1",
            y = "Frequency")
 
+    # creates a histogram showing rows_with_3p distribution
     rows_with_3p_hist <- calculated_features %>%
       ggplot(aes(rows_with_3p))+
       geom_histogram(binwidth = 1, fill = "blue")+
@@ -51,6 +69,7 @@
            x = "Number of rows with 3 pixels or more",
            y = "Frequency")
 
+    # creates a histogram showing cols_with_3p distribution
     cols_with_3p_hist <- calculated_features %>%
       ggplot(aes(cols_with_3p))+
       geom_histogram(binwidth = 1, fill = "blue")+
@@ -59,6 +78,7 @@
            x = "Number of columns with 3 pixels or more",
            y = "Frequency")
 
+    # creates a histogram showing aspect ratio distribution
     aspect_ratio_hist <- calculated_features %>%
       ggplot(aes(aspect_ratio))+
       geom_histogram(binwidth = 0.1, fill = "orange")+
@@ -67,6 +87,7 @@
            x = "Aspect ratios",
            y = "Frequency")
 
+    # plots all 6 histograms
     plot(nr_pix_hist)
     plot(rows_with_1_hist)
     plot(cols_with_1_hist)
@@ -75,21 +96,14 @@
     plot(aspect_ratio_hist)
   }
   
-  #code_3_1(calculated_features) #uncomment when ready to run
+ 
 
-  
-  
-  
   # 3.2 code
   # creating over lappting bar charts for the 3 features That appear to stand out
-  
   #code_3_2(calculated_features)
   
   code_3_2 <- function(calculated_features){
-   
-    
     stats_df <- get_stats(calculated_features)
-    # stats_table(stats_df) # need to fix this
     mean_stats_hist(stats_df)
     median_stats_hist(stats_df)
     standard_deviation_stats_hist(stats_df)
@@ -121,13 +135,6 @@
     return(stats_df)
   }
   
-  # this function prints out a table containing the statistics for the features
-  stats_table <- function(stats_df){
-    table <- kable(as.matrix(stats_df), caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
-    print(table)
-  }
-  
-  
   # this function prints out a grouped bar plot for each of the features stat values
   mean_stats_hist <- function(stats_df){
     mean_df <- data.frame(stats_df[, 1], stats_df[, 2])
@@ -158,8 +165,6 @@
     median_df <- data.frame(feature = row.names(median_df), median_df) 
     median_df <- tidyr::pivot_longer(median_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Median")
     
-    print(median_df)
-    
     median_hist <- ggplot(median_df, aes(x=feature, y=Median, fill=Symbols))+ 
       theme_bw() +
       geom_bar(stat='identity', position='dodge') + 
@@ -178,8 +183,6 @@
                              "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
     sd_df <- data.frame(feature = row.names(sd_df), sd_df) 
     sd_df <- tidyr::pivot_longer(sd_df, cols=c('letters', 'non_letters'), names_to='Symbols',values_to="Standard deviation")
-    
-    print(sd_df)
     
     sd_hist <- ggplot(sd_df, aes(x=feature, y=`Standard deviation`, fill=Symbols))+ 
       theme_bw() +
@@ -326,6 +329,11 @@
     hist(non_letters_eyes, add=T, col=rgb(0, 1, 0, 0.5) )
     
     # compare custom
+    letters_custom <- let_calc_feat$custom
+    non_letters_custom <- non_let_calc_feat$custom
+    
+    hist(letters_custom, main = "graph for custom, % pixels in center 6x6: letters vs non letters", xlab = "% pixel's in center 6x6", xlim=c(0,100), col="grey")
+    hist(non_letters_custom, add=T, col=rgb(0, 1, 0, 0.5) )
   }
   
   
@@ -376,8 +384,6 @@
       comparison1 <- col_names[row_column[1]]
       comparison2 <- col_names[row_column[2]]
       
-      print(p_value_matrix[comparison1, comparison2])
-      
       # checks if the p value for this comparison is statistically significant
       if(p_value_matrix[comparison1, comparison2] < 0.05){
         distribution_graph <- ggplot(data = NULL, aes(x=calculated_features[ , comparison1], y=calculated_features[ , comparison2], colour=calculated_features$Label )) +
@@ -392,8 +398,8 @@
           stat_smooth(method = "lm",geom = "smooth", se = FALSE) + 
           labs( x = comparison1, 
                y = comparison2)
-        plot(distribution_graph)
-        plot(linear_association_graph)
+        print(distribution_graph)
+        print(linear_association_graph)
         
         loop <- loop+1
       }
@@ -402,11 +408,6 @@
       cor_matrix[comparison1, comparison2] <- 0
       cor_matrix[comparison2, comparison1] <- 0
     }
-    
-    print("correlation value matrix")
-    print(cor_matrix)
-    print("p value matrix")
-    print(p_value_matrix)
   }
 }
 

@@ -31,7 +31,7 @@
     
   }
   
-  #code_4_2(calculated_features)
+  code_4_2(calculated_features)
   
   code_4_2<-function(calculated_features){
     # need to add a column to the dataframe which 
@@ -63,7 +63,7 @@
   
   
   # section 4.3
-  code_4_3(calculated_features)
+  #code_4_3(calculated_features)
   
   # this function prints out 
   code_4_3 <- function(calculated_features){

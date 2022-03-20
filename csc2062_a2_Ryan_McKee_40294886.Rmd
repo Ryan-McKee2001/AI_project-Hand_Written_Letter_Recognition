@@ -12,21 +12,12 @@ output:
 
 ## Introduction
 
-The overall objective of this project is to create A.I that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation
-marks. In this part of the assignment(assignment 2) My goals are to create a data set of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on
-these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the data sets using methods of statistical inference such
-as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the data set.
+The overall objective of this project is to create A.I that will be able to recognize letters in the set {a,b,c,d,e,f,g,h,i,j}, as well as recognize smiley faces, sad faces and exclamation marks. In this part of the assignment(assignment 2) My goals are to create a data set of hand drawn letters, smiley faces, sad faces and exclamation marks. Then perform feature engineering on these images to calculate features such as how many black pixels exist in the image and aspect ratio. Then perform statistical analysis of the data sets using methods of statistical inference such as using histograms and finally for this assignment implement and evaluate some machine learning models that perform classification on the data set.
 
 # Section 1
+In section the goal is to create the ai data set which will be used throughout the entirety of this coursework. To do this I created my data set images for letters in set {a,...,j}, smiley faces, sad faces and exclamation marks using GIMP with images of 18x18 pixels and exporting these images as PGM files type ASCII. This file type stored the values of pixels on 324 separate lines, each line having a value of 255 representing a white pixel or 0 representing a black pixel this file type allows me to create a script to convert these images to csv matrix representation of the .pgm image that can easily be analysed later in this assignment. In order to make these conversions I created an R script as shown below. This R script stores each of the files in the pgm image folder as a list. I then looped through this list reading the pixel values of each of the element and changing the elements value in the matrix to 0 if the element value is greater or equal to 128, or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix's to new csv file's in a folder that contains the updated .csv data set and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.
 
-I created my data set images for letters in set {a,...,j}, smiley faces, sad faces and exclamation marks using GIMP with images of 18x18 pixels and exporting these images as PGM files type ASCII. This 
-file type stored the values of pixels on 324 separate lines each line having a value of 255 representing a white pixel or 0 representing a black pixel. In order to convert these PGM files to a matrix
-representation of the image in a csv file so that these images could be more easily analysed later in the project I created an R script as shown below. This R script stores each of the files in the PGM 
-image folder as a list. I then looped through this list reading the pixel values of each of the element and changing the elements value in the matrix to 0 if the element value is greater or equal to 128
-or if less than I changed the value of that element in the matrix to be equal to 1. I then used write.table to write the updated matrix's to new csv file's in a folder that contains the updated data set,
-and using the gsub function in the paste function for getting the file path I changed the file extensions for the file names to go from .pgm to .csv.
-
-```{r, eval=FALSE}
+```{r section 1 code, echo=TRUE}
   {library(readr)
   library(utile.tables)
   
@@ -73,34 +64,95 @@ and using the gsub function in the paste function for getting the file path I ch
 }
 ```
 
+Sources:
+- https://www.youtube.com/watch?v=4-uWgh5kDSc - used this video to show me how to iterate through files in the pgm directory.
+
 
 # Section 2
-The objective of section 2 was to calculate an array of features describing each of the image matrix's created in part one. To do this I created 18 functions for each of the calculations
-each function took a parameter relating to the calculation that the function was carrying out, for example all 16 features that were being calculated took an image matrix as a parameter
-while the first two function that where getting the label and the index of the image matrix took the image matrix file's name so that I could take a sub string from from the file name.
-I used these 18 functions in a for loop that iterated through a list of all the csv image files. Every iteration through this for loop creates an 18x18 matrix which reads the current file data into the matrix.
-I then created an 18x1 matrix which stores the values returned from the calculation functions inside it. Finally I append the feature calculations matrix to a csv file so each row stores a the calculations for a new image file.
+The objective of section 2 is to calculate an array of features describing each of the image matrix's created in part one. To do this I created 18 functions for each of the calculations Each function took a parameter relating to the calculation that the function was carrying out, for example all 16 features that were being calculated took an image matrix as a parameter while the first two function that where getting the label and the index of the image matrix took the image matrix file's name so that I could take a sub string from from the file name. I used these 18 functions in a for loop that iterated through a list of all the csv image files from the image directory. Every iteration through this for loop creates an 18x18 matrix which reads the current file data into the matrix. I then created an 18x1 matrix which stores the values returned from the calculation functions inside it. Finally I append the feature calculations matrix to a csv file so each row stores a the calculations for a new image file.
 
-The custom function was the 18th function created for the feature calculations for this function I has a few ideas for how to implement this but decided that this function should check the center 6x6 subsset of the image matrix calculate the percentage of black pixels from the image that exist in this area. I think this feature may be useful as it could provide clear distinction between items in the dataset that are likely to have very little pixels in the center 6x6 like an a would probably no pixels in the center 6x6 if it is drawn big enough while a letter like an i would probably have a high percentage of black pixels in this area.
+The 18th function in my section 2 was the custom function, For this function I had a few ideas for how to implement this but decided that this function should check the center 6x6 sub set of the image matrix and calculate the percentage of black pixels from the image that exist in this area. I think this feature may be useful as it could provide clear distinction between items in the data-set that are likely to have very little pixels in the center 6x6 like an 'a' would probably no pixels in the center 6x6 if it is drawn big enough while a letter like an 'i' would probably have a high percentage of black pixels in this area.
 
-When working on section 3 I noticed that my histograms where off for eyes as I was getting 3 non letters that had more than 1 eye as sad faces and smiley faces should not have any especially the ones that where in my data set as I checked I realised that raster and clump was recognising an enclosed area in the image as an eye because the mouth of the image was reaching the bottom border of the page, to fix this I added 2 to each row and column in my raster image after which I got new updated results which were correct.
+When working on section 3 I noticed that my histograms where off for eyes as I was getting 3 non letters that had more than 1 eye as sad faces and smiley faces should not have any especially the ones that where in my data set as I checked I realized that raster and clump was recognizing an enclosed area in the image as an eye because the mouth of the image was reaching the bottom border of the page, to fix this I added 2 to each row and column in my raster image after which I got new updated results which were correct.
 
-```{r, eval = FALSE}
+
+
+
+```{r section 2 code, eval=FALSE}
 source('./section2_code.R')
 ```
 
+sources
+- https://stackoverflow.com/questions/58302969/how-would-i-inverse-the-binary-digits-0-and-1-of-a-matrix-in-r - I used this to figure out how to inverse a matrix for my eyes function
+- https://www.youtube.com/watch?v=j5a0jTc9S10&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=11 - I used this video for motivation
+- https://www.rdocumentation.org/packages/raster/versions/3.4-5/topics/clump - I used this documentation to figure out how to use the raster and clump function for both my eye's and connected areas function
 
 
 # Section 3
+The objective of this section is to perform statistical analyses of the feature data created in from my data-set in section 2 to allow for important distinctions between handwritten symbols from my data-set. 
 
-The objective of this section is to perform statistical analyses of the feature data created in from my data-set in section 2 to allow for important distinctions between handwritten symbols from my data-set.
+Shown below is a table containing the feature calculations for each of the images which will be used for image analysis for the rest of the assignment.
+```{r Feature calculation table, echo=FALSE, paged.print=TRUE}
+{
+  library(readr)
+  library(ggplot2)
+  library(tidyverse)
+  library(matrixStats) # matrix calculation library - colMedians
+  library(knitr) 
+  
+  # This is the setup code for section 3 it just read the feature calculations into a data.frame
+  mydata <- read.csv("40294886_features.csv", row.names = NULL)
+  calculated_features <- data.frame(mydata)
+  calculated_features_col_names <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
+    "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+    "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+    "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+  colnames(calculated_features) <- calculated_features_col_names
+  mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
+  
+  letters_calculated_features <- calculated_features[1:80,]
+    non_letters_calculated_features<- calculated_features[81:140,]
+    letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
+    non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
+    
+    
+    # # get the mean of each column
+    letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
+    non_letters_mean <- c(colMeans(non_letters_calculated_features[ , 3:18]))
+  
+    # get the medians of each column
+    letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
+    non_letters_median <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:18])))
+  
+    #get the standard deviation of each column
+    letters_sd <- colSds(as.matrix(letters_calculated_features[, 3:18][sapply(letters_calculated_features[ , 3:18 ], is.numeric)]))
+    non_letters_sd <- colSds(as.matrix(non_letters_calculated_features[ , 3:18][sapply(non_letters_calculated_features[ , 3:18], is.numeric)]))
+    
+  
+  # printing feature calculations
+   table = matrix(NA, nrow = 16, ncol = 0)
+  rownames(table) = c("nr_pix", "rows_with_1", "cols_with_1",
+                                     "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
+                                     "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
+                                     "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
+  
+  table <- cbind(table, letters_mean)
+  table <- cbind(table, non_letters_mean)
+  table <- cbind(table, letters_median)
+  table <- cbind(table, non_letters_median)
+  table <- cbind(table, letters_sd)
+  table <- cbind(table, non_letters_sd)
+  
+  features_table<-kable(table, caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
+
+print(features_table)
+}
+```
+
 
 ## Section 3.1
-
-In this subsection I have created 6 histograms histograms for the first six features over the full set of the 140 items in the data-set. I done this by reading my feature calculations csv file and adding it to a data.frame after which I created a function which created the histograms using the first 6 feature columns using ggplots.
-
-Your work for this subsection here.
-```{r, eval = TRUE, stdout = TRUE}
+In this subsection I have created 6 histograms histograms for the first six features over the full set of the 140 items in the data-set to show the distribution of values for each of these features. I did this using three ggplot functions and then plotting the graphs objects created using this function.
+```{r distribution histograms, echo=FALSE}
 {
   library(readr)
   library(ggplot2)
@@ -199,73 +251,8 @@ over 60 images in this histograms contain 0 columns with only 1, I believe his g
 
 In this section the aim is to gain useful summary statistics like the mean, median and standard deviation of both the letters and non letters. To do this I continued writing the script I had created in section 3.1 using the calculated_features data.frame I had read in from the calculated features csv file I created in section 2 I split the data up into letters calculated features and a non letters calculated feature data frame. and carried out calculations on each of the features in these data frames to do this I use function I found from r documentation to get the column median, mean, and standard deviation of each column and then created new vectors from these containing the results of each of the columns for the three calculations I carried out. To make this data easier to read I then outputted it to a table using a knitr library function I found on youtube. (https://www.youtube.com/watch?v=hNgeVLotABg)
 
-```{r, eval=TRUE, results='axis', stdout=TRUE}
-{
-  library(readr)
-  library(ggplot2)
-  # matrix stats has functions for getting colMedian and standard deviation
-  library(matrixStats)
-  library(knitr) # using this to make a table for my report.
-  
-  mydata <- read.csv("40294886_features.csv", row.names = NULL)
-  calculated_features <- data.frame(mydata)
-  colnames(calculated_features) <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
-                                     "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
-                                     "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
-                                     "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
-  
-  mydata[ , 3:18] <- as.numeric(mydata[ , 3,18])
-  
-  # 3.2
-  letters_calculated_features <- calculated_features[1:80,]
-  non_letters_calculated_features<- calculated_features[81:140,]
-  letters_calculated_features[, 18] <- as.numeric(letters_calculated_features[ , 18])
-  non_letters_calculated_features[ , 18] <- as.numeric(non_letters_calculated_features[ , 18])
-  
-  # # get the mean of each column
-  letters_mean <- c(colMeans(letters_calculated_features[ , 3:18]))
-  non_letters_mean <- c(colMeans(non_letters_calculated_features[ , 3:18]))
-  
-  # get the medians of each column
-  letters_median <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
-  non_letters_median <- c(colMedians(as.matrix(non_letters_calculated_features[ , 3:18])))
-
-  #get the standard deviation of each column
-  letters_sd <- colSds(as.matrix(letters_calculated_features[, 3:18][sapply(letters_calculated_features[ , 3:18 ], is.numeric)]))
-  non_letters_sd <- colSds(as.matrix(non_letters_calculated_features[ , 3:18][sapply(non_letters_calculated_features[ , 3:18], is.numeric)]))
-  
-  # printing tables containing the results for standard_deviation, mean, median for both letters and
-  # non letters.
-  # source for making tables: https://www.youtube.com/watch?v=hNgeVLotABg
-   table = matrix(NA, nrow = 16, ncol = 0)
-  rownames(table) = c("nr_pix", "rows_with_1", "cols_with_1",
-                                     "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
-                                     "no_neigh_above","no_neigh_below","no_neigh_left","no_neigh_right",
-                                     "no_neigh_horiz", "no_neigh_vert","connected_areas","eyes","custom")
-  
-  table <- cbind(table, letters_mean)
-  table <- cbind(table, non_letters_mean)
-  table <- cbind(table, letters_median)
-  table <- cbind(table, non_letters_median)
-  table <- cbind(table, letters_sd)
-  table <- cbind(table, non_letters_sd)
-  
-  features_table<-kable(table, caption = "This table shows the letter and non letters mean, median and standard deviation for each of the feature calculations")
-  
-  print(features_table)
-  
-   # box plot for comparing all the summary data, to show in report
-  summary_boxplot <- boxplot(letters_mean, non_letters_mean, letters_median, non_letters_median, letters_sd, non_letters_sd,
-          main = "summary data comparisons",
-          at = c(1,2,3,4,5,6),
-          names = c("letter mean", "non letter mean", "letters median", "non letters median", "letters standard deviation", "non letters standard deviation"),
-          las = 2,
-          col = c("orange","red"),
-          border = "brown",
-          horizontal = TRUE,
-          notch = FALSE
-  )
-}
+```{r echo=FALSE, results='axis', stdout=TRUE}
+source("section3_code.R")
 
 ```
 In the above summary statistics presented in the table above there appears to already be clear differences in the mean standard deviation and medians between the majority of the letter and non letter features. Based on the values presented however it is clear the most substantial differences in values which could be used to differentiate between letters and non letters occur in the cols_with_1 feature where the mean of letters is over 2 lower and the median is 4 lower then non letters and with a 1.6 standard deviation for letters and 2.9 standard deviation for non_letter although by itself it could not accurately be used to decide by itself whether an image is a letter or non letter. this feature will be a strong used along side other features. The second strong feature which could be used would be no_neigh_vert there is a substantial difference between the mean and median which for letter is almost 3 higher than non letters and the statistics would be fairly accurate as the standard deviation is not too high with only a 1.4 difference between letters and non letters. The last feature which appers useful is eyes for each of the non letters values for mean, median and standard deviation it is equal to 0 meaning that no non letters have eyes, while the ean for letters eyes is 0.5 with a standard deviation of 0.5 so any image that has eyes can be pretty much guarenteed to be a letter.
@@ -273,24 +260,45 @@ In the above summary statistics presented in the table above there appears to al
 ## Section 3.3
 
 Your work for this subsection here.
+```{r Letter vs non letter comparison histograms, echo=FALSE}
+source("section3_code.R")
+```
+
 
 ## Section 3.4
 
 Your work for this subsection here.
+```{r linear regression graphs, echo=TRUE,cache = TRUE}
+source("section3_code.R")
+```
+
 
 # Section 4
 
 ## Section 4.1
 
 Your work for this subsection here.
+```{r multiple regression model, echo=FALSE}
+source("section4_code.R")
+```
+
 
 ## Section 4.2
 
 Your work for this subsection here.
+```{r}
+
+```
+
 
 ## Section 4.3
 
 Your work for this subsection here.
+
+```{r}
+source("section4_code.R")
+```
+
 
 ## Section 4.4
 
