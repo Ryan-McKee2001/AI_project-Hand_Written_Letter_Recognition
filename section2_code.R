@@ -1,11 +1,10 @@
 {
   library(readr)
-  #library(utile.tables)
   library(raster)
   library(igraph)
   
   # creating a list of all the files in the data_set
-  folder_path <- "images"
+  folder_path <- "./images"
   data_folder <- list.files(path = folder_path)
   
   # updating the file path string so it can be used later

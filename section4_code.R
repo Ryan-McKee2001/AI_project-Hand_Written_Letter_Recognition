@@ -6,7 +6,7 @@
   library(knitr) 
   
   # This is the setup code for section 3 it just read the feature calculations into a data.frame
-  mydata <- read.csv("40294886_features.csv", row.names = NULL)
+  mydata <- read.csv("./40294886_features.csv", row.names = NULL)
   calculated_features <- data.frame(mydata)
   calculated_features_col_names <- c("Label", "Index", "nr_pix", "rows_with_1", "cols_with_1",
                                      "rows_with_3p", "cols_with_3p", "aspect_ratio", "neigh_1",
@@ -31,30 +31,22 @@
     
   }
   
-  #code_4_2(calculated_features)
+  code_4_2(calculated_features)
   # need to get this working
   code_4_2<-function(calculated_features){
-    letter_check <- 0
-    features_results$is_letter = letter_check
-    features_results[81:140,]$is_letter = 1
+    calculated_features$letter_non_letter <- c(0)
+    calculated_features[1:80,19] <- 1
+    calculated_features[81:140,19] <- 0
     
-    # make training and test datasets
-    # randomly shuffle rows:
-    
-    results_shuffled <- features_results[sample(nrow(features_results)),]
+    results_shuffled <- calculated_features[sample(nrow(calculated_features)),]
     head(results_shuffled)
     
     training_data = results_shuffled[1:112,]
-    test_data = results_shuffled[112:140,]
-    
-    test_plot <- ggplot(training_data, aes(x=no_neigh_vert, fill=as.factor(is_letter))) +
-      geom_histogram(binwidth=1, alpha=.5, position='identity')
-    print(test_plot)
     
     # Lets fit a logistic regression model using this feature:
     glmfit <- glm(is_letter ~ no_neigh_vert, 
                   data = training_data, family = 'binomial') 
-    summary(glmfit)
+    print(summary(glmfit))
   }
   
   

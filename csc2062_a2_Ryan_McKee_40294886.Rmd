@@ -289,7 +289,7 @@ In this section I created 16 ggplot histogram's which compare's the distribution
 ```{r Letter vs non letter comparison histograms, echo=FALSE}
 source("section3_code.R")
 ```
-
+Based on the graphs presented above it tells me that based on the distribution comparisons between the letter and non letter features the features that are best at distinction between letter and non letter are aspect ratio as the distribution heavily leans towards the higher towards the end group from 1-1.5, there is also a good amount of non letters with a 0 - 0.25 aspect ratio compared to letters which is distributed mainly between 0.3-1. Eye's also is useful as as it tell us that 40 letters have eyes, this means that when a letter has eyes it guarantees that an image is a letter. Columns with one distribution chart also shows that it is a good feature for working out distribution as you can guarentee that an image is a non letter if the cols with 1 is greater than 6. 
 
 ## Section 3.4
 In this section I investigate the linear association between features. I did this by using the cor.test function on comparisons of each of the features values then returning the p value and cor values for each of these cor.tests to a cor_matrix and a p_value_data frame. I then iterate through the top 4 correlation values in the cor_matrix where the p_values in the same position as the current cor_matrix value is less than 0.05 meaning that the correlation between the comparison is statistically significant. I then plot a distribution graph and a linear association graph for the comparisons.
@@ -309,17 +309,14 @@ In this section I just fit a multiple regression model to predict aspect_ratio u
 source("section4_code.R")
 ```
 
+### Source
+* http://www.sthda.com/english/articles/40-regression-analysis/168-multiple-linear-regression-in-r/ - multiple linear regression model
 
 ## Section 4.2
 
-Your work for this subsection here.
-```{r}
-
-```
-
 
 ## Section 4.3
-
+In this section I created 3 functions which the first function checks if if the median for features nr_pixels, aspect_ratio and neigh_1 for all rows in calculated_features is less than the medians for the subsets of the calculated features letters, faces and exclamation marks. If the subset median for each of these features is greater than the over all median for these features a 1 is assigned to the correlating index in a data frame then printed.
 
 ```{r}
 source("section4_code.R")
