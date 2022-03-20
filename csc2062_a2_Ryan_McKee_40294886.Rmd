@@ -64,8 +64,8 @@ In section the goal is to create the ai data set which will be used throughout t
 }
 ```
 
-Sources:
-- https://www.youtube.com/watch?v=4-uWgh5kDSc - used this video to show me how to iterate through files in the pgm directory.
+### Sources:
+* https://www.youtube.com/watch?v=4-uWgh5kDSc - used this video to show me how to iterate through files in the pgm directory.
 
 
 # Section 2
@@ -82,10 +82,10 @@ When working on section 3 I noticed that my histograms where off for eyes as I w
 source('./section2_code.R')
 ```
 
-sources
-- https://stackoverflow.com/questions/58302969/how-would-i-inverse-the-binary-digits-0-and-1-of-a-matrix-in-r - I used this to figure out how to inverse a matrix for my eyes function
-- https://www.youtube.com/watch?v=j5a0jTc9S10&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=11 - I used this video for motivation
-- https://www.rdocumentation.org/packages/raster/versions/3.4-5/topics/clump - I used this documentation to figure out how to use the raster and clump function for both my eye's and connected areas function
+### sources
+* https://stackoverflow.com/questions/58302969/how-would-i-inverse-the-binary-digits-0-and-1-of-a-matrix-in-r - I used this to figure out how to inverse a matrix for my eyes function
+* https://www.youtube.com/watch?v=j5a0jTc9S10&list=PL3KnTfyhrIlcudeMemKd6rZFGDWyK23vx&index=11 - I used this video for motivation
+* https://www.rdocumentation.org/packages/raster/versions/3.4-5/topics/clump - I used this documentation to figure out how to use the raster and clump function for both my eye's and connected areas function
 
 
 # Section 3
@@ -148,7 +148,8 @@ Shown below is a table containing the feature calculations for each of the image
 print(features_table)
 }
 ```
-
+### Sources
+* https://www.youtube.com/watch?v=6ruNR3VDfyo - used this video to teach me how to use knitr kable
 
 ## Section 3.1
 In this subsection I have created 6 histograms histograms for the first six features over the full set of the 140 items in the data-set to show the distribution of values for each of these features. I did this using three ggplot functions and then plotting the graphs objects created using this function.
@@ -238,46 +239,72 @@ In this subsection I have created 6 histograms histograms for the first six feat
 
 }
 ```
-Number of pixels histogram
-nr_pix historam seems to have a slightly random distribution although it has 4 clear peaks. The 0-20  pixels group contains the first peak. This group has around 20 images due to the pixel number being so low I think it is safe to assume that these are the i and ! The next group is 20-50 there is 2 peaks I assume that this group represents the letters with a vast majority of letters being around 30 pixels. After this group there is just random clusters of bars between 50-100 pixels I believe that these images as smiley faces and sad faces with maybe some thicker letters are in this group too. 
+### Number of pixels histogram
+nr_pix histogram seems to have a slightly random distribution although it has 4 clear peaks. The 0-20  pixels group contains the first peak. This group has around 20 images due to the pixel number being so low I think it is safe to assume that these are the i and ! The next group is 20-50 there is 2 peaks I assume that this group represents the letters with a vast majority of letters being around 30 pixels. After this group there is just random clusters of bars between 50-100 pixels I believe that these images as smiley faces and sad faces with maybe some thicker letters are in this group too. 
 
-Rows with 1 pixel
-rows_with_1 histogram seems to have a right skewed shape with some drops in frequency of some rows with 1 pixel numbers. The highest peak appears where number of rows wih 1 pixel is equal to 0 I believe that the frequency is high because there is multiple letters and potentailly non letters which are in this group some letters I think would be in the 0 rows_with_1 group would be a and c. After this there is a group from 1-5 rows with 1 I believe this group i comprised of b, e, d, e, h the final group is contains 5-13 pixels these are likey f, i, j, smiley face, sad face and exclamation marks.
+### Rows with 1 pixel
+rows_with_1 histogram seems to have a right skewed shape with some drops in frequency of some rows with 1 pixel numbers. The highest peak appears where number of rows wih 1 pixel is equal to 0 I believe that the frequency is high because there is multiple letters and potentially non letters which are in this group some letters I think would be in the 0 rows_with_1 group would be a and c. After this there is a group from 1-5 rows with 1 I believe this group i comprised of b, e, d, e, h the final group is contains 5-13 pixels these are likely f, i, j, smiley face, sad face and exclamation marks.
 
-Columns with 1 histogram
-over 60 images in this histograms contain 0 columns with only 1, I believe his group comprises of a, b, c, d, e, g, h, i, !, as for the group groups
+### Columns with 1 histogram
+In this histogram there is over 60 images in this histograms contain 0 columns with only 1, I believe his group comprises of a, b, c, d, e, g, h, i, !, as for the group groups. As for the remaining images there are distributed over the rest of the groups in the graph.
+
+### Rows with 3 pixels or more histogram
+This histogram has a peak at the first group 0 rows with 3 pixels or more this group most likely contains i, ! image's with some other images maybe j's in that group as well as there are 27 images that make up this group as for the other groups. group 1- 5 is likely contains letters like a, b, c, d, e, h. With f,j, smiley face and sad faces being likely to have 1 or 2 rows with 3 pixels or more. As for images in the group 6-10 they are most likely more letters like a, b, d, e, g which are drawn thicker.
+
+### Columns with 3 pixels or more histogram
+This histogram is right skewed with the highest peak being at the 0 columns group of columns with 3 pixels or more with 25 images in this group This 0 group likely contains some smiley faces and sad faces. as for images in the 1-5 group this group probably contains letters, exclamation marks and faces with a long nose and eyes. I believe that most of the letters like a, b, c, d, e, g, h would only have 2 columns with 3 pixels or higher unless they are drawn thicker.
+
+### Aspect ratio histogram
+Again like many of the histograms the biggest peak is at the first group between 0.0 and 0.2 aspect ratio. and then after there is a bell like shape with 3 peaks in between. I believe that letters would have aspect ratios in the group 0 to 0.7 aspect ratio, with i and j maybe having lower aspect ratios around 0.1 to 0.3. the higher aspect ratios are probably causing by smiley faces and sad faces.
+
+### Sources
+* https://www.rdocumentation.org/packages/ggplot2/versions/3.3.5 - used this documentation to teach me ggplot
+
 
 ## Section 3.2
+In this section the aim is to gain useful summary statistics like the mean, median and standard deviation of both the letters and non letters. To do this I continued writing the script I had created in section 3.1 using the calculated_features data.frame I had read in from the calculated features csv file I created in section 2 I split the data up into letters calculated features and a non letters calculated feature data frame. Then I carried out calculations on each of the features in these data frames to do this I use a function I found from r documentation apart of the library matrixStats to get the column median, mean, and standard deviation then using these statistics I created 3 ggplot comparison histograms to allow for easy visualisation for means, medians and stadards deviations of each feature for letters and their non letter counterparts.
 
-In this section the aim is to gain useful summary statistics like the mean, median and standard deviation of both the letters and non letters. To do this I continued writing the script I had created in section 3.1 using the calculated_features data.frame I had read in from the calculated features csv file I created in section 2 I split the data up into letters calculated features and a non letters calculated feature data frame. and carried out calculations on each of the features in these data frames to do this I use function I found from r documentation to get the column median, mean, and standard deviation of each column and then created new vectors from these containing the results of each of the columns for the three calculations I carried out. To make this data easier to read I then outputted it to a table using a knitr library function I found on youtube. (https://www.youtube.com/watch?v=hNgeVLotABg)
-
-```{r echo=FALSE, results='axis', stdout=TRUE}
+```{r echo=FALSE, results='axis', stdout=TRUE, fig.width=14,fig.height=11}
 source("section3_code.R")
 
 ```
-In the above summary statistics presented in the table above there appears to already be clear differences in the mean standard deviation and medians between the majority of the letter and non letter features. Based on the values presented however it is clear the most substantial differences in values which could be used to differentiate between letters and non letters occur in the cols_with_1 feature where the mean of letters is over 2 lower and the median is 4 lower then non letters and with a 1.6 standard deviation for letters and 2.9 standard deviation for non_letter although by itself it could not accurately be used to decide by itself whether an image is a letter or non letter. this feature will be a strong used along side other features. The second strong feature which could be used would be no_neigh_vert there is a substantial difference between the mean and median which for letter is almost 3 higher than non letters and the statistics would be fairly accurate as the standard deviation is not too high with only a 1.4 difference between letters and non letters. The last feature which appers useful is eyes for each of the non letters values for mean, median and standard deviation it is equal to 0 meaning that no non letters have eyes, while the ean for letters eyes is 0.5 with a standard deviation of 0.5 so any image that has eyes can be pretty much guarenteed to be a letter.
+### Letter and non letters mean comparison
+Based on the bar chart presented above comparing feature means of non letters and letters some of the most interesting features I believe that could be used to differentiate appear to be cols_with_1 which for letters has a mean of 1 while non letters has a mean of 4. Connected areas is another feature with a mean that could differentiate between a letter and a non letter with letters having a mean of 1.5 while non letters having a mean around 3.5. From the graph it if a image has eyes it is guaranteed that it is a letter. no_neigh_horiz, no_neigh_vert, rows_with_1 and rows_with_3p as well are interseting as they show the mean to be on average around 2-4 higher for letters compared to non letters. custom and nr_pix also seem to be features good for differentiating with a mean of around 7-8 higher for letters compared to non letters.
+
+### Letters and non letters medians
+Like in the mean comparison graph aspect ratio has a similar mean and standard deviation is non letters having a slightly higher value by average. Interestingly cols_with 1 median is 0 for letters in this graph while the median for non is around 4. This appears to confirm my suspision stated in section 3.2 that although some letters have columns with with 1 like some f's, and j's majority have no columns with only 1. while faces have multiple so this could be a good feature for differentiation. cols_with_3p has the same value for letter and non leeter. while connected areas has a big difference. eyes has medians of 0 for both telling me that more than half of the letters have no eyes. The neigh functions also have differences in mean of around 4 apart from no_neigh right and rows_with_1 has a much higher median of around 4 for letters. while nr_pix and rows_with_3p also have very small differences.
+
+### cols_with_1
+Again aspect ratio has a similar looking differentiation between letter and non letter values, while cols_with_1 has a 0 deviation since there are barely any letters that have columns with 1 pixel. custom has a high differentiation in standard deviation cols with 3p also does. as for the neighs, neigh 1 no_neigh horiz and no_neighvert are the only ones with high differentiations between them. rows_with_1 and rows with 3p have a higher differentiation for letters.
+
+### conclusion
+Based on the results presented above I believe that 3 features stand out as the best to differentiate between letters and none letters. The first one eyes as this feature guarentees that an image is a letter if it has a value anything greater than 0. The next feature is cols_with_1 as when the value for cols_with_1 is anything greater than 0 it makes it highly likely that the image is a non letter. And the final feature and the final feature is no_neigh_horiz as it has a higher mean and median and standard devaition for letters.
+
+### Sources
+* https://www.rdocumentation.org/packages/matrixStats/versions/0.1.5/topics/matrixStats-package - A library with function for getting colMedians and col standard devations.
+* https://www.youtube.com/watch?v=-bPjGgD5bZQ - Used this video to teach me how to do a grouped bar chart
 
 ## Section 3.3
-
-Your work for this subsection here.
+In this section I created 16 ggplot histogram's which compare's the distributions of the features for letters and non letters with grey bars representing letters and non letters being represented by green bars. 
 ```{r Letter vs non letter comparison histograms, echo=FALSE}
 source("section3_code.R")
 ```
 
 
 ## Section 3.4
+In this section I investigate the linear association between features. I did this by using the cor.test function on comparisons of each of the features values then returning the p value and cor values for each of these cor.tests to a cor_matrix and a p_value_data frame. I then iterate through the top 4 correlation values in the cor_matrix where the p_values in the same position as the current cor_matrix value is less than 0.05 meaning that the correlation between the comparison is statistically significant. I then plot a distribution graph and a linear association graph for the comparisons.
 
-Your work for this subsection here.
 ```{r linear regression graphs, echo=TRUE,cache = TRUE}
 source("section3_code.R")
 ```
+From the graphs presented above the highest correlation comparisons which are statistically significant are no_neigh_above-no_neigh_below, no_neigh_above-no_neigh_vert, no_neigh_below-no_neigh_vert and nr_pix-rows_with_3p. no_neigh_above and no_neigh_below correlate as when creating any of the images typically there is a lot of straight horizontal lines so typically that would mean that there would be no pixels above or below the pixels in the horizontal line. no_neigh_above-no neigh vertically correlate as no_neigh_vert just means that the pixel above and below are white 0's which is likely as no_neigh_above is already 0. No_neigh_vert and no_neigh_below is for the same reason as the previous comparison as theres a high probability of no_neigh_vert being 0 as no_neigh_below is already 0 and finally nr_pix and rows_with_3p are likely highly correlated as images that have thicker width's and heights have a higher number of pixels and typically these thicker drawn images are more likely to have more rows_with_3p.
 
+### Source
+* https://www.youtube.com/watch?v=66z_MRwtFJM
 
 # Section 4
-
 ## Section 4.1
-
-Your work for this subsection here.
+In this section I just fit a multiple regression model to predict aspect_ratio using the lm function. In the formula I used custom + no_neigh_above + no_neigh_below as these where the features that most strongly correlated with aspect ratio from the cor.tests that I done in section 3.4. I then printed the summary of the object created by my lm function.
 ```{r multiple regression model, echo=FALSE}
 source("section4_code.R")
 ```
@@ -293,7 +320,6 @@ Your work for this subsection here.
 
 ## Section 4.3
 
-Your work for this subsection here.
 
 ```{r}
 source("section4_code.R")
@@ -302,4 +328,3 @@ source("section4_code.R")
 
 ## Section 4.4
 
-Your work for this subsection here.

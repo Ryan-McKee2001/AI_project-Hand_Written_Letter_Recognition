@@ -100,7 +100,7 @@
 
   # 3.2 code
   # creating over lappting bar charts for the 3 features That appear to stand out
-  #code_3_2(calculated_features)
+  code_3_2(calculated_features)
   
   code_3_2 <- function(calculated_features){
     stats_df <- get_stats(calculated_features)
@@ -338,7 +338,7 @@
   
   
   # 3.4 code
-  code_3_4(calculated_features)
+  #code_3_4(calculated_features)
   
   code_3_4 <- function(calculated_features){
     correlation_test_and_plot(calculated_features)
@@ -408,6 +408,10 @@
       cor_matrix[comparison1, comparison2] <- 0
       cor_matrix[comparison2, comparison1] <- 0
     }
+    print("correlation value matrix")
+    print(cor_df)
+    print("p value matrix")
+    print(p_value_df)
   }
 }
 

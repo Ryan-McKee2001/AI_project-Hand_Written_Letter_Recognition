@@ -31,34 +31,30 @@
     
   }
   
-  code_4_2(calculated_features)
-  
+  #code_4_2(calculated_features)
+  # need to get this working
   code_4_2<-function(calculated_features){
-    # need to add a column to the dataframe which 
-    # will signifty if a row is a letter or non letter 
-    # row
+    letter_check <- 0
+    features_results$is_letter = letter_check
+    features_results[81:140,]$is_letter = 1
     
-    # 1's are equal to letters
-    # 0's are equal to non letters
-    calculated_features$letter_non_letter <- c(0)
-    calculated_features[1:80,19] <- 1
-    calculated_features[81:140,19] <- 0
+    # make training and test datasets
+    # randomly shuffle rows:
     
-    calculated_features$letter_non_letter <- c(0)
-    calculated_features[1:80,19] <- 1
-    calculated_features[81:140,19] <- 0
-    print(calculated_features)
+    results_shuffled <- features_results[sample(nrow(features_results)),]
+    head(results_shuffled)
     
-    print(calculated_features$letter_non_letter)
+    training_data = results_shuffled[1:112,]
+    test_data = results_shuffled[112:140,]
     
+    test_plot <- ggplot(training_data, aes(x=no_neigh_vert, fill=as.factor(is_letter))) +
+      geom_histogram(binwidth=1, alpha=.5, position='identity')
+    print(test_plot)
     
-    
-    #test<-summary(lm(letter_non_letter ~ no_neigh_above - no_neigh_below,data = calculated_features))
-    test.regression <- lm(letter_non_letter ~ no_neigh_above - no_neigh_below,data = calculated_features)
-    #abline(test.regression, col = "blue")
-    
-    plot(no_neigh_above)
-    #abline(x = 5)
+    # Lets fit a logistic regression model using this feature:
+    glmfit <- glm(is_letter ~ no_neigh_vert, 
+                  data = training_data, family = 'binomial') 
+    summary(glmfit)
   }
   
   
