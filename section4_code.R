@@ -67,8 +67,8 @@
   
   # this function prints out 
   code_4_3 <- function(calculated_features){
-    features_medians <- c(colMedians(as.matrix(letters_calculated_features[ , 3:18])))
-    splits_medians <- c(letters_median[1], letters_median[6], letters_median[7])
+    features_medians <- c(colMedians(as.matrix(calculated_features[ , 3:18])))
+    splits_medians <- c(features_medians[1], features_medians[6], features_medians[7])
     
     splits_matrix <- matrix(NA, nrow = 3, ncol = 3)
     
